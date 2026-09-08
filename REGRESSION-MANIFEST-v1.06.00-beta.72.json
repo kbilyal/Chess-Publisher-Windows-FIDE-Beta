@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "version": "1.06.00-beta.72",
+  "status": "WINDOWS_TEST_CANDIDATE",
+  "parent": "1.06.00-beta.71",
+  "features": [
+    "Integrated Rating Lists",
+    "Atomic local rating generation",
+    "Review Player Updates",
+    "Directional Desktop-Web Cloud sync",
+    "Fluidity v2 preserved"
+  ],
+  "tests": {
+    "ratingLists": "34/34 PASS",
+    "directionalCloud": "33/33 PASS",
+    "fluidityV2": "60/60 PASS",
+    "static": "PASS",
+    "cumulative": "58 PASS + 3 known + 1 skip; unexpected 0",
+    "protectedCore": "70/70",
+    "gacrux": "61/61",
+    "trf26": "49/49",
+    "swissPairing": "25/25",
+    "tieBreak": "35/35",
+    "chessResults": "PASS"
+  },
+  "protected": [
+    "Gacrux 1.9.57",
+    "Swiss Dutch pairing",
+    "TRF16/TRF26 core",
+    "BBP checker",
+    "Tie-Break core/checker",
+    "Chess-Results protocol/core",
+    "player/pairing identity semantics"
+  ],
+  "cloud": {
+    "legacyAdapterModified": false,
+    "autosaveCloudTransfer": false,
+    "pullDirection": "Cloud->Desktop only",
+    "pushDirection": "Desktop->Cloud only",
+    "threeWayMerge": true,
+    "rosterParityPlayers": 83
+  },
+  "tecVclChanged": false
+}

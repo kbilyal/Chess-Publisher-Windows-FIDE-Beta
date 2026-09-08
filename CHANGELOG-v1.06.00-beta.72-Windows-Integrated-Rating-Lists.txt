@@ -1,0 +1,31 @@
+Chess-Publisher v1.06.00-beta.72 — Windows Integrated Rating Lists / Directional Cloud Sync
+Date: 2026-09-08
+Status: WINDOWS TEST CANDIDATE LINE — NOT FINAL / NOT STABLE
+Parent: v1.06.00-beta.71 Windows Fluidity v2 checkpoint (functional parent ultimately based on accepted beta.70 TEC package)
+
+Implemented
+- Linux dev22-inspired Integrated Rating Lists architecture for Windows Desktop.
+- FIDE Standard/Rapid/Blitz as installation-local reference data, never tournament state.
+- Staged download/import, validation, full three-list parse, temporary FIDE-ID index, integrity check, atomic generation activation and rollback.
+- One logical player record keyed by FIDE ID with identity fields, three ratings, K values and source-period metadata.
+- Immediate exact FIDE ID lookup and deterministic accent/punctuation/case-normalized token-prefix name search.
+- Professional Lists & Players status panel, Update Rating Lists, View Last Update Report and Review Player Updates.
+- Registered tournament players are snapshots: later local list updates never mutate them automatically.
+- Windows source updater stages all requested files and preserves rollback generation.
+- Directional Desktop/Web sync layer: Pull-only, Push-only, Check Status, Resolve Conflict, Open in Web.
+- Local Autosave never performs Cloud transfer; legacy Cloud autosync is disabled.
+- Three-way BASE/LOCAL/REMOTE merge with explicit same-field conflict choices.
+- tournament.name is portable; rename retains internalId/cloudTournamentId.
+- Fluidity v2 and fixed Result Desk preserved.
+
+Protected / unchanged
+- Gacrux 1.9.57: 61/61 byte-identical.
+- Swiss Dutch pairing core unchanged.
+- TRF16/TRF26 core unchanged.
+- BBP checker core unchanged.
+- Tie-Break core/checker unchanged.
+- Chess-Results protocol/core unchanged.
+- Player/pairing identity semantics unchanged.
+- Legacy webview/CloudWorkspaceAdapter.js byte-identical; directional behavior is additive.
+
+This is a TEST CANDIDATE line only. It is not a Final/Stable release.

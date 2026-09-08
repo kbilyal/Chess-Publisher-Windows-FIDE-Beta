@@ -1,0 +1,28 @@
+Chess-Publisher v1.06.00-beta.72 — Windows Regression Report
+
+Integrated Rating Lists dedicated: 34/34 PASS
+Directional Desktop/Web Cloud dedicated: 33/33 PASS
+Windows Fluidity v2: 60/60 PASS
+Static audit: PASS
+Cumulative JS: 58 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0
+Protected core: 70/70 byte-identical to beta.70
+Gacrux 1.9.57 subset: 61/61 byte-identical
+TRF export reliability: PASS
+TRF26 completeness: 49/49 PASS
+Swiss pairing integrity: 25/25 PASS
+Mandatory Swiss tie-break regression: 35/35 PASS
+Chess-Results Pairings publish regression: PASS
+83-player Desktop/Web snapshot parity: PASS (directional Cloud dedicated fixture)
+Pull-only regression: PASS
+Push-only regression: PASS
+Three-way conflict regression: PASS
+Exact FIDE ID lookup: PASS
+Normalized name lookup: PASS
+Standard/Rapid/Blitz parsers: PASS
+Incomplete-generation rollback: PASS
+Atomic generation swap: PASS
+Previous DB preserved on failure: PASS
+Tournament players unchanged after local list update: PASS
+Review Player Updates preview: PASS
+
+Native executable/engine binary is unchanged; Windows UI/source changes are HTML/JavaScript/PowerShell. Package integrity is gated separately. TEST CANDIDATE, not Final/Stable.
