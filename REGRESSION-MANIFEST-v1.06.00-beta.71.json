@@ -1,0 +1,13 @@
+{
+  "version": "1.06.00-beta.71",
+  "parent": "1.06.00-beta.70",
+  "scope": "Windows Fluidity v2 source checkpoint",
+  "status": "SOURCE_CHECKPOINT_NOT_WINDOWS_TEST_CANDIDATE",
+  "dedicated": {"suite":"BETA71-WINDOWS-FLUIDITY-V2-REGRESSION.js","pass":60,"fail":0},
+  "staticAudit": "PASS",
+  "cumulative": {"pass":56,"knownHistorical":3,"browserSkip":1,"unexpected":0},
+  "protectedCore": {"identical":70,"total":70,"parent":"beta.70"},
+  "gacrux": {"version":"1.9.57","protected":true,"runtimeFiles":61},
+  "openWindowsCandidateBlockers": ["Desktop-Web Cloud synchronization redesign", "83-player Desktop-Web parity", "native Windows compile/runtime validation"],
+  "nextTec": ["Q214","Q215","Q216"]
+}
