@@ -1,0 +1,20 @@
+Chess-Publisher v1.06.00-beta.71 — Regression Report
+Parent: v1.06.00-beta.70
+Scope: Windows Fluidity v2 UI/performance integration only.
+
+PASS — Dedicated Windows Fluidity v2: 60/60
+PASS — FULL-PROGRAM-STATIC-AUDIT.py
+PASS — Cumulative JavaScript suites: 56
+KNOWN — 3 historical exceptions only
+SKIP — 1 browser-runtime scenario only
+UNEXPECTED — 0
+PASS — Protected core hash gate: 70/70 byte-identical to beta.70
+PASS — Gacrux 1.9.57 tree present/protected: 61/61
+PASS — beta68 engine runtime hardening: 31/31
+PASS — beta69 tied final places: 34/34
+PASS — beta70 long-event rating history: 37/37 after forward-compatible version assertion maintenance
+PASS — beta29 TRF export reliability
+PASS — beta26 exact export formats
+
+Important limitation:
+This checkpoint is not declared a Windows TEST CANDIDATE because the separately specified Desktop ↔ Web Cloud synchronization redesign and its 83-player parity gate have not yet been implemented/validated in this checkpoint.
