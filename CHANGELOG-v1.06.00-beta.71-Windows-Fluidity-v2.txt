@@ -1,0 +1,40 @@
+Chess-Publisher v1.06.00-beta.71 — Windows Fluidity v2
+Date: 2026-09-08
+Parent: accepted v1.06.00-beta.70 Long Event Rating History
+Status: Windows FIDE Beta source/checkpoint; NOT Final/Stable and NOT a Windows TEST CANDIDATE until the complete Windows protected gate including Desktop↔Web Cloud synchronization is PASS.
+
+Implemented:
+- Replaced the fake in-page movable/resizable application chrome with a single client-filling workspace hosted by the real Windows Form chrome.
+- Kept document/save/autosave/FIDE status as a normal non-window status strip.
+- Native Windows title now follows the active tournament through a cp:title host message.
+- All eight primary tabs remain present and the tab row compresses responsively instead of hiding Chess-Results/DGT or using a horizontal tab scroller.
+- Pairings Result Desk remains fixed beside the board table; the Result Desk has no vertical scrollbar and only the board list scrolls.
+- Pairings action toolbar is sticky; Publish to Chess-Results remains present.
+- Clean working-tab navigation no longer calls saveAll()/full tournament serialization merely because the active view changed.
+- Dirty navigation preserves the existing saveAll()/persistence path.
+- Active tab is persisted as a UI-only preference, separate from tournament dirty state.
+- Delayed Pairings/Standings/Chess-Results VIEW rendering is invalidated when the user changes page before it executes.
+- Removed expensive working-view transition/blur/smooth-scroll effects in the final UI override.
+- No F8/A-B test harness is present in production.
+
+Protected boundaries:
+- Gacrux 1.9.57 unchanged.
+- Swiss Dutch pairing unchanged.
+- TRF16/TRF26 core unchanged.
+- BBP checker unchanged.
+- Tie-Break core/checker unchanged.
+- Chess-Results protocol/core unchanged.
+- DGT core unchanged.
+- pairingNumber/player IDs/starting-number semantics unchanged.
+
+Final deterministic gates:
+- Windows Fluidity v2 dedicated: 60/60 PASS
+- Static audit: PASS
+- Cumulative JS: 56 PASS + 3 known historical exceptions + 1 browser-runtime skip; 0 unexpected failures
+- Protected-core hashes: 70/70 byte-identical to beta.70
+- Gacrux runtime: 61/61 present and protected
+
+Open Windows candidate gates:
+- Native Windows compile/runtime validation on Windows
+- Desktop ↔ Web Cloud synchronization redesign + 83-player parity
+Those remain release blockers before calling a Windows TEST CANDIDATE.
