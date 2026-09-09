@@ -1,0 +1,13 @@
+REFERENCE: beta.83 protected-core set (70 files)
+./engine/* and ./engine/gacrux/*: 66/66 byte-identical
+./ChessPublisher.exe: OK
+./ChessPublisher-LocalEngine.ps1: OK
+./webview/HubAdapter.js: OK
+./webview/WebViewAdapter.js: OK
+./cloud/client/cloud-workspace-api.js: OK
+./webview/CloudWorkspaceAdapter.js: APPROVED-SCOPE-CHANGE
+  beta83 SHA256: a25dba042e46d0f120f9cf721b68fdb70178ab323da902bbcc34c42e6947a602
+  beta84 SHA256: 6ce71bd7b4eb4b2401e9ee657f60b308ed6222a162efa0ded925f9b510e9569e
+  reason: schema-7 Desktop/Web unified SYNC compatibility explicitly requested
+SUMMARY BYTE_IDENTICAL=69 APPROVED_SCOPE_CHANGE=1 UNEXPECTED=0 TOTAL=70
+RESULT: PASS

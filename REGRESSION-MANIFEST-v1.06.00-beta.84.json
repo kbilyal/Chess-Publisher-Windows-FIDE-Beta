@@ -1,0 +1,64 @@
+{
+  "version": "1.06.00-beta.84",
+  "date": "2026-09-09",
+  "status": "WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE",
+  "productParentVersion": "1.06.00-beta.83",
+  "productParentCommit": "f932f9632e588380d1cc91b042ae54d3728191b5",
+  "releaseLineParent": "91d3526bac6cc1524d13c2cdda16217c44940fb7",
+  "fingerprintContentSchema": 7,
+  "mandatoryTests": {
+    "PERSIST-01": "PASS",
+    "PERSIST-02": "PASS",
+    "FP-01": "PASS",
+    "FP-02": "PASS",
+    "SCHEMA-01": "PASS",
+    "SYNC-A": "PASS",
+    "SYNC-B": "PASS",
+    "SYNC-C": "PASS",
+    "SYNC-D": "PASS",
+    "RECOVERY-01": "PASS"
+  },
+  "dedicated": {
+    "forcedCheckpointPersistence": "9/9 PASS",
+    "schema7UnifiedSync": "18/18 PASS"
+  },
+  "cumulative": {
+    "PASS": 72,
+    "KNOWN": 3,
+    "SKIP": 1,
+    "UNEXPECTED": 0,
+    "TOTAL": 76
+  },
+  "staticAudit": "PASS",
+  "protectedHashGate": {
+    "byteIdentical": 69,
+    "approvedScopeChange": 1,
+    "approvedFile": "webview/CloudWorkspaceAdapter.js",
+    "unexpected": 0
+  },
+  "sourceBundle": {
+    "path": "BETA84-STAGING-BUNDLE.base64",
+    "gitBlob": "2ccfcccdab66c3b24390e5b9aef9418663d6c65f",
+    "decodedTarGzSha256": "720f6649623a0710fee675d15ddb7ac5052cd404a55db5cd5a0e3ac2db146763"
+  },
+  "sourcePatch": {
+    "pathInsideBundle": "PATCHES/beta84-desktop-schema7-sync-compatibility.patch",
+    "sha256": "407ab9489d513b1d9ca8a3fa545ee240b7d0361bb236af5eebafe802f019faf0"
+  },
+  "releaseArtifacts": {
+    "portableZipSha256": "0985c71c6c790ed04bf7370eab1d300df8689dbe67c3f7385b72d0e4c513ebff",
+    "launcherExeSha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+    "sourceArchiveSha256": "58b58fab5c37d61c85496c398d21e26215c50f39f06011e7041d3002d277e72d",
+    "regressionReportSha256": "295baa6938500ec085e22c8063533438fe743af8a8277b6577bac9fd65fcb43f"
+  },
+  "protectedCoreUnchanged": [
+    "Gacrux 1.9.57",
+    "Swiss Dutch pairing core",
+    "TRF16/TRF26",
+    "TRF pairing path",
+    "BBP checker",
+    "Tie-Break core/checker",
+    "FIDE pairing/rating core",
+    "Chess-Results protocol/core"
+  ]
+}

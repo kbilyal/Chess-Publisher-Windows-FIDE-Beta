@@ -1,0 +1,6 @@
+58b58fab5c37d61c85496c398d21e26215c50f39f06011e7041d3002d277e72d  Chess-Publisher-Windows-FIDE-Beta84-SOURCE.tar.gz
+0985c71c6c790ed04bf7370eab1d300df8689dbe67c3f7385b72d0e4c513ebff  Chess-Publisher-v1.06.00-beta.84-Desktop-Schema7-SYNC-Compatibility-TEST-CANDIDATE-2026-09-09.zip
+295baa6938500ec085e22c8063533438fe743af8a8277b6577bac9fd65fcb43f  Chess-Publisher-v1.06.00-beta.84-REGRESSION-REPORT.txt
+1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3  ChessPublisher-v1.06.00-beta.84.exe
+407ab9489d513b1d9ca8a3fa545ee240b7d0361bb236af5eebafe802f019faf0  beta84-desktop-schema7-sync-compatibility.patch
+720f6649623a0710fee675d15ddb7ac5052cd404a55db5cd5a0e3ac2db146763  decoded BETA84-STAGING-BUNDLE.base64 tar.gz

@@ -1,0 +1,49 @@
+Chess-Publisher v1.06.00-beta.84 — Desktop/Web schema-7 unified SYNC compatibility
+Date: 2026-09-09
+Parent: v1.06.00-beta.83 / f932f9632e588380d1cc91b042ae54d3728191b5
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Scope
+- Fix forced managed-file checkpoint persistence so browser recovery quota cannot cancel a successful native/file checkpoint.
+- Align Desktop tournament content fingerprint with current Web fingerprint content schema 7.
+- Reject stale/legacy base fingerprints unless fingerprintContentSchema === 7.
+- Reconstruct old common bases from immutable baseRevision snapshots.
+- Recover stale local base metadata automatically when Local content already equals Cloud content.
+- Preserve strict three-way conflict semantics; BOTH_CHANGED remains fail-closed.
+- Consume accepted Cloud push response identity/revision/contentFingerprint as the new common base.
+
+Durability correction
+- Managed LocalEngine/native tournament file is the primary durability target.
+- IndexedDB is preferred for browser recovery shadow.
+- localStorage is best-effort compatibility recovery only.
+- Forced checkpoint fails only when the managed tournament file/native filesystem cannot be written.
+- Browser quota failure after managed-file success is a warning, not a SYNC cancellation.
+- Common-base metadata is not advanced before the managed-file checkpoint is durable.
+
+Fingerprint schema
+- Previous Desktop projection: legacy/implicit contract without a valid persisted fingerprintContentSchema gate on the stored base hash.
+- New Desktop projection: fingerprintContentSchema = 7, matching current Web content projection.
+- Recursive volatile filtering: updatedAt, lastViewedAt, lastAccess, requestTimestamp(s), cacheTimestamp(s), generatedAt, serverProcessingMetadata, processingMetadata, browserState/browserData, sessionState/sessionData.
+- Exact private-content exclusions: cloud, online, hub, publication, savedAt, dgt, uiState, runtimeState.
+- Telegram token/botToken excluded; installation-secret sanitizer preserved.
+- Object keys recursively sorted; array order preserved.
+
+Three-way contract
+- Local == Remote -> NO-OP / adopt current remote revision as common base.
+- Local == Base and Remote != Base -> CLOUD_ONLY / Pull.
+- Local != Base and Remote == Base -> DESKTOP_ONLY / Push.
+- Local != Base and Remote != Base and Local != Remote -> BOTH_CHANGED / explicit conflict resolution.
+- No Desktop-wins, Cloud-wins, force sync, or silent overwrite behavior was introduced.
+
+Additional compatibility correction
+- A newly-created Cloud tournament at revision 0 no longer preflights a non-existent revision-0 snapshot; first Desktop upload establishes revision 1.
+
+Protected / unchanged
+- Gacrux 1.9.57 unchanged.
+- Swiss Dutch pairing core unchanged.
+- TRF16/TRF26 and TRF pairing path unchanged.
+- BBP unchanged.
+- Tie-Break core/checker unchanged.
+- FIDE rating/pairing core unchanged.
+- Chess-Results protocol/core unchanged.
+- Public Hub remains separate from private Cloud SYNC.

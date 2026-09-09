@@ -1,0 +1,19 @@
+PASS: FP-01 volatile updated/generated/cache/session/browser fields and excluded metadata do not change schema-7 fingerprint
+PASS: FP-01 Desktop fingerprint exactly matches Web schema-7 reference projection
+PASS: FP-02 different object insertion order yields identical fingerprint
+PASS: FP-02 semantic array order is preserved
+PASS: SCHEMA-01 old hash is ignored and baseRevision is reconstructed for CLOUD_ONLY pull
+PASS: SCHEMA-01 immutable Cloud base revision is downloaded for schema-7 reconstruction
+PASS: SCHEMA-01 pulled common base is persisted with fingerprintContentSchema 7
+PASS: SYNC-A Desktop-only edit pushes r5 → r6
+PASS: SYNC-A immediate second SYNC is NO-OP
+PASS: SYNC-A server response establishes durable schema-7 r6 common base
+PASS: SYNC-B Web-only result r6 → r7 is CLOUD_ONLY and pulled
+PASS: SYNC-B next SYNC is NO-OP at base r7
+PASS: SYNC-C Desktop-only player edit pushes r7 → r8
+PASS: SYNC-D independent Desktop player A + Web player B edits classify as true BOTH_CHANGED
+PASS: SYNC-D BOTH_CHANGED stops before Cloud PUT and requires conflict resolution
+PASS: SYNC-D neither Desktop nor Cloud side is overwritten
+PASS: RECOVERY-01 equal Desktop/Cloud content repairs stale base without conflict or re-upload
+PASS: RECOVERY-01 adopts remote r11 as the durable common base
+BETA84 SCHEMA7 UNIFIED SYNC: PASS (18 PASS / 0 FAIL)

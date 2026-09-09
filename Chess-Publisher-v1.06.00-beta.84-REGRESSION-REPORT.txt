@@ -1,0 +1,95 @@
+Chess-Publisher v1.06.00-beta.84 — Regression / Release Gate Report
+===================================================================
+Date: 2026-09-09
+Product parent: v1.06.00-beta.83 / f932f9632e588380d1cc91b042ae54d3728191b5
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+1. Managed-file checkpoint failure cause
+----------------------------------------
+The forced save path called fileSaveTournament(true), which first called saveAll().
+saveAll() called saveData(), and saveData() wrote the current tournament snapshot to
+browser localStorage before the managed-file checkpoint had been proven durable.
+cpExecutePersistentSave() also updated browser recovery storage before the managed
+LocalEngine/native tournament file write.
+
+Thus browser recovery was incorrectly coupled to forced durability. A localStorage
+quota/storage failure could contaminate the checkpoint outcome even though browser
+storage is only secondary recovery.
+
+Fix:
+- forced save synchronizes UI -> memory with browser persistence suppressed during capture;
+- managed LocalEngine/native file is written first;
+- failure of all managed-file targets => checkpoint FAIL and no Cloud write;
+- after managed-file success, IndexedDB recovery is attempted first;
+- localStorage recovery is best-effort; quota failure is warning-only.
+
+Answer: YES — localStorage/browser recovery was previously too tightly coupled to the
+forced durability path. It is no longer accepted as proof of a successful Desktop checkpoint.
+
+2. Fingerprint schema
+---------------------
+Old Desktop: legacy/implicit content-fingerprint contract without a valid persisted
+fingerprintContentSchema gate on stored base hashes.
+New Desktop: fingerprintContentSchema = 7, matching current Web reference projection.
+
+Schema-7 behavior:
+- recursive volatile-key filtering;
+- installation-secret sanitization preserved;
+- cloud/online/hub/publication/savedAt/dgt/uiState/runtimeState excluded;
+- telegram.token and telegram.botToken excluded;
+- recursively sorted object keys; array order preserved;
+- old/missing-schema base hashes are ignored and reconstructed from baseRevision;
+- remoteRevision == baseRevision can safely use current remote content as the common base.
+
+3. Three-way / recovery behavior
+--------------------------------
+Local == Remote -> NO-OP / repair common base.
+Local == Base and Remote != Base -> CLOUD_ONLY / Pull.
+Local != Base and Remote == Base -> DESKTOP_ONLY / Push.
+Local != Base and Remote != Base and Local != Remote -> BOTH_CHANGED / fail closed.
+
+After successful Desktop -> Cloud upload, server response cloudTournamentId, internalId,
+revision and contentFingerprint become the new common base and are durably saved. An
+immediate second SYNC with no edits is NO-OP. Equal-content recovery repairs stale base
+metadata after a previous post-upload local metadata-save failure.
+
+4. Mandatory regression results
+--------------------------------
+PERSIST-01: PASS
+PERSIST-02: PASS
+FP-01: PASS
+FP-02: PASS
+SCHEMA-01: PASS
+SYNC-A: PASS
+SYNC-B: PASS
+SYNC-C: PASS
+SYNC-D: PASS
+RECOVERY-01: PASS
+
+Dedicated persistence: 9/9 PASS
+Dedicated schema-7/SYNC: 18/18 PASS
+Full cumulative re-run: 72 PASS / 3 approved historical / 1 designated skip / 0 unexpected
+Static audit: PASS
+Protected hash gate: PASS — 69 byte-identical / 1 approved requested adapter change / 0 unexpected
+TRF export reliability: PASS
+TRF26 completeness: PASS
+Pairing integrity: PASS
+Gacrux runtime hardening: PASS
+Tie-break safety: PASS
+Chess-Results publish regression: PASS
+
+5. Affected production scope
+----------------------------
+- ChessPublisher.html — forced managed-file checkpoint ordering and secondary recovery behavior.
+- ChessPublisher-WebView.ps1 — version marker only.
+- VERSION.txt — 1.06.00-beta.84.
+- webview/CloudWorkspaceAdapter.js — schema-7 fingerprint/base handling and server response adoption.
+- webview/CloudWorkspaceRedesign.js — existing unified SYNC reconciliation using schema-7 three-way decision and durable base checkpoints.
+
+No Gacrux, Swiss Dutch pairing core, TRF16/TRF26, TRF pairing path, BBP, Tie-Break,
+FIDE pairing/rating core, or Chess-Results protocol/core production files changed.
+
+6. Release gate
+---------------
+PASS. beta.84 is eligible for Git checkpoint as a Windows TEST CANDIDATE.
+It remains NOT Final/Stable until actual Windows runtime acceptance.

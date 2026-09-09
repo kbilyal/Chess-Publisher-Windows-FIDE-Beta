@@ -1,0 +1,10 @@
+PASS: PERSIST-01 forced checkpoint succeeds when native managed-file write succeeds and localStorage recovery fails
+PASS: PERSIST-01 browser recovery runs only after managed-file durability
+PASS: PERSIST-01 IndexedDB is preferred before localStorage recovery
+PASS: PERSIST-01 real localStorage QuotaExceededError is downgraded to recovery-shadow failure
+PASS: PERSIST-02 forced checkpoint fails when both managed-file targets fail
+PASS: PERSIST-02 failed managed checkpoint does not persist a newer browser recovery/common-base snapshot
+PASS: PERSIST-02 fileSaveTournament(true) synchronizes UI in memory before forced write without browser durability proof
+PASS: PERSIST-02 saveData browser write is suppressed during forced checkpoint capture
+PASS: PERSIST-02 unified SYNC durability gate precedes Cloud link/PUT work
+BETA84 FORCED CHECKPOINT PERSISTENCE: PASS (9 PASS / 0 FAIL)
