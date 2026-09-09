@@ -1,0 +1,25 @@
+Chess-Publisher v1.06.00-beta.82 — Regression Report
+Date: 2026-09-09
+Parent: v1.06.00-beta.81
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Focused fix
+- Both visible blue ↕ SYNC buttons now use the result-aware Web/arbiter-results pipeline.
+- My Cloud Tournaments SYNC calls downloadWebResults(), which validates/applies result-state and then invokes the existing syncCurrent().
+- syncCurrent() algorithm itself was not modified.
+
+Focused gates
+- BETA82-ALL-SYNC-WEB-RESULTS-REGRESSION: 7/7 PASS
+- BETA79-PAIRINGS-SYNC-BUTTON-REGRESSION: 7/7 PASS
+- BETA78-UNIFIED-SYNC-CURRENT-REGRESSION: 15/15 PASS
+- BETA74-WEB-RESULT-DOWNLOAD-REGRESSION: 26/26 PASS
+- BETA72-DESKTOP-WEB-DIRECTIONAL-CLOUD-SYNC-REGRESSION: 33/33 PASS
+
+Full gates
+- Cumulative: 69 PASS / 3 known / 1 skip / 0 unexpected
+- Static audit: PASS
+- Protected core hash check: 70/70 byte-identical
+
+VCL
+PASS 159 / PARTIAL 14 / FAIL 0 / CONDITIONAL 21 / NEEDS TEST 0 / NEEDS TEC 1 / N/A 30.
+No VCL rows changed in beta.82.

@@ -1,0 +1,42 @@
+Chess-Publisher v1.06.00-beta.82 — All SYNC Buttons Download Web Results
+Date: 2026-09-09
+Parent: v1.06.00-beta.81
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Scope
+- Align both visible blue ↕ SYNC actions to the same result-aware pipeline.
+- Pairings ↕ SYNC already downloaded/validated arbiter-entered Web results before unified sync.
+- My Cloud Tournaments ↕ SYNC now invokes the same downloadWebResults() pipeline first.
+
+Behavior
+- Web/arbiter results are matched by round/board/player identity using the existing protected results-only planner.
+- Valid result-state changes are applied locally first.
+- The pipeline then calls the existing unified syncCurrent() logic.
+- No separate Push/Pull decision was added.
+- No change to conflict semantics or Cloud identity semantics.
+- Blank Web results still do not erase populated Desktop results.
+- Pairing/player identity mismatches still fail closed.
+
+Protected boundaries
+- Gacrux 1.9.57 unchanged.
+- Swiss Dutch pairing core unchanged.
+- TRF16/TRF26 protected core unchanged.
+- BBP checker unchanged.
+- Tie-break protected core unchanged.
+- Chess-Results protocol/core unchanged.
+- unified syncCurrent() algorithm unchanged.
+
+Regression
+- beta.82 All SYNC Web Results: 7/7 PASS.
+- beta.79 Pairings SYNC: 7/7 PASS.
+- beta.78 Unified SYNC: 15/15 PASS.
+- beta.74 Web Result Download: 26/26 PASS.
+- beta.72 Directional Cloud: 33/33 PASS.
+- Cumulative: 69 PASS + 3 approved historical exceptions + 1 browser-runner skip; 0 unexpected.
+- Static audit: PASS.
+- Protected core: 70/70 byte-identical.
+
+TEC/VCL
+- No VCL status change in this fix release.
+- Current VCL remains PASS 159 / PARTIAL 14 / FAIL 0 / CONDITIONAL 21 / NEEDS TEST 0 / NEEDS TEC 1 / N/A 30.
+- Q18 remains external TEC confirmation.

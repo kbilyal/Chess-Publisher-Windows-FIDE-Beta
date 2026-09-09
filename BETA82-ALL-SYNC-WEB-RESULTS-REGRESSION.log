@@ -1,0 +1,8 @@
+PASS Pairings exposes blue SYNC
+PASS Pairings SYNC keeps result-aware wrapper
+PASS result-aware Cloud API remains exported
+PASS My Cloud Tournaments SYNC uses same result-aware pipeline
+PASS result-aware pipeline plans validated Web/arbiter result download
+PASS validated Web/arbiter results are applied to matched local boards
+PASS result-aware pipeline still ends in the existing unified SYNC
+BETA82 ALL SYNC WEB RESULTS: PASS (7 PASS / 0 FAIL)

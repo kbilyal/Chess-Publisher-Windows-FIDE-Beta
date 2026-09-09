@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "version": "1.06.00-beta.82",
+  "status": "WINDOWS_TEST_CANDIDATE",
+  "parent": "1.06.00-beta.81",
+  "scope": "All visible SYNC buttons use the same result-aware Web-results pipeline before unchanged unified SYNC",
+  "tests": {
+    "beta82AllSyncWebResults": "7/7 PASS",
+    "beta79PairingsSync": "7/7 PASS",
+    "beta78UnifiedSync": "15/15 PASS",
+    "beta74WebResultDownload": "26/26 PASS",
+    "beta72DirectionalCloud": "33/33 PASS",
+    "cumulative": "69 PASS + 3 known + 1 skip; unexpected 0",
+    "static": "PASS",
+    "protectedCore": "70/70 byte-identical"
+  },
+  "protected": {
+    "pairing": "unchanged",
+    "gacrux": "1.9.57 unchanged",
+    "trf": "unchanged",
+    "bbp": "unchanged",
+    "tieBreakCore": "unchanged",
+    "chessResults": "unchanged",
+    "unifiedSyncAlgorithm": "unchanged"
+  },
+  "vclSummary": {
+    "PASS": 159,
+    "PARTIAL": 14,
+    "FAIL": 0,
+    "CONDITIONAL": 21,
+    "NEEDS_TEST": 0,
+    "NEEDS_TEC": 1,
+    "N_A": 30
+  }
+}

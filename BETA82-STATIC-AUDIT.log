@@ -1,0 +1,22 @@
+PASS - HTML IDs unique: 493 / 493
+PASS - combined literal UI IDs unique: 569 unique
+PASS - direct getElementById(...).addEventListener targets all exist (24 bindings)
+PASS - inline JavaScript syntax: 25 blocks, 0 failures
+PASS - webview/HubAdapter.js syntax
+PASS - webview/CloudWorkspaceAdapter.js syntax
+PASS - cloud/client/cloud-workspace-api.js syntax
+PASS - cumulative applicable feature markers: 70 features / 221 accepted markers; non-obsolete missing=0
+PASS - TRF16 export marker present
+PASS - TRF26 export marker present
+PASS - TRF26 Starting List marker present
+PASS - TRF stable revision guard marker present
+PASS - TRF backup marker present
+PASS - Chess-Results marker present
+PASS - Smart Schedule marker present
+PASS - Special Prizes Select all marker present
+PASS - DGT board mapping marker present
+PASS - Pairing engine marker present
+PASS - Hub saveAll-before-publish guard present
+PASS - single installation-scoped Organizer Token contract present
+PASS - Tie-Break validation function remains beta16-identical
+AUDIT_RESULT: PASS
