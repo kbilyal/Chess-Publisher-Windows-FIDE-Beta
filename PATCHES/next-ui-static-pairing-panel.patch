@@ -1,0 +1,38 @@
+--- /mnt/data/beta73_ui/ChessPublisher/ChessPublisher.html	2026-09-08 19:54:46.000000000 +0000
++++ /mnt/data/next_ui_patch/ChessPublisher.html	2026-09-09 08:51:06.346644847 +0000
+@@ -34796,5 +34796,35 @@
+ .file-menu,.modal-overlay{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+ .live-pairing-table-wrap,.table-frame{contain:layout paint}
+ </style>
++
++<style id="cp-next-static-pairing-panel">
++/* NEXT UI PATCH — keep the Result Entry / pairing control panel visible.
++   UI/layout only: pairing data, player identity and pairing engine logic are untouched. */
++#pairings .live-pairing-panel{overflow:visible!important}
++#pairings .swiss-workspace{
++  grid-template-columns:minmax(0,1fr) 198px!important;
++  gap:8px!important;
++  align-items:stretch!important;
++  overflow:visible!important;
++}
++#pairings .live-pairing-table-wrap{
++  min-width:0!important;min-height:0!important;height:100%!important;
++  overflow:auto!important;overscroll-behavior:contain!important;scrollbar-gutter:stable!important;
++}
++#pairings .result-palette{
++  position:sticky!important;top:6px!important;align-self:start!important;
++  height:auto!important;min-height:0!important;max-height:calc(100dvh - 84px)!important;
++  overflow-y:auto!important;overflow-x:hidden!important;z-index:40!important;
++}
++#pairings .result-palette-title{position:sticky!important;top:0!important;z-index:2!important;background:#f7f8fa!important}
++@media(max-width:900px){
++  #pairings .swiss-workspace{grid-template-columns:minmax(0,1fr) 184px!important;overflow:visible!important}
++  #pairings .result-palette{position:sticky!important;top:6px!important;max-height:calc(100dvh - 76px)!important;overflow-y:auto!important}
++}
++@media(max-width:760px){
++  #pairings .swiss-workspace{grid-template-columns:minmax(0,1fr) 172px!important}
++  #pairings .result-palette{position:sticky!important;top:4px!important;max-height:calc(100dvh - 68px)!important}
++}
++</style>
+ </body>
+ </html>
