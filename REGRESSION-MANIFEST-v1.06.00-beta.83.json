@@ -1,0 +1,61 @@
+{
+  "version": "1.06.00-beta.83",
+  "date": "2026-09-09",
+  "status": "WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE",
+  "sourceParentVersion": "1.06.00-beta.82",
+  "sourceParentGitCommit": "cfec937ebb5f9f5c809c91a6a81d175281a6b063",
+  "remoteMetadataParent": "dec4929088d31cde55ddd37998b9b105f5cb0507",
+  "scope": "Cloud-only Desktop workspace cleanup; hide duplicate My Online Tournaments and its New Tournament chooser while retaining My Cloud Tournaments as the single private working list.",
+  "artifacts": {
+    "zip": "Chess-Publisher-v1.06.00-beta.83-Cloud-Only-Workspace-TEST-CANDIDATE-2026-09-09.zip",
+    "zipSha256": "7fb92867e1d054c3d2f8be52b85215488bae7d0c0abcd02c6de1924540f7b2f6",
+    "exeSha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+    "sourcePatch": "PATCHES/beta83-cloud-only-workspace.patch",
+    "sourcePatchSha256": "71821f9ade87663bd7dac26c131bbb1867796f04b901d927eb85c62a457532c0"
+  },
+  "sourceHashes": {
+    "cloudWorkspaceRedesignBeta82": "acdb987198a77399783956295117e8ce30f9972d89b143698c48a48b3ebde699",
+    "cloudWorkspaceRedesignBeta83": "3ed59894320b7efc186d85ae2557b2875e475cf5423b57f626d04cbc6887b1a5"
+  },
+  "productionDelta": [
+    "webview/CloudWorkspaceRedesign.js — additive CSS-only hiding",
+    "ChessPublisher.html — version marker only",
+    "ChessPublisher-WebView.ps1 — version marker only",
+    "VERSION.txt — version marker only"
+  ],
+  "tests": {
+    "beta83Targeted": "7/7 PASS",
+    "cumulativeReexecuted": "70/70 PASS",
+    "approvedHistoricalExceptions": 3,
+    "browserRunnerSkip": 1,
+    "unexpected": 0,
+    "staticAudit": "PASS",
+    "protectedCore": "70/70 byte-identical"
+  },
+  "protectedContracts": [
+    "unified syncCurrent()",
+    "Web-results validation and result-only mutation",
+    "Cloud tournament identity",
+    "pairing/player identity semantics",
+    "Gacrux 1.9.57",
+    "Swiss Dutch pairing",
+    "TRF16/TRF26 and TRF pairing path",
+    "BBP checker",
+    "Tie-Break core/checker",
+    "Chess-Results protocol/core"
+  ],
+  "vcl": {
+    "PASS": 159,
+    "PARTIAL": 14,
+    "FAIL": 0,
+    "CONDITIONAL": 21,
+    "NEEDS_TEST": 0,
+    "NEEDS_TEC": 1,
+    "N_A": 30,
+    "Q18": "external FIDE TEC decision"
+  },
+  "next": {
+    "tec": "Q117 — Custom Rating Lists",
+    "linux": "carry the same shared-source functionality into the Linux line before advancing the next common version"
+  }
+}

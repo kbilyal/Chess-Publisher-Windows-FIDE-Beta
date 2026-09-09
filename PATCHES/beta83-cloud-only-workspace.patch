@@ -1,0 +1,80 @@
+--- a/webview/CloudWorkspaceRedesign.js
++++ b/webview/CloudWorkspaceRedesign.js
+@@ -743,7 +743,7 @@
+ 
+       if(!document.getElementById("cloudIronStyles")){
+         const style=document.createElement("style");style.id="cloudIronStyles";style.textContent=`
+-          #cloudWorkspace{margin-top:8px}.cloud-list-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center;justify-content:flex-end}.cloud-list-current{font-weight:800;margin:7px 0 3px}.cloud-list-friendly-status{margin:0 0 8px;padding:7px 9px;border:1px solid #c9d2dc;border-radius:7px;background:#f7f9fb;font-size:11px}.cloud-list-in_sync{border-color:#9bc69b;background:#f2faf2}.cloud-list-local_changes,.cloud-list-remote_changes{border-color:#9fc0df;background:#f4f9ff}.cloud-list-conflict{border-color:#d9a351;background:#fff8e8}.cloud-current-tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:#e9f4ff;color:#0f5d96;font-size:9px;font-weight:800;vertical-align:1px}.cloud-current-row{background:#f8fbff}.cloud-table-frame{max-height:340px}.hub-online-list-compact .hub-section-eyebrow{display:none!important}
++          #cloudWorkspace{margin-top:8px}.cloud-list-actions{display:flex;gap:7px;flex-wrap:wrap;align-items:center;justify-content:flex-end}.cloud-list-current{font-weight:800;margin:7px 0 3px}.cloud-list-friendly-status{margin:0 0 8px;padding:7px 9px;border:1px solid #c9d2dc;border-radius:7px;background:#f7f9fb;font-size:11px}.cloud-list-in_sync{border-color:#9bc69b;background:#f2faf2}.cloud-list-local_changes,.cloud-list-remote_changes{border-color:#9fc0df;background:#f4f9ff}.cloud-list-conflict{border-color:#d9a351;background:#fff8e8}.cloud-current-tag{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:#e9f4ff;color:#0f5d96;font-size:9px;font-weight:800;vertical-align:1px}.cloud-current-row{background:#f8fbff}.cloud-table-frame{max-height:340px}.hub-online-list-compact{display:none!important}.hub-online-list-compact .hub-section-eyebrow{display:none!important}.cp-new-tournament-online,#cpNewTournamentOnlinePanel{display:none!important}
+         `;document.head.appendChild(style);
+       }
+ 
+--- a/ChessPublisher.html
++++ b/ChessPublisher.html
+@@ -1,9 +1,9 @@
+ <!DOCTYPE html>
+-<html lang="bg" data-chesspublisher-version="1.06.00-beta.82">
++<html lang="bg" data-chesspublisher-version="1.06.00-beta.83">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-<title>Chess-Publisher v1.06.00-beta.82</title>
++<title>Chess-Publisher v1.06.00-beta.83</title>
+ 
+ <style>
+ *{box-sizing:border-box}
+@@ -2790,7 +2790,7 @@
+ 
+ <div id="appWindow" class="window cp-native-workspace">
+   <div class="desktop-header-strip" role="toolbar" aria-label="Tournament document status">
+-    <span id="windowDocumentTitle">Chess-Publisher v1.06.00-beta.82 — Tournament Manager & Publisher</span>
++    <span id="windowDocumentTitle">Chess-Publisher v1.06.00-beta.83 — Tournament Manager & Publisher</span>
+     <span class="desktop-status-controls">
+       <span id="saveIndicator" class="save-indicator saved">Saved</span>
+       <span id="fideGlobalModeBadge" class="badge" title="FIDE compliance-control status for the open tournament">FIDE MODE</span>
+--- a/ChessPublisher-WebView.ps1
++++ b/ChessPublisher-WebView.ps1
+@@ -27,7 +27,7 @@
+ Initialize-WvHubDpapiType
+ $root = Split-Path -Parent $MyInvocation.MyCommand.Path
+ $serviceVersion = 'V139'
+-$webViewRelease = '1.06.00-beta.82'
++$webViewRelease = '1.06.00-beta.83'
+ $webView2SdkVersion = '1.0.4129.50'
+ $logFile = Join-Path $root 'ChessPublisher-WebView.log'
+ $engineOwned = $false
+--- a/VERSION.txt
++++ b/VERSION.txt
+@@ -1 +1 @@
+-1.06.00-beta.82
++1.06.00-beta.83
+--- a/TESTS/BETA74-TEC-UI-FINAL-GAPS-REGRESSION.js
++++ b/TESTS/BETA74-TEC-UI-FINAL-GAPS-REGRESSION.js
+@@ -25,7 +25,7 @@
+ }
+ function context(extra={}){const c={console,Math,Number,String,Array,Object,Map,Set,Date,JSON,...extra};c.window=c;c.globalThis=c;vm.createContext(c);return c;}
+ 
+-ok('beta.74+ package marker',/data-chesspublisher-version="1\.06\.00-beta\.(?:74|75|76|77|78|79|80|81|82)"/.test(html));
++ok('beta.74+ package marker',/data-chesspublisher-version="1\.06\.00-beta\.(?:74|75|76|77|78|79|80|81|82|83)"/.test(html));
+ ok('static Result Entry panel override present',/#pairings \.result-palette\{[\s\S]*?position:sticky!important/.test(html));
+ ok('pairing board table remains scroll surface',/#pairings \.live-pairing-table-wrap\{[\s\S]*?overflow:auto!important/.test(html));
+ 
+--- /dev/null
++++ b/TESTS/BETA83-CLOUD-ONLY-WORKSPACE-REGRESSION.js
+@@ -0,0 +1,16 @@
++const fs=require('fs');
++const path=require('path');
++const root=path.resolve(__dirname,'..');
++let pass=0,fail=0;
++function check(ok,msg){if(ok){console.log('PASS:',msg);pass++;}else{console.error('FAIL:',msg);fail++;}}
++const cloud=fs.readFileSync(path.join(root,'webview','CloudWorkspaceRedesign.js'),'utf8');
++const html=fs.readFileSync(path.join(root,'ChessPublisher.html'),'utf8');
++const hub=fs.readFileSync(path.join(root,'webview','HubAdapter.js'),'utf8');
++check(/\.hub-online-list-compact\{display:none!important\}/.test(cloud),'My Online Tournaments section is hidden completely');
++check(/\.cp-new-tournament-online,#cpNewTournamentOnlinePanel\{display:none!important\}/.test(cloud),'New Tournament online chooser/panel are hidden');
++check(/title\.textContent="My Cloud Tournaments"/.test(cloud),'My Cloud Tournaments remains the visible private workspace');
++check(/sync\.textContent="↕ SYNC"/.test(cloud),'My Cloud Tournaments unified SYNC remains present');
++check(/const result=await downloadWebResults\(\);/.test(cloud),'result-aware SYNC pipeline remains present');
++check(/<div class="hub-section-eyebrow">Public list<\/div><div class="group-title">My Online Tournaments<\/div>/.test(hub),'protected HubAdapter markup remains unchanged internally');
++check(/data-chesspublisher-version="1\.06\.00-beta\.83"/.test(html),'beta.83 version marker is set');
++console.log(`BETA83 CLOUD ONLY WORKSPACE: ${fail?'FAIL':'PASS'} (${pass} PASS / ${fail} FAIL)`);process.exitCode=fail?1:0;

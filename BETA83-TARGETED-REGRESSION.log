@@ -1,0 +1,131 @@
+PASS: My Online Tournaments section is hidden completely
+PASS: New Tournament online chooser/panel are hidden
+PASS: My Cloud Tournaments remains the visible private workspace
+PASS: My Cloud Tournaments unified SYNC remains present
+PASS: result-aware SYNC pipeline remains present
+PASS: protected HubAdapter markup remains unchanged internally
+PASS: beta.83 version marker is set
+BETA83 CLOUD ONLY WORKSPACE: PASS (7 PASS / 0 FAIL)
+PASS Pairings exposes blue SYNC
+PASS Pairings SYNC keeps result-aware wrapper
+PASS result-aware Cloud API remains exported
+PASS My Cloud Tournaments SYNC uses same result-aware pipeline
+PASS result-aware pipeline plans validated Web/arbiter result download
+PASS validated Web/arbiter results are applied to matched local boards
+PASS result-aware pipeline still ends in the existing unified SYNC
+BETA82 ALL SYNC WEB RESULTS: PASS (7 PASS / 0 FAIL)
+PASS Pairings results button is the blue SYNC button
+PASS old Download Results label is removed from Pairings UI
+PASS existing validated Web-results wrapper is preserved
+PASS existing results-only Cloud API is preserved
+PASS existing unified SYNC API is preserved
+PASS results download still completes the same unified SYNC workflow
+PASS HTML version is beta.79 or later
+BETA79 PAIRINGS SYNC BUTTON: PASS (7 PASS / 0 FAIL)
+PASS: single SYNC button exists
+PASS: single SYNC button has clear bidirectional label
+PASS: no user-facing Upload Current button is created
+PASS: no user-facing Pull Current button is created
+PASS: legacy current-sync entry point now routes through unified SYNC
+PASS: explicit unified SYNC API is exported
+PASS: Download Results also completes unified SYNC
+PASS: PUBLIC LIST eyebrow is hidden from My Online Tournaments without editing protected HubAdapter
+PASS: current-name cloud row is reused during foreign-link repair
+PASS: single-current no-duplicate identity contract is documented in code
+PASS: first SYNC creates exactly one Cloud counterpart for a Desktop-created current tournament
+PASS: second SYNC reuses the same Cloud object and creates no duplicate
+PASS: SYNC automatically pulls Cloud-only changes without creating a revision
+PASS: SYNC automatically pushes Desktop-only changes
+PASS: SYNC repairs stale foreign identity by reusing the existing current tournament row, never creating a duplicate
+BETA78 UNIFIED SYNC CURRENT: PASS (15 PASS / 0 FAIL)
+PASS Pairings toolbar has Download Results button
+PASS Download Results uses dedicated Pairings action
+PASS button tooltip states results-only safety contract
+PASS Pairings wrapper calls directional Cloud results API
+PASS directional Cloud module exports results-only download
+PASS pairing mismatch fails closed
+PASS download applies only validated result-state metadata
+PASS download never rewrites board/player identity
+PASS results planner internals exported
+PASS canonicalizes compact white win
+PASS canonicalizes ASCII draw
+PASS preserves administrative PAB
+PASS rejects unsupported result code
+PASS planner finds three entered Web result changes
+PASS planner flags populated Desktop result conflict
+PASS matching pairings are accepted
+PASS valid Web result codes accepted
+PASS planner is pure and does not mutate Desktop tournament
+PASS blank Web result never clears an existing Desktop result
+PASS unique player identity safely resolves a changed board number without changing pairing
+PASS different player identity is rejected
+PASS unusual OTB Web result state is preserved
+PASS unusual OTB metadata is applied without changing player identity
+PASS Adjourned Web state is treated as an explicit result state
+PASS explicit Adjourned Web state can replace a result only through conflict-confirmed operation
+PASS unsupported Web result is rejected before mutation
+BETA74 WEB RESULT DOWNLOAD RESULT: 26 PASS / 0 FAIL
+PASS: Windows WebView loads directional Cloud redesign after legacy adapter
+PASS: Explicit Pull Cloud → Desktop label exists
+PASS: Explicit Push Desktop → Cloud label exists
+PASS: Check Cloud Status action exists
+PASS: Resolve Conflict action exists
+PASS: Open in Web action exists
+PASS: Legacy Cloud autosync is forcibly disabled
+PASS: UI explicitly states Autosave is local only
+PASS: Directional module contains no Last Write Wins policy
+PASS: Directional Cloud pure internals exported
+PASS: Initial Push creates exactly one Cloud snapshot revision
+PASS: Cloud portable tournament contains exact tournament.name
+PASS: 83-player roster parity after Push
+PASS: Officials/settings parity after Push
+PASS: Regulations/schedule/mode parity after Push
+PASS: internalId and cloudTournamentId identity preserved
+PASS: Push invokes saveAll before Cloud upload
+PASS: Pull performs deterministic three-way merge for non-overlapping edits
+PASS: Non-overlapping Desktop/Web changes both survive Pull
+PASS: Pull does not upload or create a Cloud revision
+PASS: Installation-local DGT data survives Pull/merge
+PASS: Merged local version requires separate Push and then advances Cloud revision
+PASS: Rename does not create a new cloudTournamentId/internalId
+PASS: Renamed tournament name travels inside portable tournament object
+PASS: Same-field Desktop/Web edit produces CONFLICT
+PASS: Conflict Pull does not overwrite Desktop field
+PASS: Conflict Pull does not overwrite Cloud field
+PASS: Three-way resolver exposes City as a field conflict
+PASS: Cloud autosync remains disabled after module initialization
+PASS: Directional layer does not schedule automatic Push/Pull
+PASS: Pull-only path explicitly refuses implicit Cloud creation
+PASS: Push-only path stops when Cloud is newer
+PASS: Resolve Conflict saves locally and requires separate Push
+BETA72 DESKTOP-WEB DIRECTIONAL CLOUD SYNC REGRESSION: PASS (33 PASS / 0 FAIL)
+PASS 01 01 beta.81 module exported
+PASS 02 02 formal class is Type-B ("Type-B" === "Type-B")
+PASS 03 03 HTML loads beta.81 after beta.73
+PASS 04 04 source declares originalSourceKnown false
+PASS 05 05 source explicitly states unknown source semantics
+PASS 06 06 UI offers Type-B import
+PASS 07 07 UI offers all three official rating types
+PASS 08 08 import creates Type-B descriptor ("Type-B" === "Type-B")
+PASS 09 09 imported source remains unknown (false === false)
+PASS 10 10 standard rating type retained ("std" === "std")
+PASS 11 11 two player records imported (2 === 2)
+PASS 12 12 source filename retained only as import metadata ("standard_rating_list.txt" === "standard_rating_list.txt")
+PASS 13 13 no original source URL is asserted ("" === "")
+PASS 14 14 provenance mode is unknown-source user import ("user-imported-unknown-source" === "user-imported-unknown-source")
+PASS 15 15 Type-B list lookup returns player rating (2400 === 2400)
+PASS 16 16 Type-B list lookup retains FIDE ID ("12345" === "12345")
+PASS 17 17 Type-B list is managed in catalogue
+PASS 18 18 official FIDE file can deliberately import as Type-B ("Type-B" === "Type-B")
+PASS 19 19 deliberate official import still does not assert original source (false === false)
+PASS 20 20 rapid type retained ("rapid" === "rapid")
+PASS 21 21 Blitz official file can import as Type-B ("blitz" === "blitz")
+PASS 22 22 duplicate Type-B list ID is rejected
+PASS 23 23 unsupported rating type is rejected
+PASS 24 24 invalid list content is rejected
+PASS 25 25 Type-B list can be deleted from managed catalogue
+PASS 26 26 Type-B is not silently promoted to Type-A
+PASS 27 27 module does not modify Type-A beta65 API
+PASS 28 28 module does not touch pairing or TRF core
+PASS 29 29 integrated panel receives Type-B UI hook
+SUMMARY PASS=29 FAIL=0 TOTAL=29

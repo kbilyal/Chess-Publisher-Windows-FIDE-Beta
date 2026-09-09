@@ -1,0 +1,25 @@
+Chess-Publisher v1.06.00-beta.83 — Regression Report
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+Parent: v1.06.00-beta.82
+
+Scope
+- Remove the visible My Online Tournaments section from Online & Cloud.
+- Remove the visible Open My Online Tournaments chooser/panel from New Tournament.
+- My Cloud Tournaments is the single private/working Cloud tournament surface.
+
+Non-change guarantees
+- HubAdapter.js remains unchanged.
+- Unified syncCurrent() algorithm unchanged.
+- beta.82 result-aware SYNC pipeline unchanged.
+- Gacrux / Swiss Dutch / TRF16/TRF26 / BBP / Tie-Break / Chess-Results protected core unchanged.
+
+Regression
+- beta.83 Cloud-only workspace: 7/7 PASS
+- beta.82 all-SYNC Web results: 7/7 PASS
+- beta.78 unified SYNC: 15/15 PASS
+- beta.74 Web results: 26/26 PASS
+- beta.72 directional Cloud: 33/33 PASS
+- beta.81 Type-B Rating Lists: PASS
+- cumulative: 70 PASS / 3 approved historical exceptions / 1 designated browser skip / 0 unexpected
+- static audit: PASS
+- protected core: 70/70 byte-identical
