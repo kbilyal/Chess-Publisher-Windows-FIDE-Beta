@@ -1,0 +1,28 @@
+Chess-Publisher v1.06.00-beta.77 — Windows Regression Report
+============================================================
+Scope: copied/imported Desktop tournament carrying another tournament's Cloud identity
+Parent: v1.06.00-beta.76
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Focused copied-tournament Cloud identity: 18/18 PASS
+My Cloud authoritative-list: 26/26 PASS
+Directional Desktop/Web Cloud: 33/33 PASS
+Download Results: 26/26 PASS
+TEC/UI: 29/29 PASS
+Gacrux runtime hardening: 31/31 PASS
+Protected core: 70/70 byte-identical
+Static audit: PASS
+Cumulative: 64 PASS + 3 known historical exceptions + 1 designated browser-runner skip; unexpected 0
+
+User-reported scenario covered
+- Desktop: RC beta test (Imported)2
+- Saved Cloud identity points to a different GOLDEN RHODOPES tournament.
+- Cloud row exists and has a newer revision.
+- beta.76 incorrectly treated that foreign row as the same logical tournament and required Pull Current.
+- beta.77 detects the imported/copy lineage from the Desktop name + different authoritative Cloud name.
+- The foreign link is detached safely.
+- Fresh localKey/internalId are generated.
+- Exactly one new Cloud tournament is created from revision 0.
+- The original GOLDEN RHODOPES Cloud tournament receives zero writes.
+
+Normal renamed tournaments are not automatically detached; mismatch remains fail-safe and requires explicit operator choice.

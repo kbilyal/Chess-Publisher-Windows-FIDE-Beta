@@ -1,0 +1,33 @@
+Chess-Publisher v1.06.00-beta.77 — Copied / Imported Tournament Cloud Identity Guard
+Date: 2026-09-09
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+Parent: v1.06.00-beta.76
+
+Fixed
+- A Desktop tournament copied/imported from another tournament can retain the old Cloud identity in its JSON metadata.
+- When that copied Desktop tournament has a clearly independent name such as "(Imported)" / "(Copy)" and the linked My Cloud Tournaments row has a different tournament name, Chess-Publisher no longer reports the foreign Cloud tournament as merely "newer" and no longer forces Pull Current.
+- The copied/imported Desktop tournament is detached from the foreign Cloud object and receives a fresh installation localKey and fresh logical internalId.
+- Upload Current then creates exactly one new Cloud tournament from revision 0 and uploads the current Desktop tournament there.
+- The original Cloud tournament is never overwritten by this recovery path.
+- The My Cloud Tournaments status now reports "Independent copy detected" and the action becomes "Upload as New" before upload.
+- A normal rename that does not look like an imported/copy instance is NOT auto-detached. The operator must explicitly choose Upload as New or keep the existing link.
+
+Preserved
+- My Cloud Tournaments remains the authoritative organizer-scoped Cloud index.
+- Missing/stale provider IDs remain handled by beta.76 authoritative-list logic.
+- Download Results remains results-only.
+- Directional Pull/Push conflict protection remains active for genuinely linked tournaments.
+- Protected pairing/TRF/Tie-Break/Chess-Results cores are unchanged.
+
+Regression
+- beta.77 copied-tournament identity regression: 18/18 PASS.
+- beta.76 authoritative-list regression: 26/26 PASS.
+- directional Cloud regression: 33/33 PASS.
+- Web Download Results: 26/26 PASS.
+- TEC/UI: 29/29 PASS.
+- Gacrux runtime hardening: 31/31 PASS.
+- protected core: 70/70 byte-identical.
+- static audit: PASS.
+- cumulative: 64 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0.
+
+This remains a TEST CANDIDATE only.
