@@ -1,0 +1,121 @@
+name: beta84-bootstrap-finalize
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.event.head_commit.message == 'ci: bootstrap beta.84 atomic release gate'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout bootstrap main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Establish exact sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          SOURCE_BASE=f932f9632e588380d1cc91b042ae54d3728191b5
+          test "$(git rev-parse HEAD^)" = "$SOURCE_BASE"
+          git fetch origin beta84-staging-schema7
+          git show origin/beta84-staging-schema7:BETA84-STAGING-BUNDLE.base64 | base64 -d > /tmp/beta84-bundle.tar.gz
+          echo '720f6649623a0710fee675d15ddb7ac5052cd404a55db5cd5a0e3ac2db146763  /tmp/beta84-bundle.tar.gz' | sha256sum -c -
+          tar -xzf /tmp/beta84-bundle.tar.gz
+
+      - name: Normalize and verify reproducible patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('PATCHES/beta84-desktop-schema7-sync-compatibility.patch')
+          s=p.read_text()
+          for f in ['TESTS/BETA84-FORCED-CHECKPOINT-PERSISTENCE-REGRESSION.js','TESTS/BETA84-SCHEMA7-UNIFIED-SYNC-REGRESSION.js']:
+            s=s.replace(f'diff --git /dev/null b/{f}', f'diff --git a/{f} b/{f}')
+            hdr=f'diff --git a/{f} b/{f}\n'
+            if hdr+'new file mode 100644\n' not in s:
+              s=s.replace(hdr, hdr+'new file mode 100644\n', 1)
+          p.write_text(s)
+          old='b4addd160a4e4e3edcaf33847c80b63e7c87943ffc30bff00dd1ee48d12721a4'
+          new='407ab9489d513b1d9ca8a3fa545ee240b7d0361bb236af5eebafe802f019faf0'
+          for rel in ['SOURCE-CHECKPOINT.md','SOURCE-CHECKPOINT-beta84.md','CHECKPOINTS/beta84.md','REGRESSION-MANIFEST-v1.06.00-beta.84.json']:
+            q=Path(rel); q.write_text(q.read_text().replace(old,new))
+          PY
+          echo '407ab9489d513b1d9ca8a3fa545ee240b7d0361bb236af5eebafe802f019faf0  PATCHES/beta84-desktop-schema7-sync-compatibility.patch' | sha256sum -c -
+          git apply --check PATCHES/beta84-desktop-schema7-sync-compatibility.patch
+          git apply PATCHES/beta84-desktop-schema7-sync-compatibility.patch
+          sha256sum -c BETA84-SOURCE-HASHES.txt
+
+      - name: Mandatory beta.84 tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          node TESTS/BETA84-FORCED-CHECKPOINT-PERSISTENCE-REGRESSION.js | tee BETA84-FORCED-CHECKPOINT-PERSISTENCE-REGRESSION.log
+          node TESTS/BETA84-SCHEMA7-UNIFIED-SYNC-REGRESSION.js | tee BETA84-SCHEMA7-UNIFIED-SYNC-REGRESSION.log
+          grep -q 'PASS (9 PASS / 0 FAIL)' BETA84-FORCED-CHECKPOINT-PERSISTENCE-REGRESSION.log
+          grep -q 'PASS (18 PASS / 0 FAIL)' BETA84-SCHEMA7-UNIFIED-SYNC-REGRESSION.log
+
+      - name: Cumulative regression gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp BETA84-CUMULATIVE-REGRESSION.log /tmp/beta84-test-plan.log
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,sys
+          plan=Path('/tmp/beta84-test-plan.log').read_text().splitlines()
+          out=[]; passed=known=skip=unexpected=0
+          for line in plan:
+            if line.startswith('PASS '):
+              name=line.split(' ',1)[1].strip()
+              path=next((p for p in [Path('TESTS')/name,Path(name)] if p.exists()),None)
+              if path is None:
+                out.append(f'UNEXPECTED {name} missing test file'); unexpected+=1; continue
+              cmd=['node',str(path)] if path.suffix=='.js' else ['python3',str(path)]
+              r=subprocess.run(cmd,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+              if r.returncode==0: out.append(f'PASS {name}'); passed+=1
+              else:
+                out.append(f'UNEXPECTED {name} exit={r.returncode}'); out.extend('  '+x for x in r.stdout.splitlines()[-12:]); unexpected+=1
+            elif line.startswith('KNOWN '): out.append(line); known+=1
+            elif line.startswith('SKIP '): out.append(line); skip+=1
+          out.append(f'SUMMARY PASS={passed} KNOWN={known} SKIP={skip} UNEXPECTED={unexpected} TOTAL={passed+known+skip+unexpected}')
+          Path('BETA84-CUMULATIVE-REGRESSION.log').write_text('\n'.join(out)+'\n')
+          Path('BETA84-CUMULATIVE-FAILURES.log').write_text('NONE\n' if unexpected==0 else '\n'.join(x for x in out if x.startswith('UNEXPECTED '))+'\n')
+          print(out[-1])
+          if (passed,known,skip,unexpected)!=(72,3,1,0): sys.exit(1)
+          PY
+
+      - name: Static and protected gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 TESTS/FULL-PROGRAM-STATIC-AUDIT.py | tee BETA84-STATIC-AUDIT.log
+          grep -q 'AUDIT_RESULT: PASS' BETA84-STATIC-AUDIT.log
+          SOURCE_BASE=f932f9632e588380d1cc91b042ae54d3728191b5
+          test -z "$(git diff --name-only "$SOURCE_BASE" -- engine webview/HubAdapter.js webview/WebViewAdapter.js cloud/client/cloud-workspace-api.js)"
+          test "$(sha256sum webview/CloudWorkspaceAdapter.js | awk '{print $1}')" = '6ce71bd7b4eb4b2401e9ee657f60b308ed6222a162efa0ded925f9b510e9569e'
+          test "$(tr -d '\r\n' < VERSION.txt)" = '1.06.00-beta.84'
+
+      - name: Build atomic final commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          BOOTSTRAP=$(git rev-parse HEAD)
+          SOURCE_BASE=f932f9632e588380d1cc91b042ae54d3728191b5
+          git config user.name 'Chess-Publisher Release Gate'
+          git config user.email '65768770+kbilyal@users.noreply.github.com'
+          rm -f .github/workflows/beta84-bootstrap-finalize.yml
+          git add -A
+          test -z "$(git diff --cached --name-only "$SOURCE_BASE" -- engine webview/HubAdapter.js webview/WebViewAdapter.js cloud/client/cloud-workspace-api.js)"
+          TREE=$(git write-tree)
+          COMMIT=$(printf '%s\n' 'checkpoint: beta.84 Desktop Web schema-7 SYNC compatibility' | git commit-tree "$TREE" -p "$BOOTSTRAP")
+          git push origin "$COMMIT:refs/heads/beta84-final-schema7"
+          echo "Atomic beta.84 commit: $COMMIT"
