@@ -1,0 +1,25 @@
+Chess-Publisher v1.06.00-beta.85 — Next-Round SYNC / Safe Three-Way Merge
+Date: 2026-09-09
+Base: v1.06.00-beta.84
+Status: TEST CANDIDATE
+
+Purpose
+-------
+Fix the real arbiter workflow where Web/Cloud contains a newly entered result while Desktop has already generated the next round. beta.84 correctly detected BOTH_CHANGED but stopped before PUT, leaving the new Desktop pairing round local-only.
+
+Changes
+-------
+1. Unified SYNC now attempts deterministic three-way merge for independent Desktop + Web changes.
+2. A Web result plus a newly generated Desktop round is merged and published as exactly one new Cloud revision.
+3. Newly generated pairings remain part of schema-7 content/fingerprint and are included in the Cloud PUT snapshot.
+4. Independent player-field changes can merge safely.
+5. True same-field conflicts (for example different Desktop/Web results on the same board) remain fail-closed with no Cloud PUT.
+6. Common-base/revision metadata is re-established after successful merged publish; immediate second SYNC is NO-OP.
+
+Protected cores
+---------------
+No protected core was modified. Gacrux 1.9.57 / Swiss Dutch pairing, TRF16/TRF26, BBP, Tie-Break, Chess-Results protocol/core and rating calculation core remain byte-identical to beta.84.
+
+Linux migration discipline
+--------------------------
+Linux remains frozen at v1.06.00-beta.81. No Linux repository or Linux beta is modified/created. beta.85 retains authoritative shared source and an explicit Linux migration handoff for later direct alignment.

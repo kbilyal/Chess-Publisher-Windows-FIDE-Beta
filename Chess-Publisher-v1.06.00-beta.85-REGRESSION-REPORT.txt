@@ -1,0 +1,32 @@
+Chess-Publisher v1.06.00-beta.85 — RELEASE / REGRESSION REPORT
+Status: TEST CANDIDATE
+Base: v1.06.00-beta.84
+Linux: frozen at v1.06.00-beta.81 parity checkpoint; repository untouched.
+
+FIX
+beta.84 correctly stopped on BOTH_CHANGED but therefore did not upload a newly generated Desktop pairing round when Web had also changed (for example a newly entered result). beta.85 performs deterministic three-way merge from the immutable common base. Independent Web result + Desktop next-round pairing changes are preserved together and published as one new Cloud revision. True same-field conflicts still stop before PUT.
+
+TARGETED
+BETA85-NEXT-ROUND-SYNC-REGRESSION.js: 8/8 PASS
+BETA84-SCHEMA7-UNIFIED-SYNC-REGRESSION.js: 18/18 PASS
+
+CUMULATIVE
+PASS=73
+APPROVED_HISTORICAL_EXCEPTIONS=3
+DESIGNATED_SKIPS=1
+UNEXPECTED=0
+TOTAL=77
+
+PROTECTED CORE
+70/70 byte-identical; 0 unexpected. No protected core change.
+
+AUTHORITATIVE SOURCE
+Chess-Publisher-Windows-v1.06.00-beta.85-AUTHORITATIVE-SOURCE.tar.gz
+SHA256=2795a0612f56f381b65db0c30c3171ccc5f4e16e9bc0778fa5bc7e61fe430e69
+
+PATCH
+beta85-next-round-sync-three-way-merge.patch
+SHA256=68e820fd92d6b71ad3b23b6469d4acc1d64d97adce5d6373bea735ae0c6faace
+
+LINUX MIGRATION HANDOFF
+See LINUX-MIGRATION-HANDOFF-beta85.md. Future Linux alignment must use authoritative source directly from Linux beta.81 parity checkpoint; intermediate Windows betas must not be reconstructed manually.

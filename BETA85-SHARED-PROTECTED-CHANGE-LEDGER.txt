@@ -1,0 +1,40 @@
+Chess-Publisher v1.06.00-beta.85 — Shared / Protected Change Ledger
+Previous accepted Windows beta: v1.06.00-beta.84
+Linux status: FROZEN at v1.06.00-beta.81 parity checkpoint; Linux repository NOT modified.
+
+[CHANGED SHARED APPLICATION FILES]
+FILE: ChessPublisher.html
+PREVIOUS_SHA256: 9d3a057307f9465b7bd8576a330b7cc741d48ccaf67eaef56168edad6a3625c4
+NEW_SHA256: 2a0437da7d6ae20f04cf4499ba36b6c7c81698c1517b390b1fed6f3775f5a175
+REASON: Version marker advanced to beta.85; no business-logic change in HTML.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: webview/CloudWorkspaceRedesign.js
+PREVIOUS_SHA256: 7dbc031a333f1b25c687eb20fe78b2f57bec2642eb020cdced47cbbb81461426
+NEW_SHA256: 52f39e7c8ab992611f0f9b0eed02836cc19a002016d87b226b94da388f78177a
+REASON: Approved SYNC scope: deterministic three-way merge for independent Desktop/Web changes, including Web result + newly generated Desktop pairing round; true same-field conflicts remain fail-closed.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: VERSION.txt
+PREVIOUS_SHA256: ca51b966691d08c18c10467df322d5e1210465caee5938eea05a785540888eb5
+NEW_SHA256: b9c3202d834191d9b45d5a9a7ac7bcd93d78d2b059825452194efcc9e4acfd3f
+REASON: Release metadata advanced from beta.84 to beta.85.
+APPROVED_SCOPE_CHANGE: YES
+
+[CHANGED WINDOWS-SPECIFIC FILES]
+FILE: ChessPublisher-WebView.ps1
+PREVIOUS_SHA256: b1b0a2714c8ad188c8fffe54e18c1e147950ca80e002ab4c8f8fb30376cb7801
+NEW_SHA256: d9cbe36d0589e7bb61db16b766a0514ced2347658bfef4b0db8c25a306bc6b0e
+REASON: Windows launcher release marker advanced to beta.85; platform behavior unchanged.
+APPROVED_SCOPE_CHANGE: YES (version marker only)
+LINUX_ADAPTER_CHANGE_REQUIRED: NO
+
+[PROTECTED CORE]
+CHANGED_PROTECTED_FILES: NONE
+PROTECTED_CORE_COMPARISON: 70/70 byte-identical; 0 unexpected.
+Gacrux / Swiss Dutch: unchanged
+TRF16/TRF26: unchanged
+BBP checker: unchanged
+Tie-Break core: unchanged
+Chess-Results protocol/core: unchanged
+Rating calculation core: unchanged

@@ -1,0 +1,9 @@
+PASS: PAIRING-01 Pairings SYNC imports the Web result and publishes one merged revision
+PASS: PAIRING-02 merged Cloud revision preserves the Web result
+PASS: PAIRING-03 newly generated Desktop round is included in the Cloud PUT snapshot
+PASS: PAIRING-04 merged upload establishes schema-7 common base r14
+PASS: PAIRING-05 immediate second SYNC is NO-OP
+PASS: PAIRING-06 different Desktop/Web results on the same board remain a real conflict
+PASS: PAIRING-07 true same-board conflict performs no Cloud PUT
+PASS: PAIRING-08 new round changes the schema-7 Desktop fingerprint
+BETA85 NEXT ROUND SYNC: PASS (8 PASS / 0 FAIL)

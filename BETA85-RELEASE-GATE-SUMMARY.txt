@@ -1,0 +1,17 @@
+Chess-Publisher v1.06.00-beta.85 TEST CANDIDATE
+Base Windows beta: v1.06.00-beta.84
+Linux parity checkpoint: v1.06.00-beta.81 (FROZEN / untouched)
+
+TARGETED: 8/8 PASS — next-round SYNC merge
+SCHEMA7: 18/18 PASS
+CUMULATIVE: PASS=73 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=77
+STATIC: PASS
+PROTECTED CORE: 70/70 byte-identical; 0 unexpected
+
+Authoritative source archive:
+Chess-Publisher-Windows-v1.06.00-beta.85-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: 2795a0612f56f381b65db0c30c3171ccc5f4e16e9bc0778fa5bc7e61fe430e69
+
+Cloud fingerprint schema: 7 (unchanged)
+Cloud API/protocol: unchanged
+New SYNC behavior: BOTH_CHANGED attempts deterministic three-way merge; independent Web result + Desktop next round becomes one merged revision; same-field conflict remains fail-closed.
