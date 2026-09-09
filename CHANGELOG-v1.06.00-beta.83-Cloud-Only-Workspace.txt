@@ -1,0 +1,16 @@
+Chess-Publisher v1.06.00-beta.83 — Cloud-only workspace cleanup
+
+Scope
+- Remove the visible My Online Tournaments surface from Online & Cloud.
+- Remove the visible Open My Online Tournaments choice/panel from New Tournament.
+- Keep My Cloud Tournaments as the only private/working tournament list.
+
+Implementation boundary
+- UI-only additive hiding in webview/CloudWorkspaceRedesign.js.
+- HubAdapter.js is unchanged.
+- Unified syncCurrent(), Web-results download, Cloud identity, pairing, TRF, tie-break, BBP, Chess-Results and Gacrux logic are unchanged.
+
+User contract
+- Online & Cloud shows only My Cloud Tournaments for private working tournaments.
+- Public Hub remains a separate explicit publishing workflow.
+- No duplicate second private tournament list is shown.
