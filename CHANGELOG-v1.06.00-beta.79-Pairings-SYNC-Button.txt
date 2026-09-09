@@ -1,0 +1,24 @@
+Chess-Publisher v1.06.00-beta.79 — Pairings SYNC Button
+Date: 2026-09-09
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+Parent: v1.06.00-beta.78 Unified SYNC Current
+
+Implemented
+- Replaced the Pairings toolbar "Download Results" label with the same blue "↕ SYNC" action used by the simplified Cloud workflow.
+- The Pairings SYNC action still performs the existing validated Web-results download step first.
+- After the results-only step it continues through the existing unified SYNC workflow exactly as beta.78 did.
+- Pairing/player identity validation, unsupported-result rejection, blank-result protection and conflict confirmation are unchanged.
+
+Explicit non-change
+- webview/CloudWorkspaceRedesign.js is byte-identical to beta.78.
+- syncCurrent() is unchanged.
+- No Cloud direction/merge/conflict logic was modified.
+- Protected pairing, TRF, tie-break, Chess-Results and Gacrux cores are unchanged.
+
+Regression
+- beta.79 Pairings SYNC button: 7/7 PASS.
+- cumulative: 66 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0.
+- static audit: PASS.
+- protected core: PASS.
+
+TEST CANDIDATE only.
