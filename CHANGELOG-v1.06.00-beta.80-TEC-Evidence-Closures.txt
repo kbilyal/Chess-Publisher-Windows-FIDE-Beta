@@ -1,0 +1,54 @@
+Chess-Publisher v1.06.00-beta.80 — TEC Evidence Closures
+Date: 2026-09-09
+Parent: v1.06.00-beta.79
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+SCOPE
+-----
+Evidence-only TEC/VCL closure patch. No pairing, tie-break, TRF, BBP, Chess-Results or Cloud SYNC algorithm is changed.
+
+VCL CLOSURES
+------------
+Q98 — PASS
+- No reverse/non-reverse selector is exposed for even-field double Berger.
+- beta.74 already proves the deterministic follow-up branch: final two source rounds of cycle 1 are always reversed.
+
+Q125 — PASS
+- Chess-Publisher no longer operates with only one rating list at a time.
+- beta.59 provides ordered multi-list defaults.
+- beta.62 provides persistent add/remove/reorder editing of Rating List Sequence.
+
+Q218 — PASS
+- Level-2 warnings are structured and always displayed; no disable-all Level-2 preference exists.
+
+Q219 — PASS
+- Level-3 warnings always require confirmation; no disable-all Level-2/3 preference exists.
+
+Q220 — PASS
+- Level-4 warnings cannot be disabled.
+
+Q221 — PASS
+- Level-4 warnings cannot be relaxed/downgraded to Level-3; the two-confirmation flow is mandatory.
+
+TEST MAINTENANCE
+----------------
+Historical beta.74/beta.79 regression version-marker assertions were made forward-compatible with beta.80. Feature assertions are unchanged.
+
+GATE
+----
+- Dedicated beta.80 TEC evidence: 15/15 PASS
+- Static audit: PASS
+- Protected core: 70/70 byte-identical
+- Cumulative: 67 PASS / 3 approved historical exceptions / 1 designated browser-runner skip / 0 unexpected
+
+VCL SUMMARY AFTER beta.80
+-------------------------
+PASS 157
+PARTIAL 16
+FAIL 0
+CONDITIONAL 21
+NEEDS TEST 0
+NEEDS TEC 1
+N/A 30
+
+Q18 remains the only NEEDS TEC item and requires external FIDE TEC confirmation.

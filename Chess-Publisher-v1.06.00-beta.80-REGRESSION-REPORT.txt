@@ -1,0 +1,32 @@
+Chess-Publisher v1.06.00-beta.80 — Windows Regression Report
+Date: 2026-09-09
+Parent: v1.06.00-beta.79
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Dedicated TEC evidence
+- BETA80-TEC-EVIDENCE-Q98-Q125-Q218-Q221-REGRESSION.js: 15/15 PASS
+
+Static audit
+- FULL-PROGRAM-STATIC-AUDIT.py: PASS
+
+Protected core
+- BETA70-PROTECTED-CORE-SHA256.txt: 70/70 byte-identical
+
+Cumulative Node regression
+- PASS: 67
+- KNOWN approved historical exceptions: 3
+- DESIGNATED browser-runner skip: 1
+- UNEXPECTED: 0
+- TOTAL tracked: 71
+
+Production logic scope
+- Pairing engine: unchanged
+- Gacrux 1.9.57: unchanged
+- Swiss Dutch pairing: unchanged
+- TRF16/TRF26 core: unchanged
+- BBP checker: unchanged
+- protected Tie-Break core: unchanged
+- Chess-Results core: unchanged
+- beta.79/beta.78 unified Cloud SYNC logic: unchanged
+
+Only release markers, test maintenance, TEC evidence and VCL documentation changed.

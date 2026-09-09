@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "version": "1.06.00-beta.80",
+  "status": "WINDOWS_TEST_CANDIDATE",
+  "parent": "1.06.00-beta.79",
+  "scope": "TEC evidence-only closures",
+  "vclClosures": [98, 125, 218, 219, 220, 221],
+  "tests": {
+    "beta80TecEvidence": "15/15 PASS",
+    "cumulative": "67 PASS + 3 known + 1 skip; unexpected 0",
+    "static": "PASS",
+    "protectedCore": "70/70 byte-identical"
+  },
+  "protected": {
+    "pairing": "unchanged",
+    "gacrux": "1.9.57 unchanged",
+    "trf": "unchanged",
+    "bbp": "unchanged",
+    "tieBreakCore": "unchanged",
+    "chessResults": "unchanged",
+    "cloudUnifiedSync": "unchanged"
+  },
+  "vclSummary": {
+    "PASS": 157,
+    "PARTIAL": 16,
+    "FAIL": 0,
+    "CONDITIONAL": 21,
+    "NEEDS_TEST": 0,
+    "NEEDS_TEC": 1,
+    "N_A": 30
+  }
+}
