@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "version": "1.06.00-beta.78",
+  "status": "WINDOWS_TEST_CANDIDATE",
+  "parent": "1.06.00-beta.77",
+  "features": [
+    "single bidirectional SYNC button",
+    "automatic push/pull/no-op/merge direction selection",
+    "single current-tournament Cloud identity",
+    "no duplicate Cloud counterpart on repeated SYNC",
+    "Download Results also completes unified SYNC",
+    "PUBLIC LIST label hidden from My Online Tournaments"
+  ],
+  "tests": {
+    "beta78UnifiedSync": "15/15 PASS",
+    "beta77Compatibility": "18/18 PASS",
+    "beta76AuthoritativeList": "26/26 PASS",
+    "directionalCloud": "33/33 PASS",
+    "downloadResults": "26/26 PASS",
+    "tecUi": "29/29 PASS",
+    "gacruxRuntime": "31/31 PASS",
+    "protectedCore": "70/70 byte-identical",
+    "static": "PASS",
+    "cumulative": "65 PASS + 3 known + 1 skip; unexpected 0"
+  },
+  "protected": [
+    "Gacrux 1.9.57",
+    "Swiss Dutch pairing",
+    "TRF16/TRF26 core",
+    "BBP checker",
+    "Tie-Break core/checker source",
+    "Chess-Results protocol/core",
+    "player/pairing identity semantics",
+    "webview/HubAdapter.js",
+    "webview/CloudWorkspaceAdapter.js"
+  ],
+  "tec": {
+    "vclChanged": false,
+    "q18": "NEEDS TEC"
+  }
+}

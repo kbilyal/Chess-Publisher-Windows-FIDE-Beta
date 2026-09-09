@@ -1,0 +1,39 @@
+Chess-Publisher v1.06.00-beta.78 — Unified SYNC / Current Tournament Identity
+Date: 2026-09-09
+Parent: v1.06.00-beta.77
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Implemented
+- My Cloud Tournaments now exposes one user-facing action only: ↕ SYNC.
+- Separate Upload Current / Update Current / Pull Current / Upload as New modes are no longer user-facing.
+- SYNC determines direction automatically from the current tournament's base/local/remote fingerprints:
+  * Desktop-only change -> Push
+  * Cloud-only change -> Pull
+  * identical -> no-op / refresh sync base
+  * non-overlapping Desktop + Cloud edits -> deterministic merge followed by publish in the same SYNC
+  * true same-field conflict -> fail closed and open the existing conflict resolver
+- The current logical tournament is followed regardless of whether it originated in Web/Cloud or Desktop.
+- Desktop-created current tournaments create exactly one Cloud counterpart on first SYNC; subsequent SYNC calls reuse it.
+- If an imported/copied file carries a foreign Cloud identity, SYNC first reuses an already existing Cloud row with the current tournament name; otherwise it repairs the foreign identity once and establishes one Cloud counterpart for the current event.
+- Download Results remains pairing/result identity-safe, and after the results-only step it also completes the unified SYNC workflow.
+- My Online Tournaments no longer displays the PUBLIC LIST eyebrow/label.
+
+Protected / unchanged
+- HubAdapter.js is byte-identical; PUBLIC LIST is hidden by the additive CloudWorkspaceRedesign layer.
+- CloudWorkspaceAdapter.js is byte-identical.
+- Gacrux 1.9.57, Swiss Dutch pairing core, TRF16/TRF26 core, BBP checker, Tie-Break core/checker, Chess-Results protocol/core, player/pairing identity semantics are unchanged.
+
+Regression
+- beta.78 unified SYNC: 15/15 PASS
+- beta.77 copied tournament compatibility: 18/18 PASS
+- beta.76 authoritative Cloud list: 26/26 PASS
+- Directional Cloud core compatibility: 33/33 PASS
+- Download Results: 26/26 PASS
+- TEC/UI: 29/29 PASS
+- Gacrux runtime hardening: 31/31 PASS
+- Protected core: 70/70 byte-identical
+- Static audit: PASS
+- Cumulative JS: 65 PASS + 3 approved historical exceptions + 1 browser-runner skip; unexpected 0
+
+VCL / TEC
+No TEC rule result is changed by this UI/synchronization patch. Q18 remains external NEEDS TEC. Existing VCL implementation evidence remains unchanged.

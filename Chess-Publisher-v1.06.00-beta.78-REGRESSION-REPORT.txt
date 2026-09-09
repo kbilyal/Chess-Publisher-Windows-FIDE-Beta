@@ -1,0 +1,27 @@
+Chess-Publisher v1.06.00-beta.78 — Windows Regression Report
+============================================================
+Feature: Unified SYNC / Current Tournament Identity / My Online Tournaments cleanup
+Parent: v1.06.00-beta.77
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+beta.78 unified SYNC: 15/15 PASS
+beta.77 copied tournament compatibility: 18/18 PASS
+beta.76 authoritative Cloud list: 26/26 PASS
+Directional Desktop/Web Cloud: 33/33 PASS
+Web Download Results: 26/26 PASS
+TEC/UI final gaps: 29/29 PASS
+Gacrux runtime hardening: 31/31 PASS
+Static audit: PASS
+Protected core: 70/70 byte-identical
+Cumulative JS: 65 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0
+
+Verified beta.78 behavior
+- One user-facing ↕ SYNC button replaces separate Push/Pull/Upload modes.
+- SYNC automatically selects Pull, Push, no-op, merge+publish, or fail-closed conflict handling.
+- First SYNC for a Desktop-created current tournament creates exactly one Cloud counterpart.
+- Repeated SYNC reuses the same provider ID and internal logical identity; no duplicate is created.
+- If an existing Cloud row for the current tournament already exists, stale/foreign local linkage is repaired to that row instead of creating another.
+- Download Results still validates round/board/player identity before applying result-state changes, then also completes unified SYNC.
+- PUBLIC LIST is removed visually from My Online Tournaments by the additive UI layer; protected HubAdapter.js remains unchanged.
+
+Native executable, protected engine/runtime and tournament cores are unchanged. TEST CANDIDATE, not Final/Stable.
