@@ -7,7 +7,7 @@
 - Linux beta created: **NO**
 - Authoritative source archive: `Chess-Publisher-Windows-v1.06.00-beta.85-AUTHORITATIVE-SOURCE.tar.gz`
 - Source archive SHA256: `2795a0612f56f381b65db0c30c3171ccc5f4e16e9bc0778fa5bc7e61fe430e69`
-- Authoritative Windows commit SHA: `PENDING_ATOMIC_GIT_CHECKPOINT`
+- Authoritative Windows commit SHA: `1354a8061fbbc520ecd1ea09b93350e388428dfd`
 
 ## Changed shared files
 - `ChessPublisher.html` — beta.85 version markers only.
