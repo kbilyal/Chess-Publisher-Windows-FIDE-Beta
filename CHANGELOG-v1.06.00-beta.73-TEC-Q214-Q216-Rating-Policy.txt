@@ -1,0 +1,52 @@
+Chess-Publisher v1.06.00-beta.73 — TEC Q214-Q216 Historical Rating Policy
+Date: 2026-09-08
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+Parent: v1.06.00-beta.72 Windows Integrated Rating Lists / Directional Cloud Sync
+
+Implemented
+- Q215: FIDE C.07 Article 10 first-rating policy is now the default for rating-based tie-breaks when multiple official ratings exist.
+- Q214: explicit ROUND_EFFECTIVE policy resolves each opponent's rating for the actual encounter round through the existing beta.70 ratingForRound() foundation.
+- Q216: explicit USER_SELECTED policy allows a validated official rating period to be selected per multi-rating player.
+- Missing or stale USER_SELECTED choices block rating-based tie-break calculation before the legacy calculator mutates derived state; no silent fallback or guessing.
+- Article-10 values covered by the additive layer: ARO and ARO cut/median forms, TPR, PTP, APRO, APPO, RTNG and RTNG/R.
+- ROUND_EFFECTIVE RTNG uses the rating valid at the current standings round.
+- Rating policy is portable tournament-rule state (`tournament.tieBreakRatingPolicy`) and is retained by the existing generic Cloud sanitizer.
+- Tie-Break Settings exposes: FIDE default — First rating; Rating valid for each round; Explicit rating selection per player.
+- Explicit-selection UI lists player identity, official rating, applicable round range and source period.
+- Derived beta.73 metric caches are WeakMap-backed and do not add serializable player payload fields.
+
+VCL update
+- Q214/Q215/Q216: YES / PASS.
+- Draft VCL totals after beta.73: PASS 147; PARTIAL 22; FAIL 0; CONDITIONAL 21; NEEDS TEST 4; NEEDS TEC 1; N/A 30.
+- This is evidence for the working draft VCL only and is not a FIDE TEC certification result.
+
+Protected / unchanged
+- Gacrux 1.9.57 runtime: 61/61 byte-identical.
+- Protected core manifest: 70/70 byte-identical to beta.70/beta.72.
+- Swiss Dutch pairing core unchanged.
+- TRF16/TRF26 core unchanged.
+- BBP checker core unchanged.
+- Existing Tie-Break core/checker source unchanged; beta.73 integrates only through public calculation/value seams.
+- Chess-Results protocol/core unchanged.
+- Player/pairing identity semantics unchanged.
+- Windows Fluidity v2 and fixed Result Desk retained.
+- Directional Desktop/Web Cloud sync retained.
+
+Regression
+- beta.73 Q214-Q216 dedicated: 34/34 PASS.
+- Chromium DOM/UI execution: 8/8 PASS.
+- Windows Fluidity v2: 60/60 PASS.
+- Integrated Rating Lists: 34/34 PASS.
+- Directional Desktop/Web Cloud: 33/33 PASS.
+- Static audit: PASS.
+- Cumulative JS: 59 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0.
+- Protected core: 70/70 byte-identical.
+- Gacrux: 61/61 byte-identical.
+- TRF export reliability: PASS.
+- TRF26 completeness: 49/49 PASS.
+- Swiss pairing integrity: 25/25 PASS.
+- Mandatory Swiss tie-break regression: 35/35 PASS.
+- Chess-Results Pairings publish regression: PASS.
+- Exact export formats regression: PASS.
+
+This remains a TEST CANDIDATE only. Do not promote to Final/Stable without Windows acceptance testing and the normal release gate.

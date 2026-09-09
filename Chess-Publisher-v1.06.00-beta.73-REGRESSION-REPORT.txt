@@ -1,0 +1,39 @@
+Chess-Publisher v1.06.00-beta.73 — Windows Regression Report
+============================================================
+Feature: TEC Q214-Q216 Historical Rating Policy
+Parent: v1.06.00-beta.72
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Q214-Q216 dedicated: 34/34 PASS
+Chromium DOM/UI: 8/8 PASS
+Windows Fluidity v2: 60/60 PASS
+Integrated Rating Lists: 34/34 PASS
+Directional Desktop/Web Cloud: 33/33 PASS
+Static audit: PASS
+Cumulative JS: 59 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0
+Protected core: 70/70 byte-identical to beta.70/beta.72
+Gacrux 1.9.57 subset: 61/61 byte-identical
+TRF export reliability: PASS
+TRF26 completeness: 49/49 PASS
+Swiss pairing integrity: 25/25 PASS
+Mandatory Swiss tie-ibreak regression: 35/35 PASS
+Chess-Results Pairings publish regression: PASS
+Exact export formats: PASS
+
+Verified Q214-Q216 behavior
+- Default with no policy setting is FIDE_FIRST.
+- First rating is the earliest stored official rating period, not current array order or current Tournament Rating.
+- Ordinary players without rating history preserve existing Tournament Rating semantics.
+- ROUND_EFFECTIVE passes the actual encounter round to beta.70 ratingForRound().
+- ARO/TPR/PTP calculations consume round-effective opponent ratings under ROUND_EFFECTIVE.
+- APRO/APPO derive from opponent performances computed under the same policy.
+- RTNG/RTNG-R consume policy-derived own rating; ROUND_EFFECTIVE uses current standings round.
+- USER_SELECTED requires valid selections for every multi-rating player while Article-10 tie-breaks are active.
+- Missing/stale selections stop calculation before legacy derived state is changed.
+- Policy changes do not change Official Rating, Tournament Rating, Starting Number, pairingNumber, player IDs, pairings or historical rating records.
+- New metric caches are WeakMap-backed and tournament state remains JSON-serializable.
+- tieBreakRatingPolicy is portable and is not filtered by the existing Cloud portable sanitizer.
+
+Working draft VCL after evidence update: PASS 147 / PARTIAL 22 / FAIL 0 / CONDITIONAL 21 / NEEDS TEST 4 / NEEDS TEC 1 / N/A 30.
+
+Native executable, engine and protected tournament cores are unchanged. Windows source changes are additive HTML/JavaScript/WebView version integration. Package integrity is gated separately. TEST CANDIDATE, not Final/Stable.

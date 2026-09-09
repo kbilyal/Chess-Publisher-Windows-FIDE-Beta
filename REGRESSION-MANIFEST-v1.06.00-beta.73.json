@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "version": "1.06.00-beta.73",
+  "status": "WINDOWS_TEST_CANDIDATE",
+  "parent": "1.06.00-beta.72",
+  "features": [
+    "TEC Q214 per-round historical rating tie-break policy",
+    "TEC Q215 FIDE first-rating default",
+    "TEC Q216 explicit user-selected rating policy",
+    "Integrated Rating Lists preserved",
+    "Directional Desktop-Web Cloud sync preserved",
+    "Fluidity v2 preserved"
+  ],
+  "tests": {
+    "tecQ214Q216": "34/34 PASS",
+    "browserUi": "8/8 PASS",
+    "ratingLists": "34/34 PASS",
+    "directionalCloud": "33/33 PASS",
+    "fluidityV2": "60/60 PASS",
+    "static": "PASS",
+    "cumulative": "59 PASS + 3 known + 1 skip; unexpected 0",
+    "protectedCore": "70/70",
+    "gacrux": "61/61",
+    "trf26": "49/49",
+    "swissPairing": "25/25",
+    "tieBreak": "35/35",
+    "chessResults": "PASS",
+    "exactExports": "PASS"
+  },
+  "ratingPolicy": {
+    "default": "FIDE_FIRST",
+    "modes": [
+      "FIDE_FIRST",
+      "ROUND_EFFECTIVE",
+      "USER_SELECTED"
+    ],
+    "portableState": "tournament.tieBreakRatingPolicy",
+    "userSelectedFailClosed": true,
+    "derivedCacheSerialized": false
+  },
+  "protected": [
+    "Gacrux 1.9.57",
+    "Swiss Dutch pairing",
+    "TRF16/TRF26 core",
+    "BBP checker",
+    "Tie-Break core/checker source",
+    "Chess-Results protocol/core",
+    "player/pairing identity semantics"
+  ],
+  "vcl": {
+    "q214": "PASS",
+    "q215": "PASS",
+    "q216": "PASS",
+    "pass": 147,
+    "partial": 22,
+    "fail": 0,
+    "conditional": 21,
+    "needsTest": 4,
+    "needsTec": 1,
+    "na": 30
+  }
+}
