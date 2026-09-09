@@ -1,0 +1,54 @@
+Chess-Publisher v1.06.00-beta.74 — TEC Completion + Pairings UI + Web Result Download
+Date: 2026-09-09
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+Parent: v1.06.00-beta.73 TEC Q214-Q216 candidate (Windows runtime accepted by user)
+
+Implemented — Pairings workflow
+- Result Entry / Pairing panel is a persistent right-side workspace; only the board table scrolls during normal desktop work.
+- Pairings PDF export adds independent visibility controls for Board, White SNo., Black SNo., Title, Federation, Current points, Rating and FIDE ID while retaining existing presets/result-area/output controls.
+- Starting List export adds practical column tick boxes for SNo., Title, Name, Rating, Federation, FIDE ID, Gender and Birth. Name remains mandatory.
+- New Pairings action: ↓ Download Results.
+- Download Results reads only result-state changes from the linked Web/Cloud tournament. It does not replace pairings, players, starting numbers or tournament settings.
+- Web result matching is fail-closed by round + board/player identity; a pairing mismatch stops the operation.
+- A plain blank Web result never clears a Desktop result.
+- A different populated Desktop/Web result requires explicit confirmation before replacement.
+- Standard results, forfeits, BYE/PAB result states, unusual OTB result metadata and explicit Adjourned state are preserved by the results-only download.
+- Download Results never performs a Cloud Push and never changes the Desktop↔Web directional synchronization contract.
+
+Implemented — TEC/VCL evidence closure
+- Q62: Swiss maximum-round validation covered for even/odd participant counts.
+- Q99: Round Robin first-cycle final-two-round reversal / return-cycle order covered by dedicated regression.
+- Q128: effective rating-list sequence fallback evidence covered.
+- Q209: unrated-opponent rating tie-break methods covered, including configured substitution and zero/exclusion method.
+- Working VCL after beta.74 evidence: PASS 151; PARTIAL 22; FAIL 0; CONDITIONAL 21; NEEDS TEST 0; NEEDS TEC 1; N/A 30.
+- Q18 remains external/TEC confirmation only and is not self-certified by Chess-Publisher.
+
+Protected / unchanged
+- Gacrux 1.9.57 runtime: 61/61 byte-identical.
+- Protected core manifest: 70/70 byte-identical.
+- Swiss Dutch pairing core unchanged.
+- TRF16/TRF26 core unchanged.
+- BBP checker unchanged.
+- Tie-Break core/checker source unchanged.
+- Chess-Results protocol/core unchanged.
+- Player/pairing identity semantics unchanged.
+
+Regression
+- beta.74 TEC/UI focused: 29/29 PASS.
+- beta.74 Web Result Download: 26/26 PASS.
+- Directional Desktop/Web Cloud regression: 33/33 PASS.
+- Windows Fluidity v2: 60/60 PASS.
+- Integrated Rating Lists: 34/34 PASS.
+- Q214-Q216 Rating Policy: 34/34 PASS.
+- English manual: 23/23 PASS.
+- Static audit: PASS.
+- Cumulative Node: 61 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0.
+- Protected core: 70/70 byte-identical.
+- Gacrux: 61/61 byte-identical.
+- TRF26 completeness: 49/49 PASS.
+- Swiss pairing integrity: 25/25 PASS.
+- Mandatory Swiss tie-break regression: 35/35 PASS.
+- Chess-Results Pairings publish regression: PASS.
+- Exact export formats: PASS.
+
+This remains a WINDOWS TEST CANDIDATE only. Do not promote to Final/Stable until this exact beta.74 package passes Windows installation/runtime acceptance and the normal release gate.

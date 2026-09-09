@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "version": "1.06.00-beta.74",
+  "status": "WINDOWS_TEST_CANDIDATE",
+  "parent": "1.06.00-beta.73",
+  "features": [
+    "persistent Pairings Result Entry panel",
+    "Pairings PDF Board/SNo/FIDE ID and related column controls",
+    "Starting List practical column controls with mandatory Name",
+    "results-only Web/Cloud Download Results action",
+    "TEC Q62/Q99/Q128/Q209 evidence closure"
+  ],
+  "webResultDownload": {
+    "direction": "WEB_CLOUD_TO_DESKTOP_RESULTS_ONLY",
+    "pairingsReplaced": false,
+    "playersReplaced": false,
+    "settingsReplaced": false,
+    "blankRemoteClearsLocal": false,
+    "pairingMismatchFailClosed": true,
+    "conflictingPopulatedResultRequiresConfirmation": true,
+    "automaticPush": false,
+    "supports": ["standard", "forfeit", "bye_pab", "unusual_otb", "adjourned"]
+  },
+  "tests": {
+    "tecUi": "29/29 PASS",
+    "webResultDownload": "26/26 PASS",
+    "directionalCloud": "33/33 PASS",
+    "fluidityV2": "60/60 PASS",
+    "ratingLists": "34/34 PASS",
+    "ratingPolicy": "34/34 PASS",
+    "manual": "23/23 PASS",
+    "static": "PASS",
+    "cumulative": "61 PASS + 3 known + 1 skip; unexpected 0",
+    "protectedCore": "70/70",
+    "gacrux": "61/61",
+    "trf26": "49/49",
+    "swissPairing": "25/25",
+    "tieBreak": "35/35",
+    "chessResults": "PASS",
+    "exactExports": "PASS"
+  },
+  "protected": [
+    "Gacrux 1.9.57",
+    "Swiss Dutch pairing",
+    "TRF16/TRF26 core",
+    "BBP checker",
+    "Tie-Break core/checker source",
+    "Chess-Results protocol/core",
+    "player/pairing identity semantics"
+  ],
+  "vcl": {
+    "q62": "PASS",
+    "q99": "PASS",
+    "q128": "PASS",
+    "q209": "PASS",
+    "pass": 151,
+    "partial": 22,
+    "fail": 0,
+    "conditional": 21,
+    "needsTest": 0,
+    "needsTec": 1,
+    "na": 30,
+    "externalTecItem": "Q18"
+  }
+}

@@ -1,0 +1,41 @@
+Chess-Publisher v1.06.00-beta.74 — Windows Regression Report
+============================================================
+Scope: TEC remaining evidence + Pairings export/sticky panel + Web Result Download
+Parent: v1.06.00-beta.73
+Status: WINDOWS TEST CANDIDATE — NOT FINAL / NOT STABLE
+
+Focused gates
+- TEC/UI final gaps: 29/29 PASS
+- Web Result Download: 26/26 PASS
+- Desktop/Web directional Cloud: 33/33 PASS
+- Windows Fluidity v2: 60/60 PASS
+- Integrated Rating Lists: 34/34 PASS
+- Q214-Q216 Rating Policy: 34/34 PASS
+- English manual: 23/23 PASS
+- Static audit: PASS
+- Cumulative Node: 61 PASS + 3 approved historical exceptions + 1 designated browser-runner skip; unexpected 0
+- Protected core: 70/70 byte-identical
+- Gacrux 1.9.57: 61/61 byte-identical
+- TRF26 completeness: 49/49 PASS
+- Swiss pairing integrity: 25/25 PASS
+- Mandatory Swiss tie-break: 35/35 PASS
+- Chess-Results Pairings publish: PASS
+- Exact export formats: PASS
+
+Web Result Download safety contract
+- Reads the linked cloud tournament by the existing authenticated Organizer Token/cloudTournamentId path.
+- Applies only validated result-state fields on existing local boards.
+- Board/player identity is not rewritten.
+- Pairing mismatch fails closed before mutation.
+- Plain blank Web results do not clear Desktop results.
+- Conflicting non-blank result states require explicit user confirmation.
+- Supports standard results, forfeits, BYE/PAB, unusual OTB result metadata and Adjourned state.
+- Recalculates derived round/standings state after application and saves locally.
+- No automatic Push is performed. Other Cloud changes remain for the normal Pull/Resolve workflow.
+
+TEC/VCL
+- Q62/Q99/Q128/Q209 evidence gates are PASS.
+- Working VCL totals: PASS 151 / PARTIAL 22 / FAIL 0 / CONDITIONAL 21 / NEEDS TEST 0 / NEEDS TEC 1 / N/A 30.
+- Q18 remains NEEDS TEC; this package does not claim external TEC approval.
+
+Protected tournament cores and Gacrux/BBP/TRF/Tie-Break/Chess-Results core paths are unchanged. beta.74 is a TEST CANDIDATE pending Windows runtime acceptance.
