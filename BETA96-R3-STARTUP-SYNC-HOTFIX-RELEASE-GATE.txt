@@ -1,0 +1,45 @@
+Chess-Publisher v1.06.00-beta.96 r3 — Windows Startup + SYNC Hotfix Release Gate
+Date: 2026-09-10
+Status: PORTABLE TEST CANDIDATE — awaiting real Windows runtime confirmation
+SYNC FREEZE: NOT ACTIVE
+Linux: FROZEN at v1.06.00-beta.81; not modified
+Web repo: unchanged; existing successful Web gate remains referenced.
+
+REPRODUCED R2 DEFECT
+LocalEngine advertised serviceVersion V140 while ChessPublisher-WebView.ps1 launcher still required V139. The launcher intentionally rejects /health when serviceVersion differs, so both runspace and direct-process startup ended as "not ready".
+
+R3 POINT FIX
+- ChessPublisher-WebView.ps1 expected serviceVersion advanced V139 -> V140.
+- ChessPublisher-LocalEngine.ps1 remains V140 with the same-origin /cloud-proxy transport.
+- Stale V139 LocalEngine instances are therefore rejected and replaced, not reused.
+- BASE-CUMULATIVE-REGRESSION-MANIFEST startup contract is now enforced in FULL-PROGRAM-STATIC-AUDIT.py.
+- Added dedicated r3 startup contract regression.
+- schema 7, merge authority, Cloud API client, Gacrux, TRF16/TRF26, BBP, Tie-Break, Chess-Results and rating core remain unchanged.
+
+GATES ON FINAL EXTRACTED ZIP
+- root portable structure: PASS
+- Windows LocalEngine startup contract: 10 PASS / 0 FAIL
+- Windows LocalEngine Cloud proxy: 15 PASS / 0 FAIL
+- SYNC candidate contract: 19 PASS / 0 FAIL
+- packaged Gacrux runtime hardening: 31 PASS / 0 FAIL
+- static audit: PASS, including launcher == LocalEngine serviceVersion
+- full packaged JS corpus: 88 PASS / 2 approved historical exceptions / 1 designated browser skip / 0 UNEXPECTED; TOTAL 91
+- protected comparison vs exact beta.95: TOTAL 70 / IDENTICAL 68 / CHANGED 2 / MISSING 0
+- approved protected changes: ChessPublisher-LocalEngine.ps1 and webview/CloudWorkspaceAdapter.js
+
+ARTIFACTS
+Portable: Chess-Publisher-v1.06.00-beta.96-r3-STARTUP-SYNC-HOTFIX-PORTABLE-TEST-CANDIDATE-2026-09-10.zip
+Portable SHA256: 34dee3adae653b18c30fd7d7542f25cbf621afac14f8d6e5da3098f46cbe1537
+Drive ID: 1yV2zWp2Y8NwMVu0V78U6nQDXLwR8gyEr
+
+Source: Chess-Publisher-Windows-v1.06.00-beta.96-r3-AUTHORITATIVE-SOURCE.tar.gz
+Source SHA256: 4d81cd4fa2c409f22540bc0a5748ca49882669a4ba2de6c8f04af56806d0e2b4
+Source manifest SHA256: 105b5cbae0f9b917bae7e1d68536b0a2b640c8213126060b932183c1cf8ca7ac
+Drive ID: 1Upc0YdLVfTDP4Abqo2IYtD4WRPo7Hwx1
+
+Launcher EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+ChessPublisher-WebView.ps1 SHA256: 9e28e7f456fe12697714c3ca27ea91cd71dbf11b324b3fe13cd75559e95cb810
+ChessPublisher-LocalEngine.ps1 SHA256: 71113c2763ebfd438eab3dd3d4c1d8f11f630c59d67224c2d97e4568c8db3550
+
+FREEZE POLICY
+Do not activate SYNC freeze and do not start beta.97/TEC/UI work until the user confirms this exact r3 portable starts on Windows and real Desktop↔Web/Cloud send and receive works.
