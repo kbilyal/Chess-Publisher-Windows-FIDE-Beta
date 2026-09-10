@@ -1,0 +1,220 @@
+diff --git a/ChessPublisher.html b/ChessPublisher.html
+index 4723d36..d47b6ec 100644
+--- a/ChessPublisher.html
++++ b/ChessPublisher.html
+@@ -1,9 +1,9 @@
+ <!DOCTYPE html>
+-<html lang="bg" data-chesspublisher-version="1.06.00-beta.87">
++<html lang="bg" data-chesspublisher-version="1.06.00-beta.88">
+ <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-<title>Chess-Publisher v1.06.00-beta.87</title>
++<title>Chess-Publisher v1.06.00-beta.88</title>
+ 
+ <style>
+ *{box-sizing:border-box}
+@@ -393,6 +393,12 @@ tbody tr:hover,tbody tr.selected{background:#0a246a;color:#fff}
+ .final-points{font-weight:bold;text-align:center;width:70px}
+ .final-tie{font-weight:bold;text-align:right;width:80px}
+ .final-gold td{font-weight:bold}
++.final-status-col{min-width:86px;width:86px;text-align:center}
++.standing-status-badge{display:inline-block;min-width:68px;padding:2px 6px;border:1px solid #aaa;border-radius:999px;font-size:10px;font-weight:700;line-height:15px;text-align:center}
++.standing-status-withdrawn{background:#fff4d6;border-color:#c8a047;color:#765500}
++.standing-status-expelled{background:#f8dddd;border-color:#c27c7c;color:#8b0000}
++tr.standing-withdrawn td{color:#6f5b1c}
++tr.standing-expelled td{background:#fff6f6!important}
+ 
+ 
+ #livePairingsBody tr.live-selected td{background:#123b7a;color:#fff}
+@@ -2495,6 +2501,7 @@ tbody tr:hover a, tbody tr.selected a,
+ #standings .final-standings-table tbody tr:nth-child(even) td{background:#fbfbfb!important}
+ #standings .final-standings-table tbody tr:hover td{background:var(--cp-accent-soft)!important}
+ #standings .final-name-col{min-width:260px!important}
++#standings .final-status-col{min-width:88px!important;width:88px!important}
+ #standings .final-rank-col{min-width:48px!important;width:48px!important}
+ #standings .final-fed-col{min-width:48px!important;width:48px!important}
+ #standings .final-rtg-col{min-width:54px!important;width:54px!important}
+@@ -2790,7 +2797,7 @@ button[onclick*="fileExportTournamentTunx"]{display:none!important;visibility:hi
+ 
+ <div id="appWindow" class="window cp-native-workspace">
+   <div class="desktop-header-strip" role="toolbar" aria-label="Tournament document status">
+-    <span id="windowDocumentTitle">Chess-Publisher v1.06.00-beta.87 — Tournament Manager & Publisher</span>
++    <span id="windowDocumentTitle">Chess-Publisher v1.06.00-beta.88 — Tournament Manager & Publisher</span>
+     <span class="desktop-status-controls">
+       <span id="saveIndicator" class="save-indicator saved">Saved</span>
+       <span id="fideGlobalModeBadge" class="badge" title="FIDE compliance-control status for the open tournament">FIDE MODE</span>
+@@ -4197,6 +4204,18 @@ button[onclick*="fileExportTournamentTunx"]{display:none!important;visibility:hi
+           <option value="exclude">Exclude... (Not paired / choose rounds)</option>
+         </select>
+ 
++        <label>Tournament Status</label>
++        <select id="editPlayerTournamentStatus" onchange="updateEditPlayerTournamentStatusUI()">
++          <option value="active">Active / normal</option>
++          <option value="expelled">Expelled</option>
++        </select>
++
++        <label>Standings</label>
++        <label class="help" style="display:flex;align-items:center;gap:7px">
++          <input id="editPlayerExcludeFromStandings" type="checkbox" style="width:auto">
++          Exclude expelled player from standings (results remain in tournament history)
++        </label>
++
+         <label>Fixed Board</label>
+         <input id="editPlayerFixedBoard" type="number" min="1" step="1" placeholder="Auto">
+       </div>
+@@ -6699,6 +6718,8 @@ function normalizeData(){
+       if(p.attendance!=="absent") p.attendance="present";
+       p.joinedFromRound=getPlayerJoinRound(p);
+       p.registrationDeleted=!!p.registrationDeleted;
++      p.tournamentStatus=String(p.tournamentStatus||"").toLowerCase()==="expelled" ? "expelled" : "active";
++      p.excludeFromStandings=p.tournamentStatus==="expelled" && !!p.excludeFromStandings;
+       if(p.registrationDeleted){
+         p.attendance="absent";
+         const deletedFrom=parseInt(p.registrationDeletedFromRound);
+@@ -7691,7 +7712,7 @@ function bindEvents(){
+   });
+   document.querySelectorAll("input,select,textarea").forEach(el=>{
+     const excluded=["firstTournamentName","fideSearch","manualName","manualRating","manualTitle","manualFed","manualFide","manualBirth","manualGender",
+-                    "editPlayerName","editPlayerRating","editPlayerTitle","editPlayerFed","editPlayerFide","editPlayerBirth","editPlayerGender","editPlayerPairingStatus","editPlayerFixedBoard","allRatingFiles","tournamentImportFile","backupInput",
++                    "editPlayerName","editPlayerRating","editPlayerTitle","editPlayerFed","editPlayerFide","editPlayerBirth","editPlayerGender","editPlayerPairingStatus","editPlayerTournamentStatus","editPlayerExcludeFromStandings","editPlayerFixedBoard","allRatingFiles","tournamentImportFile","backupInput",
+                     "rounds","timeControl","customTimeControl","startDate","endDate","registrationOpens","registrationCloses","technicalMeeting","openingCeremony","closingCeremony","awardCeremony"];
+     if(excluded.includes(el.id) || el.classList.contains("channel-select")) return;
+     el.addEventListener("change",saveAll);
+@@ -12946,6 +12967,31 @@ function getPlayerRegistrationDeletedFromRound(player){
+   const n=parseInt(player?.registrationDeletedFromRound);
+   return Number.isInteger(n)&&n>0 ? n : 1;
+ }
++
++// beta.88 TEC Q170/Q197/Q198 — presentation/status layer only.
++// Withdrawal is derived from the existing post-start registration tombstone.
++// Expulsion is an explicit arbiter status and may optionally hide the player
++// from standings while every historical board/result remains untouched.
++function getPlayerTournamentStandingStatus(playerOrRow){
++  const player=playerOrRow?.sourcePlayer||playerOrRow;
++  if(!player) return "active";
++  if(String(player.tournamentStatus||"").toLowerCase()==="expelled") return "expelled";
++  if(isPlayerRegistrationDeleted(player)) return "withdrawn";
++  return "active";
++}
++function isPlayerExcludedFromFinalStandings(playerOrRow){
++  const player=playerOrRow?.sourcePlayer||playerOrRow;
++  return getPlayerTournamentStandingStatus(player)==="expelled" && !!player?.excludeFromStandings;
++}
++function standingPlayerStatusLabel(playerOrRow){
++  const status=getPlayerTournamentStandingStatus(playerOrRow);
++  return status==="withdrawn" ? "Withdrawn" : status==="expelled" ? "Expelled" : "";
++}
++function standingPlayerDisplayName(playerOrRow){
++  const name=String(playerOrRow?.name||playerOrRow?.sourcePlayer?.name||"");
++  const label=standingPlayerStatusLabel(playerOrRow);
++  return label ? `${name} [${label}]` : name;
++}
+ function getActiveRegistrationPlayers(tournament=getCurrentTournament()){
+   return (tournament?.players||[]).filter(player=>!isPlayerRegistrationDeleted(player));
+ }
+@@ -14358,6 +14404,10 @@ function openEditPlayerModal(index){
+   setVal("editPlayerFide",p.fideId);
+   setVal("editPlayerBirth",p.birth);
+   setVal("editPlayerGender",normalizePlayerGender(p.gender));
++  setVal("editPlayerTournamentStatus",String(p.tournamentStatus||"").toLowerCase()==="expelled"?"expelled":"active");
++  const excludeStanding=document.getElementById("editPlayerExcludeFromStandings");
++  if(excludeStanding) excludeStanding.checked=String(p.tournamentStatus||"").toLowerCase()==="expelled" && !!p.excludeFromStandings;
++  updateEditPlayerTournamentStatusUI();
+ 
+   try{
+     const key=playerKey(p,index);
+@@ -14375,6 +14425,14 @@ function openEditPlayerModal(index){
+   cpMarkTournamentScopedModal("editPlayerModal");
+   document.getElementById("editPlayerModal").style.display="flex";
+ }
++function updateEditPlayerTournamentStatusUI(){
++  const status=document.getElementById("editPlayerTournamentStatus");
++  const exclude=document.getElementById("editPlayerExcludeFromStandings");
++  if(!status||!exclude) return;
++  const expelled=status.value==="expelled";
++  exclude.disabled=!expelled;
++  if(!expelled) exclude.checked=false;
++}
+ function closeEditPlayerModal(){const modal=document.getElementById("editPlayerModal");if(modal)modal.style.display="none";cpClearTournamentScopedModal(modal);editingPlayerIndex=null}
+ async function saveEditedPlayer(){
+   if(editingPlayerIndex===null)return;
+@@ -14406,6 +14464,9 @@ async function saveEditedPlayer(){
+   const nationalRating=Math.max(0,Math.min(4000,parseInt(val("editPlayerNationalRating"))||0));
+   const tournamentManualRating=Math.max(0,Math.min(4000,parseInt(val("editPlayerTournamentRating"))||0));
+   p.name=checked.name;p.rating=checked.rating;p.nationalRating=nationalRating;p.tournamentManualRating=tournamentManualRating;p.title=normalizePlayerTitle(val("editPlayerTitle"));p.pairingNumber=pairingNo;p.fed=String(val("editPlayerFed")||"BUL").trim().toUpperCase();p.fideId=fide;p.birth=checked.birth;p.gender=normalizePlayerGender(val("editPlayerGender"));if(p.attendance!=="absent") p.attendance="present";
++  p.tournamentStatus=val("editPlayerTournamentStatus")==="expelled"?"expelled":"active";
++  const excludeFromStandings=document.getElementById("editPlayerExcludeFromStandings");
++  p.excludeFromStandings=p.tournamentStatus==="expelled" && !!excludeFromStandings?.checked;
+   if(window.cpBeta52) window.cpBeta52.captureManualEdit(p,oldRankData);
+   if(window.cpBeta57){
+     const oldOfficial=window.cpBeta57.officialRatingForReporting(p);
+@@ -24465,7 +24526,11 @@ function calculateFinalStandings(){
+   assignDirectEncounterDisplayScores(players,selectedDE);
+   const orderedPlayers=sortStandingsByTieBreakPriority(players,tieList);
+ 
+-  return {players:orderedPlayers,tieList,completed};
++  // TEC Q198: exclusion is a standings presentation decision only. All players
++  // remain in `players` above while scores/tie-breaks are calculated, so results
++  // achieved by/against an expelled player remain part of tournament history.
++  const visiblePlayers=orderedPlayers.filter(player=>!isPlayerExcludedFromFinalStandings(player));
++  return {players:visiblePlayers,tieList,completed};
+ }
+ 
+ function formatStandingTie(player, tie){
+@@ -24530,6 +24595,7 @@ function refreshFinalStandings(){
+     head.innerHTML=`<tr>
+       <th class="final-rank-col">Rank</th>
+       <th class="final-name-col">Name</th>
++      <th class="final-status-col">Status</th>
+       <th class="final-fed-col">FED</th>
+       <th class="final-rtg-col">Rtg</th>
+       <th class="final-pts-col">Pts</th>
+@@ -24543,8 +24609,11 @@ function refreshFinalStandings(){
+ 
+     st.players.forEach((p,i)=>{
+       const tr=document.createElement("tr");
++      const standingStatus=getPlayerTournamentStandingStatus(p);
++      if(standingStatus==="withdrawn") tr.classList.add("standing-withdrawn");
++      if(standingStatus==="expelled") tr.classList.add("standing-expelled");
+ 
+-      if(tournamentComplete && i===0) tr.className="final-gold";
++      if(tournamentComplete && i===0) tr.classList.add("final-gold");
+ 
+       const rankDisplay=tournamentComplete
+         ? (i===0?"🥇":i===1?"🥈":i===2?"🥉":i+1)
+@@ -24553,6 +24622,7 @@ function refreshFinalStandings(){
+       tr.innerHTML=`
+         <td class="final-place">${rankDisplay}</td>
+         <td class="final-name-col"><b>${escapeHtml(p.name)}</b></td>
++        <td class="final-status-col">${standingStatus==="active"?"—":`<span class="standing-status-badge standing-status-${standingStatus}">${escapeHtml(standingPlayerStatusLabel(p))}</span>`}</td>
+         <td class="final-fed-col">${escapeHtml(p.fed||"")}</td>
+         <td>${p.rating||0}</td>
+         <td class="final-points">${Number(p.score||0).toFixed(1)}</td>
+@@ -24892,7 +24962,7 @@ function buildFinalStandingsText(){
+     const prefix=place===1?"🥇":place===2?"🥈":place===3?"🥉":`${place}.`;
+     const fed=p.fed?` ${p.fed}`:"";
+ 
+-    text+=`${prefix} ${p.name}${fed} — ${Number(p.score||0).toFixed(1)}`;
++    text+=`${prefix} ${standingPlayerDisplayName(p)}${fed} — ${Number(p.score||0).toFixed(1)}`;
+ 
+     if(ties.length){
+       text+=" | "+ties
+@@ -24938,7 +25008,7 @@ function printFinalStandingsTxt(){
+ 
+   st.players.forEach((p,i)=>{
+     text+=pad(i+1,rankW)+
+-          pad(p.name,nameW)+
++          pad(standingPlayerDisplayName(p),nameW)+
+           pad(p.fed||"",fedW)+
+           pad(p.rating||0,rtgW)+
+           pad(Number(p.score||0).toFixed(1),ptsW);
+diff --git a/ChessPublisher-Beta44-Compliance.js b/ChessPublisher-Beta44-Compliance.js
+index 869b6ed..4b3c4ad 100644
+--- a/ChessPublisher-Beta44-Compliance.js
++++ b/ChessPublisher-Beta44-Compliance.js
+@@ -107,7 +107,7 @@ function installTpnButton(){if(document.getElementById('cpRrTpnDrawBtn'))return;
+ 
+ // ---------- beta.41: RR withdrawal <50% rule ----------
+ let rrStandingsAdjust=false;const originalTournamentState=window.tournamentState;
+-function rrExcludedFromStandings(state){const tt=t();if(!tt||!isRoundRobinTournament(tt))return new Set();cons
