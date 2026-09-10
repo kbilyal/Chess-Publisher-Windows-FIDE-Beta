@@ -9,6 +9,7 @@
   "archiveSizeBytes": 28191142,
   "archiveSha256": "3541386640bb2c90910cb5aee254dc31f923a8017f2ffa429e2d421be0bd5714",
   "contentManifestFilename": "AUTHORITATIVE-SOURCE-MANIFEST-beta91.txt",
+  "contentManifestSha256": "614c4a719e5fccb030a0874ac1b8cc3e782cb5fc51e882b4ca83f7b6670518f3",
   "parentVersion": "1.06.00-beta.90",
   "parentEvidenceCheckpoint": "ef24902a13e30d21999146f141570599875159eb",
   "linuxParityCheckpoint": "v1.06.00-beta.81",
