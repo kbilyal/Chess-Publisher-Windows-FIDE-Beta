@@ -3,11 +3,11 @@
   "version": "1.06.00-beta.96",
   "status": "PREPARED CANDIDATE — NOT ACTIVE UNTIL USER RUNTIME CONFIRMATION",
   "fingerprintContentSchema": 7,
-  "policy": "These hashes are recorded as the beta.96 candidate contract for verification only. The SYNC FREEZE becomes active only after explicit user confirmation that real Desktop-Web/Cloud SYNC works. After activation, no TEC/UI/release work may modify these SYNC logic fingerprints or schema contract unless an explicitly reproduced SYNC defect is approved for repair.",
+  "policy": "These hashes are the repaired beta.96 SYNC candidate contract after the reproduced Windows transport defect. The SYNC FREEZE becomes active only after explicit user confirmation that real Desktop-Web/Cloud SYNC works. After activation, TEC/UI/release work must not modify these files without an explicitly reproduced SYNC defect and approval.",
   "files": {
     "webview/CloudWorkspaceAdapter.js": {
       "mode": "exact",
-      "sha256": "babc061d733719a65442af4540f51b12b2d2134cf31917ab602223e052fa46ac"
+      "sha256": "db3bb137350ecb49c8c12caee2981f0f16d98e1df9b85ffdfa401f9ee29ddd41"
     },
     "cloud/client/cloud-workspace-api.js": {
       "mode": "exact",
@@ -15,11 +15,18 @@
     },
     "webview/CloudWorkspaceRedesign.js": {
       "mode": "normalize-version",
-      "sha256": "06c80b3dde4fdf25765a129ca17e4ddab9869e4454e51d8e997d89e5e1a82a51"
+      "sha256": "a35071afa6cb6400e7f0033c26a6fb3e84c384f1fc6c2f7978b2fd9be84d4b16"
+    },
+    "ChessPublisher-LocalEngine.ps1": {
+      "mode": "exact",
+      "sha256": "71113c2763ebfd438eab3dd3d4c1d8f11f630c59d67224c2d97e4568c8db3550"
     }
   },
   "semanticGuards": [
     "checker provenance lastCheckerUiSource/lastCheckerUiBuildVersion/lastCheckerUiCheckedAt is runtime-only and excluded recursively from schema-7 fingerprints/private snapshots",
+    "Windows Desktop Cloud transport uses the same-origin LocalEngine /cloud-proxy path and does not depend on Cloudflare browser CORS for 127.0.0.1/localhost",
+    "LocalEngine Cloud proxy forwards only allowlisted Cloud workspace/tournament endpoints to the fixed Hub Worker host, requires Organizer bearer authorization, and preserves X-Expected-Revision",
+    "Web production origin keeps the normal remote Cloud API path and WEB_ORIGIN policy",
     "cpCloudSyncCurrent remains the single unified SYNC authority",
     "no last-write-wins or silent stale overwrite",
     "revision guard and stable internalId/cloudTournamentId identity remain required",
