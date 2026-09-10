@@ -1,0 +1,68 @@
+Chess-Publisher v1.06.00-beta.96 r4 — Live Worker SYNC Parity Gate
+Date: 2026-09-10
+Status: SERVER-SIDE SYNC PARITY FIX LIVE — REAL WINDOWS RETEST REQUIRED
+SYNC FREEZE: NOT ACTIVE
+Linux: FROZEN at v1.06.00-beta.81; not modified
+Windows artifact: UNCHANGED from r4; no binary rebuild is required for this server-side correction.
+
+REPRODUCED CONTRACT DEFECT
+Desktop/Web schema-7 fingerprinting classifies the following checker provenance fields as runtime-only:
+- lastCheckerUiSource
+- lastCheckerUiBuildVersion
+- lastCheckerUiCheckedAt
+The live Hub/Cloud Worker did not strip the same fields from its Cloud fingerprint projection. That parity mismatch could make a content-equivalent tournament appear different across Desktop/Web/Cloud reconciliation and interfere with deterministic SYNC convergence.
+
+LIVE WORKER POINT FIX
+The live Cloudflare Worker was patched so its CLOUD_SYNC_LOCAL_KEYS also strips the three checker-provenance keys. No tournament pairing, TRF, Gacrux, BBP, Tie-Break, Chess-Results, rating, or Linux code was changed.
+
+DEPLOYMENT EVIDENCE
+Web repository: kbilyal/Chess-Publisher-Web
+Worker patch commit: 47f1a6cb33f72745ce7f0b821f87677b41744329
+Worker deployment workflow commit: b2ad2cba2a3da06c51830a9a912a3efb5941cb86
+Parity regression commit / current Web main: 1dac6498a279e4ea3445bd4acf9fdca63ba13df1
+Cloudflare deployment job: 103002706618
+GitHub Actions run: 34516377753
+Deployment conclusion: SUCCESS
+
+LIVE WORKER HASHES
+Before patch SHA256: 07fee80790e4696fb5249bc3b52714ea92fdac7c9a9ec5569920d9e8d1be4271
+After patch / live SHA256: 13773e265867f802631d03bcecd8bd259a74f5fdff87fd3fa52a663a5264fa22
+Exact live read-back matched the patched source SHA256.
+
+PRODUCTION TRANSPORT CHECKS
+- /api/v1/health: HTTP 200
+- unauthenticated Cloud workspace: HTTP 401
+- unauthenticated guarded Cloud PUT: HTTP 401
+- WEB_ORIGIN CORS preflight: PASS
+- Authorization request header allowed: PASS
+- X-Expected-Revision request header allowed: PASS
+- PUT allowed: PASS
+- CLOUD_SYNC_CHECKER_PROVENANCE_PRODUCTION=PASS
+
+WEB DEPLOYMENT
+Current Web main: 1dac6498a279e4ea3445bd4acf9fdca63ba13df1
+- build-and-typecheck: SUCCESS
+- Validate and build Chess-Publisher Web Companion: SUCCESS
+- Publish Chess-Publisher Web Companion: SUCCESS
+
+R4 DESKTOP REGRESSION REVALIDATION AFTER LIVE WORKER PATCH
+Executed against the exact extracted r4 authoritative source without modifying runtime files:
+- BETA96 SYNC FREEZE CHECKER RUNTIME METADATA: 11 PASS / 0 FAIL
+- BETA96 R4 DESKTOP-WEB ROUNDTRIP IDENTITY: 15 PASS / 0 FAIL
+- BETA96 R4 WEB-DESKTOP CLOUD CONTRACT PARITY: 21 PASS / 0 FAIL
+- BETA96 R4 SAVED CLOUD IDENTITY REPAIR: 6 PASS / 0 FAIL
+- BETA96 WINDOWS SYNC LOCAL PROXY: 16 PASS / 0 FAIL
+Targeted total: 69 PASS / 0 FAIL
+
+UNCHANGED R4 ARTIFACTS
+Portable: Chess-Publisher-v1.06.00-beta.96-r4-WEB-DESKTOP-SYNC-IDENTITY-HOTFIX-PORTABLE-TEST-CANDIDATE-2026-09-10.zip
+Portable SHA256: 2ea763ca7a08a3c9aea1c2d0c48378055bdd7d1b531c95824df77779fc46bd23
+Source: Chess-Publisher-Windows-v1.06.00-beta.96-r4-AUTHORITATIVE-SOURCE.tar.gz
+Source SHA256: 274a72accf209b52e8ae9b762164050cae9ced42e1367a9d72969eeb25537caf
+Launcher EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+RELEASE DECISION
+Do not create beta.97 and do not activate SYNC freeze yet. The live Worker defect is corrected and all deterministic local/production gates available without an organizer credential are green. Final release gate remains one real authenticated Windows Desktop ↔ Web/Cloud roundtrip using the exact r4 portable above:
+1. Desktop edit -> SYNC -> verify Web receives it.
+2. Web edit -> Save/SYNC -> Desktop SYNC -> verify Desktop receives it.
+3. Confirm the same Cloud tournament row is reused and revision advances only for actual content changes.
