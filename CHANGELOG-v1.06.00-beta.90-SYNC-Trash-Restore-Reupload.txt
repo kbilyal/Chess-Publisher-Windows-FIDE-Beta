@@ -1,0 +1,28 @@
+Chess-Publisher v1.06.00-beta.90 — SYNC Trash Restore / Re-upload
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.89
+
+USER-REPORTED DEFECT
+Deleting a tournament from Chess-Publisher Web removed it from My tournaments, but a later Desktop SYNC did not reliably make the tournament appear again.
+
+ROOT CAUSE
+Desktop only queried the active Cloud tournament list. Web has a reversible Trash/archive surface, so an archived row disappeared from the active list while retaining the same logical localKey/internalId. Desktop then treated the link as stale and attempted the recreate path without first restoring the archived identity.
+
+FIX
+- Desktop Cloud API adds existing Worker endpoints: listArchivedTournaments() and restoreArchivedTournament().
+- On active-list miss, SYNC checks Trash by saved cloudTournamentId/internalId before clearing the common base.
+- Matching Trash row is restored with the same Cloud ID and baseRevision/baseFingerprint preserved.
+- Normal schema-7 reconciliation then decides NO-OP, push, pull or conflict.
+- If the row is absent from both active list and Trash (permanent delete), Desktop clears stale remote metadata, creates one fresh Cloud row, and uploads latest Desktop state from revision 0.
+- Ambiguous Trash identity fails closed.
+- Older Worker without Trash endpoint falls back to the historical recreate path.
+
+REGRESSION
+Targeted beta.90: 19 PASS / 0 FAIL
+Cumulative: PASS=78 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=82
+Static audit: PASS
+Protected list: 69/70 byte-identical; 1 approved infrastructure transport change; 0 missing.
+FIDE protected cores: unchanged.
+Cloud fingerprint schema: 7 unchanged.
+Worker/Web API contract: existing endpoints reused; no server deployment required by this Desktop fix.
+Linux: FROZEN at v1.06.00-beta.81; not modified.
