@@ -1,0 +1,50 @@
+Chess-Publisher v1.06.00-beta.96 — independent release-candidate rerun verification
+Date: 2026-09-10
+Status: PORTABLE TEST CANDIDATE — awaiting real user Desktop↔Web/Cloud runtime confirmation
+Linux: FROZEN at v1.06.00-beta.81; not modified
+
+SCOPE
+SYNC-only beta.96 verification. No TEC/UI feature changes. Print tournament schedule retained. No beta.97.
+
+RERUN RESULTS ON EXACT AUTHORITATIVE beta.96 SOURCE
+- beta.96 checker runtime metadata regression: 11 PASS / 0 FAIL
+- beta.96 candidate SYNC contract regression: 12 PASS / 0 FAIL
+- beta.90 restore deleted Web tournament: 19 PASS / 0 FAIL
+- beta.91 Trash/pairing-mismatch orchestration: 26 PASS / 0 FAIL
+- beta.92 structural preflight: 38 PASS / 0 FAIL
+- beta.93 single SYNC authority: 11 PASS / 0 FAIL
+- beta.94 common-base recovery: 28 PASS / 0 FAIL
+- beta.95 checker provenance + player lifecycle: 29 PASS / 0 FAIL
+- full cumulative corpus: 86 PASS / 2 approved historical exceptions / 1 designated skip / 0 UNEXPECTED; TOTAL 89
+- static audit: PASS
+- protected beta.95→beta.96 comparison: TOTAL 70 / IDENTICAL 69 / CHANGED 1 / MISSING 0
+- sole approved protected change: webview/CloudWorkspaceAdapter.js
+  beta.95 SHA256 e14c548ec6610824d2fddae2f0b1b7274282c26368f8f98dc3c90269a00859fe
+  beta.96 SHA256 babc061d733719a65442af4540f51b12b2d2134cf31917ab602223e052fa46ac
+- packaged portable Gacrux 1.9.57 runtime regression after ZIP extraction: 31 PASS / 0 FAIL
+
+ARTIFACT VERIFICATION
+Portable: Chess-Publisher-v1.06.00-beta.96-SYNC-FREEZE-PORTABLE-TEST-CANDIDATE-2026-09-10.zip
+Portable SHA256: 6e369e4f11a3245e68d373858bbda00cb3253164679ebc3c10639eea45cdd00d
+Portable root structure verified after extraction:
+  ChessPublisher.exe
+  ChessPublisher.html
+  engine/
+  webview/
+  ChessPublisher-WebView.ps1
+Launcher EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+Packaged Gacrux pairingchecker.exe SHA256: 6955c4c1f16425fa662f70d08311cfddeeaf21cca1aee3d04a3a6b0f7bbb45fb
+
+Authoritative SOURCE: Chess-Publisher-Windows-v1.06.00-beta.96-AUTHORITATIVE-SOURCE.tar.gz
+SOURCE SHA256: c2d18d4f11d513a056bf7bef889d9250775a18ac38024b5d5952e1a41545c750
+SOURCE manifest SHA256: b02f6a1457124d97723ccdf8bd0c62f996ce148dc36842c980ab435ef2d5db08
+
+DRIVE READ-BACK
+Folder ID: 1XegAUsEOwZTuN-gE9CqxklnP46OXNRmG
+Portable file ID: 1RZDHlDIgpps0FUFPhBk1v2Hhm9GQQfxb (size 29015418 bytes)
+SOURCE file ID: 1cvl5EBp8CcWbv7b9me9ilOu0vulbQbVV (size 28384914 bytes)
+EXE file ID: 1UMxHod_lhOOBv6PDNbD9NruqDiPHkMJL (size 1826816 bytes)
+Drive metadata read-back completed successfully. Drive API raw-download of the ZIP is blocked by Google's malware/spam classifier because the archive contains an unsigned Windows executable; this does not invalidate the existing file metadata/read-back.
+
+FREEZE STATE
+Candidate hashes are recorded for verification, but SYNC FREEZE is NOT ACTIVE yet. Activate only after explicit user confirmation that real Desktop↔Web/Cloud SYNC works. No TEC/UI work may be treated as freeze-governed until that confirmation.
