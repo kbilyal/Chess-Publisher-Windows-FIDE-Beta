@@ -1,0 +1,45 @@
+Chess-Publisher v1.06.00-beta.87 — SYNC Stress / Calendar Row Merge
+
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.86
+Linux: frozen at v1.06.00-beta.81 parity checkpoint; NOT modified.
+
+Reason for beta.87
+A post-beta.86 stress test found two real SYNC gaps in deterministic three-way merge:
+1. Desktop edited one Calendar/Schedule row while Web edited a different row.
+2. Desktop and Web edited different fields of the same Calendar/Schedule row.
+
+Root cause
+The merge engine had stable array identities for players and live pairing boards, but schedule.rows had no stable merge key. Therefore any two-sided schedule.rows change was treated as an atomic array conflict.
+
+Fix
+- schedule.rows now use stable logical row identity from row.no (fallback round/id only when present).
+- Element-by-element merge is allowed only when base/local/remote contain the same unique row-key sequence in the same order.
+- Concurrent add/remove/reorder remains fail-closed and is NOT guessed.
+- Same schedule field changed differently remains a true conflict with zero PUT.
+- Cloud fingerprint schema stays 7.
+- Cloud API/Worker contract is unchanged.
+
+Additional stress coverage
+- independent edits to different schedule rows
+- independent edits to different fields of the same schedule row
+- Desktop rename + Web calendar edit
+- Unicode tournament rename
+- same-field Setup conflict
+- local path/token noise
+- remote excluded metadata / common-base advancement
+- sequential SYNC revision churn
+- independent player edits
+- optimistic revision race
+- optional-field deletion + independent edit
+
+Release gates
+- beta.87 stress: 11 PASS / 0 FAIL
+- beta.86 metadata regression: 18 PASS / 0 FAIL
+- beta.85 next-round regression: 8 PASS / 0 FAIL
+- cumulative: 75 PASS / 3 approved historical exceptions / 1 designated skip / 0 unexpected
+- static audit: PASS
+- protected core: 70/70 byte-identical, 0 changed, 0 missing
+
+Protected engines/protocols
+No changes to Gacrux 1.9.57 / Swiss Dutch pairing core, TRF16/TRF26, BBP checker, Tie-Break core, Chess-Results protocol/core, or rating calculation core.

@@ -1,0 +1,43 @@
+Chess-Publisher v1.06.00-beta.87 — Shared / Protected Change Ledger
+Previous accepted Windows beta: v1.06.00-beta.86
+Linux status: FROZEN at v1.06.00-beta.81 parity checkpoint; Linux repository NOT modified.
+
+FILE: ChessPublisher.html
+CLASS: shared-marker
+PREVIOUS_SHA256: 667919d19d9b326fbbf3d3616b45abbb1ab5ec39f990b77ea2fbb1beee5fdb7a
+NEW_SHA256: adbbbcd1771e75aa489ec056631421063d961d6f0b751e59bb7bfe152226dcdc
+REASON: Version marker advanced to beta.87; no new HTML business-logic change.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: webview/CloudWorkspaceRedesign.js
+CLASS: shared-functional
+PREVIOUS_SHA256: 233e50a0273bd4152c1d1c6f914ad2982460368095caeae8048ae01549b6842a
+NEW_SHA256: 9e02b223d189872a19e0bf545529027ca55629b79489182f9a1ccc553ee9a42f
+REASON: Approved SYNC point-fix: schedule.rows now use stable logical row identity so independent edits to different rows or different fields of the same row can merge safely. Add/remove/reorder remains fail-closed.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: VERSION.txt
+CLASS: shared-marker
+PREVIOUS_SHA256: 00b6ac355d24be9813c95735d47a479d36a3cf45fee161c61a2c825b4d0277ac
+NEW_SHA256: a0cc236e7d84f8922a024f6ed85e40055fba56904c22a6ba7397070752b963cb
+REASON: Exact beta marker advanced to 1.06.00-beta.87.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: WEBVIEW-VERSION.txt
+CLASS: shared-marker
+PREVIOUS_SHA256: 00b6ac355d24be9813c95735d47a479d36a3cf45fee161c61a2c825b4d0277ac
+NEW_SHA256: a0cc236e7d84f8922a024f6ed85e40055fba56904c22a6ba7397070752b963cb
+REASON: Exact WebView beta marker advanced to 1.06.00-beta.87.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: ChessPublisher-WebView.ps1
+CLASS: windows-specific-marker
+PREVIOUS_SHA256: 342726a71d61e46eeeced7f080cb4cfe23f41ae8923fab10b3b8a4de1e0ae017
+NEW_SHA256: 46f4d61d7e6a2745a813bc37576489142cc2379da9b65f03eedff6706399dbaa
+REASON: Windows launcher release marker advanced to beta.87 only.
+APPROVED_SCOPE_CHANGE: YES
+
+[PROTECTED CORE]
+CHANGED_PROTECTED_FILES: NONE
+APPROVED_PROTECTED_CORE_CHANGES: NONE
+PROTECTED_HASH_GATE: 70/70 byte-identical; 0 changed; 0 missing; PASS
