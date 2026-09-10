@@ -1,0 +1,26 @@
+Chess-Publisher v1.06.00-beta.89 — TEC Q144 Selected Rating Updates
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.88
+
+TEC SCOPE
+- Q144: after Start test detects FIDE rating-list differences, the arbiter can select exactly which detected players are updated.
+- Selection identity is FIDE ID based.
+- Start test is non-mutating.
+- Unchecked detected players are not modified.
+- Changing rating list / selected fields after Start test invalidates the preview and blocks mutation until a fresh Start test is run.
+- Empty selection writes nothing.
+- Legacy all-player update remains available when there is no preview session.
+- Automatic beta.56 consistency evaluation is not filtered by manual subset state.
+
+IMPLEMENTATION
+- New additive layer: ChessPublisher-Beta89-Compliance.js
+- Loaded after beta.81 rating-list layer.
+- Existing rating calculation core is not redefined.
+- No changes to Gacrux, TRF16/26, BBP, Tie-Break, Chess-Results or Cloud/SYNC core.
+
+GATES
+- Q144 targeted: 23 PASS / 0 FAIL
+- Rating-list stack: 15 PASS / 0 FAIL
+- Cumulative: PASS=77 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=81
+- Static audit: PASS
+- Protected core: 70/70 byte-identical, 0 changed, 0 missing
