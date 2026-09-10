@@ -1,0 +1,72 @@
+{
+  "version": "1.06.00-beta.87",
+  "status": "TEST CANDIDATE",
+  "parentVersion": "1.06.00-beta.86",
+  "parentAuthoritativeSourceCommit": "d224fc6e79d49e3c69b1f161fc2491ef2796854b",
+  "sourceArchiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.87-AUTHORITATIVE-SOURCE.tar.gz",
+  "sourceArchiveSha256": "5e450965ef1e151e174c642f281a5a7e6015188374bd0398e4964a08048fbd1b",
+  "authoritativeWindowsSourceCommit": "37ea53360c01f48fd0164206b7c298659396cb38",
+  "fingerprintContentSchema": 7,
+  "cloudApiChanged": false,
+  "linux": {
+    "status": "FROZEN",
+    "checkpoint": "v1.06.00-beta.81 parity",
+    "repositoryModified": false
+  },
+  "targeted": {
+    "result": "PASS",
+    "mandatory": "BETA87-SYNC-STRESS-EDGE-REGRESSION.js",
+    "mandatoryPass": 11,
+    "mandatoryFail": 0,
+    "alsoReexecuted": [
+      "BETA86-TOURNAMENT-METADATA-SYNC-REGRESSION.js",
+      "BETA85-NEXT-ROUND-SYNC-REGRESSION.js",
+      "BETA84-SCHEMA7-UNIFIED-SYNC-REGRESSION.js",
+      "BETA84-FORCED-CHECKPOINT-PERSISTENCE-REGRESSION.js",
+      "BETA82-ALL-SYNC-WEB-RESULTS-REGRESSION.js",
+      "BETA79-PAIRINGS-SYNC-BUTTON-REGRESSION.js",
+      "BETA77-COPIED-TOURNAMENT-CLOUD-IDENTITY-REGRESSION.js"
+    ]
+  },
+  "cumulative": {
+    "pass": 75,
+    "approvedHistoricalExceptions": 3,
+    "designatedSkips": 1,
+    "unexpectedFailures": 0,
+    "total": 79
+  },
+  "staticAudit": "PASS",
+  "protectedCore": {
+    "byteIdentical": 70,
+    "changed": 0,
+    "missing": 0,
+    "result": "PASS"
+  },
+  "changedSharedFiles": [
+    "ChessPublisher.html",
+    "webview/CloudWorkspaceRedesign.js",
+    "VERSION.txt",
+    "WEBVIEW-VERSION.txt"
+  ],
+  "changedWindowsSpecificFiles": [
+    "ChessPublisher-WebView.ps1"
+  ],
+  "changedProtectedFiles": [],
+  "approvedProtectedCoreChanges": [],
+  "syncDelta": {
+    "scheduleRowsStableIdentity": true,
+    "independentScheduleRowsMerge": true,
+    "sameScheduleRowDifferentFieldsMerge": true,
+    "addRemoveReorderFailClosed": true,
+    "sameFieldConflictFailClosed": true,
+    "revisionRaceFailClosed": true
+  },
+  "patch": {
+    "filename": "PATCHES/beta87-sync-stress-calendar-row-merge.patch",
+    "sha256": "e9d4a86b77a90d1463e567d0c74362540889ab0f20a034c0c6315184b0d1457a"
+  },
+  "releaseRules": [
+    "Linux repository must remain untouched until explicit align command",
+    "Authoritative SOURCE archive is the migration source; do not reconstruct intermediate betas"
+  ]
+}

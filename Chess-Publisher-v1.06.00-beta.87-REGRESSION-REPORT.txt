@@ -1,0 +1,30 @@
+Chess-Publisher v1.06.00-beta.87 — SYNC Stress / Calendar Row Merge
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.86
+Linux: FROZEN at v1.06.00-beta.81 parity checkpoint; repository NOT modified.
+
+BUG TEST RESULT
+The extra SYNC stress suite initially exposed two real beta.86 gaps:
+- Desktop and Web editing different Schedule rows caused a false conflict.
+- Desktop and Web editing different fields of the same Schedule row caused a false conflict.
+A third initial red case (Unicode rename) was confirmed to be a test assertion error: Unicode rename already round-tripped correctly; Cloud identity is transport/API metadata and is intentionally not embedded as cloudTournamentId in the portable tournament object.
+
+ROOT CAUSE
+`mergeThreeWay()` had stable array identities for players and live pairing boards, but no stable identity for `schedule.rows`. Therefore any two-sided Calendar rows change became an atomic array conflict.
+
+FIX
+`stableArrayMergeKey()` now recognizes Schedule rows by stable logical row number (`row.no`, with round/id fallback). Element-level merge is allowed only when base/local/remote have the same unique key sequence in the same order. Concurrent row insertion, deletion or reordering remains fail-closed.
+
+TARGETED STRESS: 11 PASS / 0 FAIL
+CUMULATIVE: PASS=75 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=79
+STATIC AUDIT: PASS
+PROTECTED CORE: 70/70 byte-identical; 0 changed; 0 missing
+SCHEMA: fingerprintContentSchema=7 unchanged
+CLOUD API/WORKER: unchanged
+
+AUTHORITATIVE SOURCE
+Commit: 37ea53360c01f48fd0164206b7c298659396cb38
+Archive: Chess-Publisher-Windows-v1.06.00-beta.87-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: 5e450965ef1e151e174c642f281a5a7e6015188374bd0398e4964a08048fbd1b
+Patch: PATCHES/beta87-sync-stress-calendar-row-merge.patch
+Patch SHA256: e9d4a86b77a90d1463e567d0c74362540889ab0f20a034c0c6315184b0d1457a
