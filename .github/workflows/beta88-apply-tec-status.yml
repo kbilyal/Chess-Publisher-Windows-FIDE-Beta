@@ -1,0 +1,60 @@
+name: Beta88 apply TEC player status source
+
+on:
+  push:
+    branches: [ beta88-staging-tec-status ]
+    paths: [ '.github/workflows/beta88-apply-tec-status.yml' ]
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct and verify staged inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat BETA88-STAGING/patch.part* > /tmp/beta88.patch
+          cat BETA88-STAGING/ev.part* > /tmp/beta88-evidence.b64
+          echo 'dc1ab5af807ced76ef5a95aaad3654d0b5615de7e0383a038bf37776c214216d  /tmp/beta88.patch' | sha256sum -c -
+          base64 -d /tmp/beta88-evidence.b64 > /tmp/beta88-evidence.tar.gz
+          echo '9ed4f60130f19b3839ce8f4309d5a4b44a94c5d750111462eb61044741966fa6  /tmp/beta88-evidence.tar.gz' | sha256sum -c -
+      - name: Apply only to exact beta87 main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          EXPECTED='de2d666fe3fee3ec85a7e7e03cbaf46b91b74d11'
+          ACTUAL="$(git rev-parse origin/main)"
+          test "$ACTUAL" = "$EXPECTED" || { echo "FAIL CLOSED: main is $ACTUAL, expected $EXPECTED"; exit 1; }
+          git checkout -B beta88-apply origin/main
+          git apply --check /tmp/beta88.patch
+          git apply /tmp/beta88.patch
+          tar -xzf /tmp/beta88-evidence.tar.gz -C .
+          echo 'b2eef84f72e3638d33d84db5d6cfa34b31ff9edbd80405e61177df7dc9754bb4  ChessPublisher.html' | sha256sum -c -
+          echo 'b46599157b2eb8d463c30f820ea5d315bb6113ccc7b0fc571b20c1e8d7a43cbf  ChessPublisher-Beta44-Compliance.js' | sha256sum -c -
+          echo 'bc51896fd0bab380ae30aad9e2928a3135933cb44b60d489fd5a7f6d99a62a76  ChessPublisher-Beta69-Compliance.js' | sha256sum -c -
+          echo '663a2facda6af7e592408ab6dcee5d27d2f08dafeeb7f4238110619a5c4a73e2  VERSION.txt' | sha256sum -c -
+          echo '663a2facda6af7e592408ab6dcee5d27d2f08dafeeb7f4238110619a5c4a73e2  WEBVIEW-VERSION.txt' | sha256sum -c -
+          echo '0b43a809fa15f01c32fa21d9177a92b3cf52d29715df9a7a6520c9de8e26ce81  ChessPublisher-WebView.ps1' | sha256sum -c -
+          echo '9c67cee3b2440f8eb18757f55e8049698a2ea417f6cd7e3f3c0dfe87ca980a97  TESTS/BETA88-TEC-PLAYER-STATUS-STANDINGS-REGRESSION.js' | sha256sum -c -
+      - name: Targeted regression gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node TESTS/BETA88-TEC-PLAYER-STATUS-STANDINGS-REGRESSION.js | tee /tmp/beta88-targeted.log
+          grep -Fq 'BETA88 TEC Q170/Q197/Q198 RESULT: 24 PASS / 0 FAIL' /tmp/beta88-targeted.log
+      - name: Commit authoritative beta88 source
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'kbilyal'
+          git config user.email '65768770+kbilyal@users.noreply.github.com'
+          git add ChessPublisher.html ChessPublisher-Beta44-Compliance.js ChessPublisher-Beta69-Compliance.js ChessPublisher-WebView.ps1 VERSION.txt WEBVIEW-VERSION.txt TESTS/BETA88-TEC-PLAYER-STATUS-STANDINGS-REGRESSION.js PATCHES/beta88-tec-player-status-standings.patch BETA88-*.log BETA88-*.txt CHANGELOG-v1.06.00-beta.88-TEC-Player-Status-Standings.txt AUTHORITATIVE-SOURCE-MANIFEST-beta88.txt AUTHORITATIVE-SOURCE-MANIFEST.txt
+          git commit -m 'checkpoint: beta.88 TEC player status standings source'
+          git push origin HEAD:main
