@@ -1,10 +1,10 @@
 {
   "version": "1.06.00-beta.96",
   "candidateRevision": "r4",
-  "status": "PORTABLE TEST CANDIDATE — SYNC FREEZE NOT ACTIVE",
+  "status": "PORTABLE RETEST CANDIDATE — LIVE WORKER SYNC PARITY FIX DEPLOYED; SYNC FREEZE NOT ACTIVE",
   "parentCandidate": "v1.06.00-beta.96 r3",
   "stableParent": "v1.06.00-beta.95",
-  "purpose": "Repair reproduced Desktop/Web Cloud identity split while retaining the proven r3 V140 LocalEngine /cloud-proxy startup and transport contract.",
+  "purpose": "Repair reproduced Desktop/Web Cloud identity split while retaining the proven r3 V140 LocalEngine /cloud-proxy startup and transport contract; live Worker schema-7 checker-provenance parity is now deployed server-side.",
   "sourceArchive": "Chess-Publisher-Windows-v1.06.00-beta.96-r4-AUTHORITATIVE-SOURCE.tar.gz",
   "sourceSha256": "274a72accf209b52e8ae9b762164050cae9ced42e1367a9d72969eeb25537caf",
   "sourceManifestSha256": "3125201b25fdef15df741a1628d55712f3a12a16e3a0269a7add6bdabebb01a8",
@@ -34,6 +34,8 @@
   "savedCloudIdentityRepairRegression": "6 PASS / 0 FAIL",
   "desktopWebRoundtripRegression": "15 PASS / 0 FAIL",
   "webDesktopContractParityRegression": "21 PASS / 0 FAIL",
+  "checkerRuntimeMetadataRegression": "11 PASS / 0 FAIL",
+  "postWorkerParityTargetedRegression": "69 PASS / 0 FAIL",
   "syncCandidateContract": "19 PASS / 0 FAIL",
   "packagedGacruxRuntime": "31 PASS / 0 FAIL",
   "cumulative": "91 PASS / 2 approved historical exceptions / 1 designated skip / 0 unexpected; TOTAL 94",
@@ -49,8 +51,27 @@
     "webview/CloudWorkspaceRedesign.js",
     "cloud/client/cloud-workspace-api.js"
   ],
-  "webCommit": "6506f7acf4d6330ca67cfde57119e631258833d1",
+  "liveWorkerParityFix": {
+    "status": "DEPLOYED",
+    "defect": "Live Worker fingerprint projection did not strip schema-7 checker provenance runtime metadata consistently with Desktop/Web.",
+    "runtimeOnlyKeys": [
+      "lastCheckerUiSource",
+      "lastCheckerUiBuildVersion",
+      "lastCheckerUiCheckedAt"
+    ],
+    "workerPatchCommit": "47f1a6cb33f72745ce7f0b821f87677b41744329",
+    "workerDeploymentCommit": "b2ad2cba2a3da06c51830a9a912a3efb5941cb86",
+    "deploymentRunId": "34516377753",
+    "deploymentJobId": "103002706618",
+    "beforeSha256": "07fee80790e4696fb5249bc3b52714ea92fdac7c9a9ec5569920d9e8d1be4271",
+    "liveSha256": "13773e265867f802631d03bcecd8bd259a74f5fdff87fd3fa52a663a5264fa22",
+    "productionGate": "PASS"
+  },
+  "webCommit": "1dac6498a279e4ea3445bd4acf9fdca63ba13df1",
+  "webDeployment": "SUCCESS — build/typecheck, Web Companion validation/build and GitHub Pages publish all passed",
   "webFreezeAncestor": "9dc8a6229a687bd1b78ae1e384ef2c4f9c9f5cf2",
-  "webFreezeDelta": "7 commits; audited changes are Arbiter/UI/deploy-test scoped and do not alter the private Cloud SYNC contract files",
+  "webFreezeDelta": "Post-r4 Web changes include the server-side checker-provenance parity fix, deployment workflow and regression test; private Cloud runtime contract now matches Desktop schema-7 projection.",
+  "windowsArtifactAfterWorkerFix": "UNCHANGED — same exact r4 portable/source/exe hashes; server-side point fix only",
+  "finalRealRuntimeGate": "Pending authenticated Windows Desktop ↔ Web/Cloud roundtrip confirmation on exact r4 portable",
   "linux": "FROZEN at v1.06.00-beta.81; repository not modified"
 }
