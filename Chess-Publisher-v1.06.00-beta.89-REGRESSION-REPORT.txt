@@ -1,0 +1,48 @@
+Chess-Publisher v1.06.00-beta.89 — Regression Report
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.88
+Linux: FROZEN at v1.06.00-beta.81 parity checkpoint; repository NOT modified.
+
+TARGETED TEC Q144
+23 PASS / 0 FAIL
+
+RATING-LIST STACK
+15 PASS / 0 FAIL
+
+CUMULATIVE
+PASS=77
+APPROVED HISTORICAL EXCEPTIONS=3
+DESIGNATED SKIPS=1
+UNEXPECTED=0
+TOTAL=81
+
+STATIC AUDIT
+PASS
+
+PROTECTED CORE
+70/70 byte-identical
+Changed=0
+Missing=0
+Result=PASS
+
+TEC MATRIX
+PASS=163
+PARTIAL=10
+FAIL=0
+CONDITIONAL=21
+NEEDS TEC=1
+N/A=30
+TOTAL=225
+
+PROTECTED CORE CHANGES
+NONE
+
+CLOUD/SYNC
+No schema or API change. beta.87 SYNC behavior retained unchanged.
+
+AUTHORITATIVE SOURCE
+Pointer commit: 1d73f82978ec4d1cd8cd12e641f168dc3ee83547
+Drive file ID: 1vbiNhqexQIii6TssWFneoX1rKDwiw3he
+Archive: Chess-Publisher-Windows-v1.06.00-beta.89-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: 8f48363628325bc88efe0f117092ff4b773d48342c2610ab0250e44cbac40ad0
+Manifest SHA256: 848ef426dd182c5fadabdeae1453327a7509a7924ade63cb0db5c665fc203eef
