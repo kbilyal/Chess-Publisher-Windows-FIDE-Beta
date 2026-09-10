@@ -1,0 +1,43 @@
+{
+  "purpose": "Windows beta.96 r4 parity anchor for the current React/Vite Web Companion private Cloud SYNC contract",
+  "webRepository": "kbilyal/Chess-Publisher-Web",
+  "webMainCommit": "6506f7acf4d6330ca67cfde57119e631258833d1",
+  "webFreezeAncestor": "9dc8a6229a687bd1b78ae1e384ef2c4f9c9f5cf2",
+  "fingerprintContentSchema": 7,
+  "productionUi": "React/Vite Companion",
+  "privateCloudBase": "https://chess-publisher-hub-api-beta.kyamranbilyal.workers.dev",
+  "semanticContract": [
+    "one organizer-scoped stable tournament identity; never select by name alone",
+    "GET current metadata before guarded PUT and validate cloudTournamentId/internalId",
+    "X-Expected-Revision guards every snapshot write",
+    "schema-7 fingerprint excludes installation/runtime/publication metadata including beta.95 checker provenance",
+    "equal => no PUT; local-only => push; cloud-only => pull; both-changed => safe three-way merge or explicit true conflict",
+    "after push, authoritative Cloud GET must fingerprint-equal the local tournament before success is reported",
+    "Desktop and Web continue the same cloudTournamentId/internalId and tournament state"
+  ],
+  "windowsTransport": {
+    "canonicalLoopbackPrefix": "/cloud-proxy",
+    "compatibilityAlias": null,
+    "note": "Keep the proven beta.96 r3 LocalEngine transport unchanged. Only the upstream Cloud contract/identity semantics are aligned to Web."
+  },
+  "verifiedDate": "2026-09-10",
+  "webFreezeComparison": "Current Web main is 7 commits ahead of the beta.96 freeze-gate ancestor; the intervening files are Arbiter/UI/deploy-test scoped and do not modify the audited private Cloud SYNC contract files.",
+  "identitySchemaVersion": 4,
+  "identitySchemaNote": "cloud.schemaVersion=4 is identity metadata version; portable fingerprintContentSchema remains 7 and is the conflict-detection contract.",
+  "webContractGitBlobShas": {
+    "src/cloud/onlineCloudSync.ts": "743ed57a9fd12bac1749ff7cfdb6fafae0d9ec4f",
+    "src/cloud/OnlineCloudProviderV2.tsx": "c1e2e4a4882fc4c5e48686fdaef0108ddf96d140",
+    "src/cloud/cloudWorkspaceApi.ts": "f6adbfb385a61d2daf5702935f912dc89d350975",
+    "src/cloud/browserSyncPolicy.ts": "c85ecaaf3467811e718e4122be6c782304a5bc0c",
+    "src/companion/companionCloudActions.ts": "8bdd1a6e9c47f2700eb6693368b7ac5f68ba4ef8",
+    "src/companion/CompanionWorkspace.tsx": "390c8ca29ad3b63d12f292908170828e9140c526"
+  },
+  "wireRoutes": {
+    "workspace": "GET /api/v1/cloud/workspace",
+    "list": "GET /api/v1/cloud/tournaments",
+    "metadata": "GET /api/v1/cloud/tournaments/{cloudTournamentId}",
+    "snapshotRead": "GET /api/v1/cloud/tournaments/{cloudTournamentId}/snapshot",
+    "snapshotWrite": "PUT /api/v1/cloud/tournaments/{cloudTournamentId}/snapshot with Authorization Bearer and X-Expected-Revision",
+    "create": "POST /api/v1/cloud/tournaments using stable internalId as remote localKey"
+  }
+}
