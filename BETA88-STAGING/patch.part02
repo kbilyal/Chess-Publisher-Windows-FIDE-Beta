@@ -1,0 +1,3 @@
+heck(!rrExcluded.has("E2"),"Round Robin expelled player at or above 50% keeps historical results while standings exclusion remains presentation-only");
++
++console.log(`BETA88 TEC Q170/Q197/Q198 RESULT: ${pass} PASS / ${fail} FAIL`);process.exit(fail?1:0);
