@@ -1,0 +1,48 @@
+BETA86 SHARED / PROTECTED CHANGE LEDGER
+Base: v1.06.00-beta.85 authoritative source
+Current: v1.06.00-beta.86
+
+FILE: ChessPublisher.html
+CLASS: shared application shell/state
+PREVIOUS_SHA256: 2a0437da7d6ae20f04cf4499ba36b6c7c81698c1517b390b1fed6f3775f5a175
+NEW_SHA256: 667919d19d9b326fbbf3d3616b45abbb1ab5ec39f990b77ea2fbb1beee5fdb7a
+REASON: Canonicalize tournament.name to currentTournament during save/SYNC; rename updates portable tournament identity.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: webview/CloudWorkspaceRedesign.js
+CLASS: shared Cloud/SYNC UI logic
+PREVIOUS_SHA256: 52f39e7c8ab992611f0f9b0eed02836cc19a002016d87b226b94da388f78177a
+NEW_SHA256: 233e50a0273bd4152c1d1c6f914ad2982460368095caeae8048ae01549b6842a
+REASON: Canonicalize Desktop logical tournament name before schema-7 fingerprint/merge/PUT; schema/API unchanged.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: ChessPublisher-WebView.ps1
+CLASS: Windows launcher marker
+PREVIOUS_SHA256: d9cbe36d0589e7bb61db16b766a0514ced2347658bfef4b0db8c25a306bc6b0e
+NEW_SHA256: 342726a71d61e46eeeced7f080cb4cfe23f41ae8923fab10b3b8a4de1e0ae017
+REASON: Version marker beta.85 -> beta.86 only.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: VERSION.txt
+CLASS: shared release marker
+PREVIOUS_SHA256: b9c3202d834191d9b45d5a9a7ac7bcd93d78d2b059825452194efcc9e4acfd3f
+NEW_SHA256: 00b6ac355d24be9813c95735d47a479d36a3cf45fee161c61a2c825b4d0277ac
+REASON: Version marker beta.85 -> beta.86 only.
+APPROVED_SCOPE_CHANGE: YES
+
+FILE: WEBVIEW-VERSION.txt
+CLASS: shared release marker
+PREVIOUS_SHA256: dbf51ef0bec7334d1a5a44f9e599f54711a765e9e5aa21f5dbbbd92cabdcd80b
+NEW_SHA256: 00b6ac355d24be9813c95735d47a479d36a3cf45fee161c61a2c825b4d0277ac
+REASON: Version marker beta.85 -> beta.86 only.
+APPROVED_SCOPE_CHANGE: YES
+
+PROTECTED CORE CHANGES: NONE
+Protected comparison: 70/70 byte-identical, 0 changed, 0 missing.
+CloudWorkspaceAdapter.js remains byte-identical.
+Gacrux 1.9.57 / Swiss Dutch pairing: unchanged.
+TRF16 / TRF26 logic: unchanged.
+BBP checker: unchanged.
+Tie-Break core: unchanged.
+Chess-Results protocol/core: unchanged.
+Rating calculation core: unchanged.

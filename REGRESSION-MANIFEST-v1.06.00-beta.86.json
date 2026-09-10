@@ -1,0 +1,21 @@
+{
+  "version": "1.06.00-beta.86",
+  "status": "TEST CANDIDATE",
+  "parentVersion": "1.06.00-beta.85",
+  "parentAuthoritativeSourceCommit": "1354a8061fbbc520ecd1ea09b93350e388428dfd",
+  "sourceArchiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.86-AUTHORITATIVE-SOURCE.tar.gz",
+  "sourceArchiveSha256": "d14e4a5450807be78eade6a29d271e186bf644a5f317bd2742ab8ab640ba61ea",
+  "fingerprintContentSchema": 7,
+  "cloudApiChanged": false,
+  "linux": {"status":"FROZEN","checkpoint":"v1.06.00-beta.81 parity","repositoryModified":false},
+  "targeted": {"result":"PASS","mandatory":"BETA86-TOURNAMENT-METADATA-SYNC-REGRESSION.js","mandatoryPass":18,"mandatoryFail":0},
+  "cumulative": {"pass":74,"approvedHistoricalExceptions":3,"designatedSkips":1,"unexpectedFailures":0,"total":78},
+  "staticAudit": "PASS",
+  "protectedCore": {"byteIdentical":70,"changed":0,"missing":0,"result":"PASS"},
+  "changedSharedFiles": ["ChessPublisher.html","webview/CloudWorkspaceRedesign.js","VERSION.txt","WEBVIEW-VERSION.txt"],
+  "changedWindowsSpecificFiles": ["ChessPublisher-WebView.ps1"],
+  "changedProtectedFiles": [],
+  "approvedProtectedCoreChanges": [],
+  "patch": {"filename":"PATCHES/beta86-tournament-metadata-sync.patch","sha256":"f94a5bd47600217ff4f8efa7559e4f57733ba8a17f990bc50115a92a3372802f"},
+  "releaseRules": ["Linux repository must remain untouched until explicit align command","Authoritative SOURCE archive is the migration source; do not reconstruct intermediate betas"]
+}

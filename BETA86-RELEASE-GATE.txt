@@ -1,0 +1,23 @@
+Chess-Publisher v1.06.00-beta.86 RELEASE GATE
+
+Mandatory metadata SYNC regression: 18 PASS / 0 FAIL
+Cumulative: PASS=74 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=78
+Static audit: PASS
+Protected core: 70/70 byte-identical; changed=0; missing=0
+Schema-7 unified SYNC: PASS 18/18
+Next-round/result merge: PASS 8/8
+Web result download: PASS 26/26
+Pairings SYNC button: PASS 7/7
+Copied tournament identity: PASS 21/21
+Unified SYNC current: PASS 15/15
+
+Authoritative source archive:
+Chess-Publisher-Windows-v1.06.00-beta.86-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: d14e4a5450807be78eade6a29d271e186bf644a5f317bd2742ab8ab640ba61ea
+Patch SHA256: f94a5bd47600217ff4f8efa7559e4f57733ba8a17f990bc50115a92a3372802f
+
+Fingerprint content schema: 7 (unchanged)
+Cloud API / Worker contract: unchanged
+Linux: NOT MODIFIED; remains frozen at v1.06.00-beta.81 parity checkpoint
+
+Approved scope: tournament metadata/name identity synchronization only. Name, Tournament Setup, start/end dates, Schedule rows/notes and Regulations are covered bidirectionally. True same-field conflicts remain fail-closed with no silent overwrite.

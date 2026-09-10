@@ -1,0 +1,23 @@
+Chess-Publisher v1.06.00-beta.86 — Tournament Metadata SYNC
+
+Base: v1.06.00-beta.85 authoritative source
+Scope: Desktop ↔ Web tournament metadata synchronization hardening
+
+FIXED
+- Desktop Rename Tournament now updates the portable tournament.name as well as data.currentTournament and the tournament map key.
+- saveAll()/unified SYNC repairs tournaments renamed by beta.85 whose wrapper name and tournament.name became inconsistent.
+- CloudWorkspaceRedesign canonicalizes the logical Desktop tournament name before schema-7 fingerprinting, reconciliation and PUT.
+- A Desktop tournament rename therefore creates a real local content change instead of a false NO-OP.
+- Name, Tournament Setup, start/end dates, Schedule rows/notes and Regulations are covered by bidirectional regression tests.
+- Mixed Web result + Desktop calendar changes preserve both sides through the existing beta.85 safe three-way merge.
+- True same-field calendar conflicts remain fail-closed with no Cloud PUT.
+
+UNCHANGED CONTRACTS
+- Portable fingerprint content schema remains 7.
+- Cloud API and Worker contract unchanged.
+- Cloud tournament identity remains stable; rename does not create a new cloudTournamentId/internalId.
+- Results SYNC and Pairings SYNC logic preserved.
+- Linux repository remains frozen at v1.06.00-beta.81 parity checkpoint.
+
+PROTECTED CORES
+No changes to Gacrux/Swiss Dutch, TRF16/TRF26, BBP, Tie-Break, Chess-Results core/protocol or rating core.
