@@ -1,0 +1,65 @@
+Chess-Publisher v1.06.00-beta.96 r4 — Desktop↔Web Identity + Authoritative SYNC Release Gate
+Date: 2026-09-10
+Status: PORTABLE TEST CANDIDATE — awaiting real Windows Desktop↔Web/Cloud runtime confirmation
+SYNC FREEZE: NOT ACTIVE
+Linux: FROZEN at v1.06.00-beta.81; not modified
+Web main audited: 6506f7acf4d6330ca67cfde57119e631258833d1
+Web freeze ancestor: 9dc8a6229a687bd1b78ae1e384ef2c4f9c9f5cf2
+
+REPRODUCED R3 DEFECT
+A Desktop tournament could retain the correct organizer-owned cloudTournamentId while carrying a stale/generated Desktop internalId. r3 rejected that valid provider link when the remote Cloud row localKey differed from the generated local identity, cleared the link, and could CREATE a second private Cloud tournament. Web stayed on the original Cloud row while Desktop synchronized against the duplicate, appearing to the operator as SYNC sending or receiving nothing.
+
+R4 POINT FIX
+- Preserve an exact organizer-owned saved cloudTournamentId when it resolves to one Cloud row.
+- Repair only blank/legacy-generated Desktop internalId values (cp-tournament:/cp-cloud:) from that exact row when no competing Cloud row owns the generated identity.
+- Web-generated tournament:<uuid> identities remain durable and are never treated as disposable.
+- Meaningful conflicting identities remain fail-closed.
+- Desktop identity candidates now match current Web durable identity candidates; no tournament is selected by name alone.
+- Snapshot carries both cloudTournamentId and internalId.
+- CREATE first performs organizer-scoped exact stable-identity discovery.
+- PUT preflights the current Cloud row metadata and validates identity before X-Expected-Revision guarded write.
+- Successful PUT is followed by authoritative snapshot GET and schema-7 fingerprint equality verification.
+- Cloud-only pull is fingerprint-verified after durable local apply.
+- Existing r3 V140 launcher/LocalEngine and same-origin /cloud-proxy transport are unchanged.
+- schema 7, three-way merge, single SYNC authority and protected tournament cores remain unchanged.
+
+WEB ALIGNMENT
+Current Web production is the React/Vite Companion private Cloud path and uses PORTABLE_FINGERPRINT_SCHEMA=7. cloud.schemaVersion=4 is identity metadata version, not the fingerprint schema. The current Web private Cloud client uses exact cloudTournamentId/stable localKey identity, GET-before-PUT validation and X-Expected-Revision. Current Web main is 7 commits ahead of the beta.96 Web freeze ancestor; audited intervening changes are Arbiter/UI/deploy-test scoped and do not alter the private Cloud SYNC contract files. Exact blob anchors and wire routes are in WEB-SYNC-CONTRACT-beta96-r4.json.
+
+GATES ON FINAL EXTRACTED PORTABLE ZIP
+- root portable structure: PASS
+- Windows LocalEngine startup contract: 10 PASS / 0 FAIL
+- Windows LocalEngine proxy transport: 16 PASS / 0 FAIL
+- saved Cloud identity repair: 6 PASS / 0 FAIL
+- Desktop→Cloud→Web-edit→Desktop round-trip: 15 PASS / 0 FAIL
+- Web/Desktop Cloud contract parity: 21 PASS / 0 FAIL
+- beta.96 candidate SYNC contract: 19 PASS / 0 FAIL
+- beta.90–95 SYNC regression family: PASS
+- packaged Gacrux 1.9.57 runtime hardening: 31 PASS / 0 FAIL
+- static audit: PASS
+- full packaged JS corpus: 91 PASS / 2 approved historical exceptions / 1 designated browser skip / 0 UNEXPECTED; TOTAL 94
+- protected comparison vs exact beta.95: TOTAL 70 / IDENTICAL 67 / CHANGED 3 / MISSING 0
+- changed protected-list files are limited to ChessPublisher-LocalEngine.ps1 (inherited unchanged from r3), webview/CloudWorkspaceAdapter.js, cloud/client/cloud-workspace-api.js.
+- ChessPublisher-WebView.ps1 and ChessPublisher-LocalEngine.ps1 are byte-identical to r3.
+
+ARTIFACTS
+Portable: Chess-Publisher-v1.06.00-beta.96-r4-WEB-DESKTOP-SYNC-IDENTITY-HOTFIX-PORTABLE-TEST-CANDIDATE-2026-09-10.zip
+Portable SHA256: 2ea763ca7a08a3c9aea1c2d0c48378055bdd7d1b531c95824df77779fc46bd23
+Drive ID: 1t8nwSEPxnDmnBNSJRfW4HV1f43-sUkHx
+Drive size read-back: 29197979 bytes
+
+Source: Chess-Publisher-Windows-v1.06.00-beta.96-r4-AUTHORITATIVE-SOURCE.tar.gz
+Source SHA256: 274a72accf209b52e8ae9b762164050cae9ced42e1367a9d72969eeb25537caf
+Source manifest SHA256: 3125201b25fdef15df741a1628d55712f3a12a16e3a0269a7add6bdabebb01a8
+Manifest verification: 868 files checked / 0 mismatches
+Drive ID: 1tHrpE-3Anaxb7TZ4r_5R5177iILPqygJ
+Drive size read-back: 28493587 bytes
+
+Launcher EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+Drive EXE ID: 18h2LeC7u2lqyP8pMve-9SffrtBBcQrTK
+SHA256SUMS Drive ID: 1twsVU-Z4PE4W3m8f687uRtokmFNe5ZlY
+Report Drive ID: 1k1BLgiXgRVDLrV0Btw0pjG18uPZfGH2a
+Web contract Drive ID: 1mV9YAD9oI8TT8pyvcGYPyYAng2xxWyhk
+
+FREEZE POLICY
+Candidate hashes are recorded only for runtime validation. Do NOT activate the SYNC FREEZE and do NOT start beta.97/TEC/UI work until the user confirms this exact r4 candidate starts and performs real Desktop↔Web/Cloud send and receive successfully.
