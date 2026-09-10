@@ -1,0 +1,57 @@
+{
+  "version": "1.06.00-beta.97",
+  "status": "FULL PORTABLE WINDOWS TEST CANDIDATE",
+  "parent": "v1.06.00-beta.96 r4 FULL PORTABLE FROZEN",
+  "date": "2026-09-10",
+  "scope": "Seven user-requested UI/export cleanup changes only; protected core preserved.",
+  "portable": {
+    "name": "Chess-Publisher-v1.06.00-beta.97-FULL-PORTABLE-UI-CLEANUP-2026-09-10.zip",
+    "sha256": "c8cde12bcd45706d0aee6375ecec4c72115637a1ecc55f44f36c560a108b7385",
+    "sizeBytes": 29335524,
+    "driveFileId": "1pcVcMYTUQKAvFS8xS6v_NR8i-Wd8aoL5"
+  },
+  "source": {
+    "name": "Chess-Publisher-Windows-v1.06.00-beta.97-AUTHORITATIVE-SOURCE.tar.gz",
+    "sha256": "2ccf70f5d7fffbc3c1e94a1c2cefa239b9286e879127aa38d80f2e301d8537f3",
+    "sizeBytes": 28953785,
+    "driveFileId": "1Zgyk7CbQBIC_HdC2m83jW4wYkV0qd-rC",
+    "manifestSha256": "5bb7da717c18c1bddfd97d57dcc95c005a4f779b0054bca639ccbd9c882f0825",
+    "manifestFilesChecked": 875,
+    "manifestBad": 0
+  },
+  "exe": {
+    "name": "ChessPublisher-v1.06.00-beta.97.exe",
+    "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+    "sizeBytes": 1826816,
+    "driveFileId": "1pOO7j6lxWDzEpB__nIcnRhm8d7WpOKl9"
+  },
+  "requestedChanges": [
+    "Print/export-to-print isolates #screenPrintReport so runtime overlays such as Synchronization Conflict cannot leak into printed output.",
+    "Telegram UI and publishing runtime entrypoints removed; legacy stored Telegram credentials are purged and inert compatibility parsing remains only to avoid breaking old files.",
+    "Resort Starting List moved beside Generate Pairings.",
+    "Visible Export TRF Starting List replaced by real Export Players XML using the established Players XML interchange profile and PlayerSno round-trip support.",
+    "Pairings Print tournament schedule checkbox and schedule-inclusion function removed.",
+    "Other / Export removes Export TRF Starting List, Export Editable Tournament in TXT and Export Tournament in TXT.",
+    "Tournament Type now exposes only Real Tournament and Test Tournament; legacy values normalize safely to Real and explicit test remains Test."
+  ],
+  "gates": {
+    "requestedUiCleanup": "33 PASS / 0 FAIL",
+    "playersXmlRoundtrip": "10 PASS / 0 FAIL",
+    "staticAudit": "PASS",
+    "gacruxRuntime": "31 PASS / 0 FAIL",
+    "syncFrozenContract": "27 PASS / 0 FAIL",
+    "fullJsCorpus": "93 PASS / 2 approved historical exceptions / 1 designated browser skip / 0 unexpected; TOTAL 96"
+  },
+  "protectedCore": {
+    "syncFreeze": "ACTIVE and byte-identical to beta.96 r4",
+    "gacrux1957": "unchanged",
+    "swissDutchPairing": "unchanged",
+    "trfPairingPath": "unchanged",
+    "bbpChecker": "unchanged",
+    "tieBreakCore": "unchanged",
+    "chessResultsCore": "unchanged",
+    "ratingCalculationCore": "unchanged",
+    "linux": "unchanged; remains frozen at v1.06.00-beta.81"
+  },
+  "runtimeConfirmation": "PENDING USER WINDOWS TEST — do not promote beta.97 to frozen/stable until the seven requested UI/export changes are verified in real Windows runtime."
+}
