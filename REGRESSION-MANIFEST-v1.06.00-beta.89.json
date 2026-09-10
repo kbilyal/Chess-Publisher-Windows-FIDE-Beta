@@ -1,0 +1,50 @@
+{
+  "version": "1.06.00-beta.89",
+  "status": "TEST CANDIDATE",
+  "parentVersion": "1.06.00-beta.88",
+  "authoritativeSource": {
+    "pointerCommit": "1d73f82978ec4d1cd8cd12e641f168dc3ee83547",
+    "driveFileId": "1vbiNhqexQIii6TssWFneoX1rKDwiw3he",
+    "archiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.89-AUTHORITATIVE-SOURCE.tar.gz",
+    "archiveSha256": "8f48363628325bc88efe0f117092ff4b773d48342c2610ab0250e44cbac40ad0",
+    "contentManifestSha256": "848ef426dd182c5fadabdeae1453327a7509a7924ade63cb0db5c665fc203eef"
+  },
+  "tec": {
+    "closedRequirement": "Q144",
+    "targeted": "23 PASS / 0 FAIL",
+    "ratingStack": "15 PASS / 0 FAIL",
+    "matrix": {
+      "pass": 163,
+      "partial": 10,
+      "fail": 0,
+      "conditional": 21,
+      "needsTec": 1,
+      "notApplicable": 30,
+      "total": 225
+    }
+  },
+  "cumulative": {
+    "pass": 77,
+    "approvedHistoricalExceptions": 3,
+    "designatedSkips": 1,
+    "unexpectedFailures": 0,
+    "total": 81
+  },
+  "staticAudit": "PASS",
+  "protectedCore": {
+    "byteIdentical": 70,
+    "changed": 0,
+    "missing": 0,
+    "result": "PASS"
+  },
+  "fingerprintContentSchema": 7,
+  "cloudApiChanged": false,
+  "syncCoreChanged": false,
+  "changedProtectedFiles": [],
+  "linux": {
+    "status": "FROZEN",
+    "checkpoint": "v1.06.00-beta.81 parity",
+    "repositoryModified": false,
+    "platformAdapterChangeRequired": false
+  }
+}
