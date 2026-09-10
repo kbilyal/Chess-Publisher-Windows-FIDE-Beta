@@ -1,0 +1,38 @@
+Chess-Publisher v1.06.00-beta.94 — Common Base Recovery
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.93
+
+REAL-WORLD DEFECT
+Unified SYNC could reach a safe conflict state but then show:
+"The base revision is unavailable, so field-level conflict resolution cannot be performed safely."
+This left older/upgraded tournaments without an actionable recovery path.
+
+FIX
+- Common base recovery trust order:
+  1. stored schema-7 base fingerprint;
+  2. current remote snapshot when its revision equals the stored base revision;
+  3. immutable historical baseRevision;
+  4. exact saved Cloud checksum matched to current remote or one unique immutable historical revision.
+- Historical snapshot response is normalized safely.
+- A recovered revision is used as the effective reconciliation base.
+- Reset Tournament and Delete Round store explicit structural intent metadata.
+- If no common base can be proved, field-level merge stays disabled.
+- Instead, the user gets three safe choices:
+  * Keep Desktop entire tournament
+  * Keep Cloud entire tournament
+  * Cancel
+- Keep Desktop refetches the current Cloud snapshot before PUT and refuses if Cloud advanced.
+- Keep Cloud performs no Cloud write and replaces only the local copy.
+- Opening a different Cloud tournament no longer runs the legacy non-current reconciler first.
+
+GATES
+- beta.94 targeted common-base recovery: 28 PASS / 0 FAIL
+- beta.93 single SYNC authority: 11 PASS / 0 FAIL
+- beta.92 structural preflight: 38 PASS / 0 FAIL
+- beta.91 Trash pairing orchestration: 26 PASS / 0 FAIL
+- beta.90 Trash restore/re-upload: 19 PASS / 0 FAIL
+- cumulative: PASS=82 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=86
+- static audit: PASS
+- protected comparison vs beta.93: 69/70 byte-identical; 1 approved Cloud adapter change
+- schema 7 unchanged
+- FIDE protected cores unchanged
