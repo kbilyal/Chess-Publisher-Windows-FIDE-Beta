@@ -1,0 +1,19 @@
+{
+  "version": "1.06.00-beta.94",
+  "status": "TEST CANDIDATE",
+  "parentVersion": "1.06.00-beta.93",
+  "sourcePointerCommit": "0d6e67c052f1cec0f6d2fd14e91ceb4a058868ca",
+  "sourceArchiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.94-AUTHORITATIVE-SOURCE.tar.gz",
+  "sourceArchiveSha256": "00196eb1a7e4e74a8c203e3371b929ee2adbac8fd5b770531113761ce5142c1e",
+  "sourceManifestSha256": "60ce79a330e8977f3663cf2316ea1c0bd2c6dcd27e3e02d8c4efe4034f42e54e",
+  "driveFileId": "1E19XGBbNjROJ4FZKtkHITACgjCuHd8TT",
+  "driveFolderId": "1VjXyc6_AkAyp3VN3OjJI6lofyWlCsijS",
+  "fingerprintContentSchema": 7,
+  "targeted": {"pass": 28, "fail": 0},
+  "cumulative": {"pass": 82, "approvedHistoricalExceptions": 3, "designatedSkips": 1, "unexpectedFailures": 0, "total": 86},
+  "staticAudit": "PASS",
+  "protectedComparison": {"byteIdentical": 69, "approvedChanged": 1, "missing": 0, "approvedChangedFiles": ["webview/CloudWorkspaceAdapter.js"], "fideProtectedCoresChanged": false},
+  "cloudApiTransportChanged": false,
+  "syncCoreChanged": true,
+  "linux": {"status": "FROZEN", "checkpoint": "v1.06.00-beta.81 parity", "repositoryModified": false}
+}
