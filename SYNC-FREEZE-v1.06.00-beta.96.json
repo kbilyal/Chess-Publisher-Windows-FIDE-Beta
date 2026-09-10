@@ -1,0 +1,28 @@
+{
+  "freeze": "Chess-Publisher unified SYNC",
+  "version": "1.06.00-beta.96",
+  "status": "FROZEN AFTER USER RUNTIME CONFIRMATION",
+  "fingerprintContentSchema": 7,
+  "policy": "No TEC/UI/release work may modify these SYNC logic fingerprints or schema contract. A future change requires an explicitly reported SYNC defect and a new approved SYNC checkpoint.",
+  "files": {
+    "webview/CloudWorkspaceAdapter.js": {
+      "mode": "exact",
+      "sha256": "babc061d733719a65442af4540f51b12b2d2134cf31917ab602223e052fa46ac"
+    },
+    "cloud/client/cloud-workspace-api.js": {
+      "mode": "exact",
+      "sha256": "b11b92416c2bed442d5ec6c43026bd1ad2d832febb5d2f5977e8beb8d350c53b"
+    },
+    "webview/CloudWorkspaceRedesign.js": {
+      "mode": "normalize-version",
+      "sha256": "06c80b3dde4fdf25765a129ca17e4ddab9869e4454e51d8e997d89e5e1a82a51"
+    }
+  },
+  "semanticGuards": [
+    "checker provenance lastCheckerUiSource/lastCheckerUiBuildVersion/lastCheckerUiCheckedAt is runtime-only and excluded recursively from schema-7 fingerprints/private snapshots",
+    "cpCloudSyncCurrent remains the single unified SYNC authority",
+    "no last-write-wins or silent stale overwrite",
+    "revision guard and stable internalId/cloudTournamentId identity remain required",
+    "results, next-round pairings, metadata/calendar, Trash restore, copied identity and common-base recovery regressions remain mandatory"
+  ]
+}
