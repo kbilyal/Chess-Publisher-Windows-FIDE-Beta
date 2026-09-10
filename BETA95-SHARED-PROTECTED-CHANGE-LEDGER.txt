@@ -1,0 +1,35 @@
+Chess-Publisher beta.95 shared/protected change ledger
+Compared with exact beta.94 working reference
+
+ChessPublisher.html
+  beta94: 60c7705e60e25df3c66a07129a4648aa3b93fd97fcac341ade30462ff0e28b0c
+  beta95: 8f636c8349c200781fedf61a3898c2d607986fe97abbc3c62170786cf84b890d
+  reason: checker provenance + TEC player lifecycle/Absent gate + Reset tombstone purge + active-only TRF Starting List.
+
+webview/CloudWorkspaceRedesign.js
+  beta94: 0478b6eb2155d1e4b2069677673ff40cd7d70b5fd63c183c849cc35e7e4e0a7a
+  beta95: 943c65b1f1a7188dc7f557766d3a1e63ab2c4876c443c7e0d07b1cc5993be854
+  reason: version marker only.
+
+ChessPublisher-WebView.ps1
+  beta94: 625e108754e047f2b143b3b71cd76ff24557046593d2feda208b6627b9dad98d
+  beta95: f49096868de631419a1cdb32ef0d90d5c24123109916e679a014eef663fd0758
+  reason: version marker only.
+
+VERSION.txt
+  beta94: 0e077069463ad02f79e130588e187c07955a46c9bcad6c5eede95d5d1c53526c
+  beta95: 842375e8c372f60878cebff8b05f2005976b5823f09c818166c2620cfe7af95d
+  reason: version marker only.
+
+WEBVIEW-VERSION.txt
+  beta94: 0e077069463ad02f79e130588e187c07955a46c9bcad6c5eede95d5d1c53526c
+  beta95: 842375e8c372f60878cebff8b05f2005976b5823f09c818166c2620cfe7af95d
+  reason: version marker only.
+
+TESTS/BETA20-REGISTRATION-WORKFLOW-RULES-REGRESSION.js
+  beta94: e938c06de1c8fdd144bac69ca2488b2603c89ebbbbd8c7c65aa190020a2efaee
+  beta95: fd318cf9b32147c397012b22841c88e35a55c14a6e1a86858f8c748366b3afae
+  reason: test-only obsolete version assertion updated to accept beta.20 or newer.
+
+Protected core comparison: 70/70 byte-identical; changed=0; missing=0.
+Protected areas unchanged: Gacrux 1.9.57, Swiss Dutch, BBP, TRF16/TRF26, Tie-Break, Chess-Results, CloudWorkspaceAdapter/API, rating core.
