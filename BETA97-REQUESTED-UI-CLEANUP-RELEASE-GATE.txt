@@ -1,0 +1,50 @@
+Chess-Publisher v1.06.00-beta.97 — Requested UI / Export Cleanup Release Gate
+Date: 2026-09-10
+Parent: user-confirmed v1.06.00-beta.96 r4 FULL PORTABLE FROZEN
+Status: WINDOWS TEST CANDIDATE — beta.97 not frozen yet
+
+REQUESTED SCOPE
+1. Print/export-to-print: print only #screenPrintReport; runtime overlays/modals such as Synchronization Conflict are hidden from every printed report.
+2. Telegram: remove all visible publishing UI and disable publishing entrypoints; purge old locally stored Telegram credentials while retaining only inert old-file compatibility parsing/sanitization.
+3. Move Resort Starting List beside Generate Pairings.
+4. Replace visible Export TRF Starting List with a real Export Players XML function.
+5. Remove Pairings 'Print tournament schedule' checkbox and its schedule-inclusion behavior.
+6. Remove from Other / Export: Export TRF Starting List, Export Editable Tournament in TXT, Export Tournament in TXT.
+7. Tournament Type: only Real Tournament and Test Tournament; legacy non-test values normalize to Real.
+
+PLAYERS XML PROFILE
+Exporter writes <?xml version="1.0"?>, <Players>, <Tournament Key="" Name="..."/> and per-player attributes compatible with the supplied Players XML profile, including PlayerUniqueId, PlayerSno, Lastname, Firstname, Federation, Rating, Birthday, Title, FIDEId, NatId, NatRating, Boardnumber, Gender, TeamSno, TeamUniqueId, Type, Group, Source, ClubNo, Club and FIDEFactor. Import recognition was extended to PlayerSno so exported player numbers round-trip correctly.
+
+FINAL EXTRACTED-ZIP GATES
+- Portable root structure: PASS
+- BETA97 requested UI cleanup regression: 33 PASS / 0 FAIL
+- BETA97 Players XML round-trip profile: 10 PASS / 0 FAIL
+- FULL-PROGRAM-STATIC-AUDIT.py: PASS
+- Gacrux runtime hardening: 31 PASS / 0 FAIL
+- Windows LocalEngine startup: 10 PASS / 0 FAIL
+- Windows Cloud proxy: 16 PASS / 0 FAIL
+- saved Cloud identity repair: 6 PASS / 0 FAIL
+- Desktop-Web roundtrip identity: 15 PASS / 0 FAIL
+- Web-Desktop Cloud contract parity: 21 PASS / 0 FAIL
+- active SYNC protected core: 27 PASS / 0 FAIL
+- Full JS corpus: 93 PASS / 2 approved historical exceptions / 1 designated browser-runner skip / 0 UNEXPECTED; TOTAL 96
+- Source manifest: 875 files checked / 0 bad
+
+PROTECTED CORE
+The active beta.96 r4 SYNC freeze hashes are byte-identical before and after beta.97. Static audit verifies exact/normalized hashes plus semantic guards. Gacrux 1.9.57 executable SHA256 remains 6955c4c1f16425fa662f70d08311cfddeeaf21cca1aee3d04a3a6b0f7bbb45fb. No intentional change to Swiss Dutch pairing, TRF pairing path, BBP checker, protected FIDE Tie-Break formulas, Chess-Results core/protocol or rating calculation core. Linux remains frozen at beta.81.
+
+ARTIFACTS
+Portable ZIP: Chess-Publisher-v1.06.00-beta.97-FULL-PORTABLE-UI-CLEANUP-2026-09-10.zip
+SHA256: c8cde12bcd45706d0aee6375ecec4c72115637a1ecc55f44f36c560a108b7385
+Drive ID: 1pcVcMYTUQKAvFS8xS6v_NR8i-Wd8aoL5
+
+Authoritative source: Chess-Publisher-Windows-v1.06.00-beta.97-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: 2ccf70f5d7fffbc3c1e94a1c2cefa239b9286e879127aa38d80f2e301d8537f3
+Drive ID: 1Zgyk7CbQBIC_HdC2m83jW4wYkV0qd-rC
+Source manifest SHA256: 5bb7da717c18c1bddfd97d57dcc95c005a4f779b0054bca639ccbd9c882f0825
+
+Launcher EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+Drive EXE ID: 1pOO7j6lxWDzEpB__nIcnRhm8d7WpOKl9
+
+RELEASE POLICY
+Do not alter the beta.96 r4 active SYNC freeze. beta.97 becomes the next accepted Windows baseline only after a real Windows smoke test confirms the seven requested changes. Any failure must be repaired as a beta.97 point-fix without unrelated changes.
