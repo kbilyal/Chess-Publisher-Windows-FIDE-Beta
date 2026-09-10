@@ -3,7 +3,7 @@
   "version": "1.06.00-beta.96",
   "status": "PREPARED CANDIDATE — NOT ACTIVE UNTIL USER RUNTIME CONFIRMATION",
   "fingerprintContentSchema": 7,
-  "policy": "These hashes are the repaired beta.96 SYNC candidate contract after the reproduced Windows transport defect. The SYNC FREEZE becomes active only after explicit user confirmation that real Desktop-Web/Cloud SYNC works. After activation, TEC/UI/release work must not modify these files without an explicitly reproduced SYNC defect and approval.",
+  "policy": "These hashes are the repaired beta.96 r3 Windows SYNC/startup candidate contract. The SYNC FREEZE becomes active only after explicit user confirmation that real Desktop-Web/Cloud SYNC works. After activation, TEC/UI/release work must not modify these files without an explicitly reproduced SYNC defect and approval.",
   "files": {
     "webview/CloudWorkspaceAdapter.js": {
       "mode": "exact",
@@ -20,10 +20,15 @@
     "ChessPublisher-LocalEngine.ps1": {
       "mode": "exact",
       "sha256": "71113c2763ebfd438eab3dd3d4c1d8f11f630c59d67224c2d97e4568c8db3550"
+    },
+    "ChessPublisher-WebView.ps1": {
+      "mode": "exact",
+      "sha256": "9e28e7f456fe12697714c3ca27ea91cd71dbf11b324b3fe13cd75559e95cb810"
     }
   },
   "semanticGuards": [
     "checker provenance lastCheckerUiSource/lastCheckerUiBuildVersion/lastCheckerUiCheckedAt is runtime-only and excluded recursively from schema-7 fingerprints/private snapshots",
+    "Windows launcher ChessPublisher-WebView.ps1 and ChessPublisher-LocalEngine.ps1 must advertise the same LocalEngine serviceVersion; r3 contract is V140 so stale V139 engines are rejected and replaced.",
     "Windows Desktop Cloud transport uses the same-origin LocalEngine /cloud-proxy path and does not depend on Cloudflare browser CORS for 127.0.0.1/localhost",
     "LocalEngine Cloud proxy forwards only allowlisted Cloud workspace/tournament endpoints to the fixed Hub Worker host, requires Organizer bearer authorization, and preserves X-Expected-Revision",
     "Web production origin keeps the normal remote Cloud API path and WEB_ORIGIN policy",
