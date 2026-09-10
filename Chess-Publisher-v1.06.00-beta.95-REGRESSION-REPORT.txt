@@ -1,0 +1,51 @@
+Chess-Publisher v1.06.00-beta.95 — Final Regression Report
+Date: 2026-09-10
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.94
+Linux: FROZEN at v1.06.00-beta.81; repository NOT modified.
+
+TARGETED
+TESTS/BETA95-CHECKER-PROVENANCE-TEC-PLAYER-LIFECYCLE-REGRESSION.js
+29 PASS / 0 FAIL
+
+REAL USER FIXTURE
+The supplied tournament had two hidden historical registration tombstones: "." (old pairing number 10) and "....." (old pairing number 11), both registrationDeleted=true and attendance=absent. After Reset Tournament they could re-enter fresh Round 1 as 0 BYE. beta.95 purges those obsolete tombstones during Reset.
+
+PLAYER LIFECYCLE
+- Before Round 1 in Swiss: active Absent registrations hard-block Resort and Generate Pairings.
+- Arbiter must mark Present or use Remove Absent.
+- Remove Absent before Round 1 physically removes the registration and requires Starting List Resort.
+- After tournament start: Absent remains temporary round-participation state.
+- Withdrawn/Delete remains permanent for future pairings while historical boards/results/TPNs remain resolvable.
+- A returning/new player after Round 1 uses the existing Late Entry workflow.
+
+TRF STARTING LIST
+Historical registrationDeleted tombstones cannot leak into the Round-0 Starting List export.
+
+CHECKER PROVENANCE
+Current Gacrux checker state stores runtime source, build version and checked timestamp. Stale cross-runtime/cross-build FAIL is historical and not shown as current FAIL. Fresh current Desktop Gacrux failure remains a real FAIL. Gacrux 1.9.57 core/runtime is unchanged.
+
+CUMULATIVE JS CORPUS
+PASS=84
+APPROVED HISTORICAL EXCEPTIONS=2
+DESIGNATED SKIPS=1
+UNEXPECTED=0
+TOTAL=87
+
+Approved historical exceptions:
+- BETA30-ONLINE-HUB-RELIABILITY-REGRESSION.js
+- CLOUD-WORKSPACE-BETA4-REGRESSION.js
+
+Designated skip:
+- BETA29-TRF-EXPORT-BROWSER-RUNTIME-SCENARIOS.js
+
+PACKAGED SMOKE
+Targeted beta.95: 29/29 PASS
+Gacrux runtime: 31/31 PASS
+Static audit: PASS
+
+PROTECTED CORE
+Compared to exact beta.94 reference: TOTAL=70 IDENTICAL=70 CHANGED=0 MISSING=0
+
+SCHEMA/API
+No schema changes. No Cloud API changes.
