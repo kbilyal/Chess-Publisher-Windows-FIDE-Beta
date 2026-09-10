@@ -1,0 +1,52 @@
+Chess-Publisher v1.06.00-beta.96 r2 — Windows SYNC Runtime Hotfix Release Gate
+Date: 2026-09-10
+Status: PORTABLE TEST CANDIDATE — awaiting real user Desktop↔Web/Cloud runtime confirmation
+SYNC FREEZE: NOT ACTIVE
+Linux: FROZEN at v1.06.00-beta.81; not modified
+Web repo: not modified by r2; existing Web gate commit 9dc8a6229a687bd1b78ae1e384ef2c4f9c9f5cf2 remains the referenced successful gate.
+
+REAL RUNTIME DEFECT
+The previous beta.96 candidate passed mock/schema tests but real Windows Desktop SYNC sent/received nothing. Desktop Cloud fetches still depended on browser CORS between random loopback WebView origin http://127.0.0.1:<port> and the remote Hub Worker. Web deployment gates guarantee the production Web origin, not a stable random Desktop loopback origin contract.
+
+R2 POINT FIX
+- Windows Desktop Cloud calls use same-origin /cloud-proxy on ChessPublisher LocalEngine.
+- LocalEngine forwards only allowlisted /api/v1/cloud workspace/tournament routes to the fixed Hub Worker host.
+- Organizer Bearer token is required and forwarded in memory; it is not logged.
+- X-Expected-Revision is validated and forwarded.
+- Both unified CloudWorkspaceRedesign and legacy CloudWorkspaceAdapter select the proxy on 127.0.0.1/localhost.
+- Production Web keeps the normal direct remote API path and WEB_ORIGIN policy.
+- schema 7 and three-way merge/single-authority logic are unchanged.
+
+GATES ON EXACT SOURCE
+- Windows Local Proxy: 15 PASS / 0 FAIL
+- SYNC candidate contract: 17 PASS / 0 FAIL
+- cumulative: 87 PASS / 2 approved historical exceptions / 1 designated skip / 0 UNEXPECTED; TOTAL 90
+- static audit: PASS
+- protected comparison vs beta.95: TOTAL 70 / IDENTICAL 68 / CHANGED 2 / MISSING 0
+- approved protected changes: ChessPublisher-LocalEngine.ps1 and webview/CloudWorkspaceAdapter.js
+- cloud/client/cloud-workspace-api.js unchanged SHA256 b11b92416c2bed442d5ec6c43026bd1ad2d832febb5d2f5977e8beb8d350c53b
+
+PACKAGED GATES AFTER EXTRACT
+- root portable structure: PASS
+- packaged Gacrux runtime hardening: 31 PASS / 0 FAIL
+- Windows Local Proxy: 15 PASS / 0 FAIL
+- SYNC candidate contract: 17 PASS / 0 FAIL
+- static audit: PASS
+- complete packaged corpus: 87 PASS / 2 approved historical exceptions / 1 designated skip / 0 UNEXPECTED; TOTAL 90
+
+ARTIFACTS
+Portable: Chess-Publisher-v1.06.00-beta.96-r2-SYNC-RUNTIME-HOTFIX-PORTABLE-TEST-CANDIDATE-2026-09-10.zip
+Portable SHA256: e1802c0b05a5c50066d4298bd7bd4f38d84c72b203bdde9b440d7457fd03220a
+Drive ID: 1SERO7T8-32o3mNJ5b3edoT8BHLQBuxyn
+
+Source: Chess-Publisher-Windows-v1.06.00-beta.96-r2-AUTHORITATIVE-SOURCE.tar.gz
+Source SHA256: 7d676a33d9a059ac5c9250e9e66ccf1f17f1c59c8db0b3f4faf2323d416ee096
+Source manifest SHA256: 2f801e0fd02139839821369372be718ea391e121688188ccb6f5118e3b07a39a
+Drive ID: 1x1Q-60jyOYKWSXk9mSTtCpq1aEgybqPp
+
+Launcher EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+Drive EXE ID: 1CWpNntAFq2gjQs5JAzUUwHjXJxglKK2L
+SHA256 file ID: 1l2WaxjHF-wcVL_k3oZJkgcQ73Rw4VbKH
+
+FREEZE POLICY
+Do not activate the SYNC freeze until the user confirms this exact r2 portable candidate performs real Desktop↔Web/Cloud send and receive successfully. Do not create beta.97 for this work.
