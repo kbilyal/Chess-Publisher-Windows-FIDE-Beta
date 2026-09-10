@@ -1,0 +1,48 @@
+Chess-Publisher v1.06.00-beta.90 — Shared / Protected Change Ledger
+Parent: v1.06.00-beta.89
+
+FILE: webview/CloudWorkspaceRedesign.js
+PREVIOUS_SHA256: 9e02b223d189872a19e0bf545529027ca55629b79489182f9a1ccc553ee9a42f
+NEW_SHA256: 0949bcdb849e0a56f5173b111d68a88a36881362e88ae68f04d9f2f17cbfd297
+REASON: functional: detect/restore same logical tournament from Web Trash before recreate
+
+FILE: cloud/client/cloud-workspace-api.js
+PREVIOUS_SHA256: 733b9f921af5f4986c0ef89df62c650d1e621011b40aeeb02f5ba4ba900a1ab5
+NEW_SHA256: b11b92416c2bed442d5ec6c43026bd1ad2d832febb5d2f5977e8beb8d350c53b
+REASON: approved infrastructure transport: existing Trash list/restore endpoints
+
+FILE: ChessPublisher.html
+PREVIOUS_SHA256: 2b69a854d1abbe8ea1ded9665506a4958bedd418948ddeed6497d21ea30a730e
+NEW_SHA256: 04498d6504816c685f7888c9d936c4293187f1fe5de3145f107539079c5f9e1f
+REASON: version marker only
+
+FILE: ChessPublisher-WebView.ps1
+PREVIOUS_SHA256: 116492c13c61fd7934ef5d221e79c192680e6cd4540ff613332136d31bb9db0f
+NEW_SHA256: 48323d316d7f0631a0ffed39e821ddc2f91628108a9ca6c45a50708cfd132f7c
+REASON: version marker only
+
+FILE: VERSION.txt
+PREVIOUS_SHA256: 0ea84f71f1c6305609d1d40cf2be2be686404e607cb367c66a507eff02ad43fa
+NEW_SHA256: 9f00ca43a231dc787bb59ef668415c6d34eb6296731b9391f802d5a5315c2c43
+REASON: version marker
+
+FILE: WEBVIEW-VERSION.txt
+PREVIOUS_SHA256: 0ea84f71f1c6305609d1d40cf2be2be686404e607cb367c66a507eff02ad43fa
+NEW_SHA256: 9f00ca43a231dc787bb59ef668415c6d34eb6296731b9391f802d5a5315c2c43
+REASON: version marker
+
+FILE: TESTS/BETA90-SYNC-RESTORE-DELETED-WEB-TOURNAMENT-REGRESSION.js
+PREVIOUS_SHA256: NEW_FILE
+NEW_SHA256: d890b329302715cd32618cad77a55b4ae81c0267d7ef87620e23fc52ada9858e
+REASON: new targeted regression
+
+PROTECTED LIST: 69 byte-identical / 1 approved changed / 0 missing / 70 total
+APPROVED PROTECTED INFRASTRUCTURE CHANGE: cloud/client/cloud-workspace-api.js
+FIDE PROTECTED CORES: unchanged
+Gacrux 1.9.57: unchanged
+TRF16/TRF26: unchanged
+BBP checker: unchanged
+Tie-Break core/checker: unchanged
+Chess-Results protocol/core: unchanged
+Rating calculation core: unchanged
+Cloud fingerprint schema 7: unchanged
