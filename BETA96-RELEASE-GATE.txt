@@ -1,0 +1,33 @@
+Chess-Publisher v1.06.00-beta.96 — SYNC Freeze Release Gate
+Date: 2026-09-10
+Status: PORTABLE TEST CANDIDATE — awaiting user runtime confirmation
+
+ROOT CAUSE FIXED
+beta.95 checker provenance source/build/checkedAt was persisted under tournament.pairings.engine. The changing checkedAt timestamp was visible to schema-7 and could create false local changes/conflicts/revision churn.
+
+BETA96
+- checker provenance source/build/checkedAt is session-only
+- persisted beta.95 provenance scrubbed on load
+- Desktop and Web schema-7 exclude these runtime-only fields
+- fingerprint schema remains 7
+- Cloud API/Worker contract unchanged
+
+GATES
+- BETA96 checker runtime metadata: 11/11 PASS
+- BETA96 frozen SYNC contract: 12/12 PASS
+- historical critical SYNC regressions: PASS
+- cumulative: 86 PASS / 2 approved historical exceptions / 1 designated skip / 0 unexpected failures
+- static audit: PASS
+- protected core vs beta.95: 70 total / 69 identical / 1 approved changed / 0 missing
+- approved changed protected file: webview/CloudWorkspaceAdapter.js
+- Web Cloud Workspace Integration Gate run 34497370206: SUCCESS
+
+ARTIFACTS
+Portable SHA256: 6e369e4f11a3245e68d373858bbda00cb3253164679ebc3c10639eea45cdd00d
+Source SHA256: c2d18d4f11d513a056bf7bef889d9250775a18ac38024b5d5952e1a41545c750
+EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+FREEZE POLICY
+After the user confirms real Desktop↔Web/Cloud SYNC runtime PASS, beta.96 becomes the frozen SYNC baseline. Future TEC/UI/release work may not modify the frozen SYNC logic/schema without a newly reproduced SYNC defect and explicit approval.
+
+Linux remains frozen at v1.06.00-beta.81 and was not modified.
