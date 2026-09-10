@@ -1,0 +1,27 @@
+Chess-Publisher v1.06.00-beta.90 — Regression Report
+Status: Windows TEST CANDIDATE
+Parent: v1.06.00-beta.89
+
+TARGETED SYNC TRASH RESTORE
+19 PASS / 0 FAIL
+
+Validated cases:
+- Web Trash + Desktop changed => same Cloud ID restored, latest Desktop state pushed as next revision.
+- Web Trash + Desktop unchanged => same Cloud ID restored, zero artificial PUT/revision.
+- Permanent delete => one fresh Cloud row, one PUT from revision 0.
+- Ambiguous Trash identity => fail closed, zero write.
+- Legacy Worker without Trash endpoint => safe recreate fallback.
+
+CUMULATIVE
+PASS=78
+APPROVED HISTORICAL EXCEPTIONS=3
+DESIGNATED SKIPS=1
+UNEXPECTED=0
+TOTAL=82
+
+STATIC AUDIT: PASS
+PROTECTED FILES: 69 byte-identical / 1 approved changed / 0 missing / 70 total
+APPROVED CHANGED FILE: cloud/client/cloud-workspace-api.js
+FIDE PROTECTED CORES: UNCHANGED
+SCHEMA: fingerprintContentSchema=7 unchanged
+LINUX: frozen beta.81, repository not modified
