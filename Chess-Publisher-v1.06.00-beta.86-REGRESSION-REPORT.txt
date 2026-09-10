@@ -1,0 +1,31 @@
+Chess-Publisher v1.06.00-beta.86 — REGRESSION / RELEASE REPORT
+================================================================
+Status: TEST CANDIDATE
+Base: v1.06.00-beta.85
+Authoritative source commit: d224fc6e79d49e3c69b1f161fc2491ef2796854b
+Authoritative source archive: Chess-Publisher-Windows-v1.06.00-beta.86-AUTHORITATIVE-SOURCE.tar.gz
+Source archive SHA256: d14e4a5450807be78eade6a29d271e186bf644a5f317bd2742ab8ab640ba61ea
+
+ROOT CAUSE
+Desktop Rename Tournament changed data.currentTournament and the tournaments map key but could leave tournament.name at the old value. Schema-7 fingerprints the portable tournament object, so a key-only rename could look unchanged and produce a false NO-OP instead of a Cloud PUT. The Cloud Worker already updates the Cloud row name from a valid snapshot; the missing PUT was the blocker.
+
+FIX
+- renameCurrentTournament updates portable tournament.name.
+- saveAll repairs stale beta.85-style renamed tournaments before persistence/SYNC.
+- CloudWorkspaceRedesign canonicalizes name before fingerprint/merge/PUT.
+- No schema/API change.
+
+METADATA COVERAGE
+PASS for Desktop->Cloud and Cloud->Desktop: name, Tournament Setup, start/end dates, Schedule rows/notes, Regulations. Mixed Web result + Desktop calendar and Desktop Setup + Web Schedule safely merge. Same-field calendar conflicts remain fail-closed.
+
+TESTS
+Mandatory metadata matrix: 18 PASS / 0 FAIL
+Cumulative: 74 PASS / 3 approved historical exceptions / 1 designated skip / 0 unexpected
+Static audit: PASS
+Protected core comparison: 70/70 byte-identical; 0 changed; 0 missing
+
+PROTECTED CORES
+No changes: Gacrux 1.9.57 / Swiss Dutch, TRF16/TRF26, BBP, Tie-Break core, Chess-Results protocol/core, rating calculation core. CloudWorkspaceAdapter.js is byte-identical to beta.85.
+
+LINUX
+NOT MODIFIED. Frozen at v1.06.00-beta.81 parity checkpoint. See LINUX-MIGRATION-HANDOFF-beta86.md.

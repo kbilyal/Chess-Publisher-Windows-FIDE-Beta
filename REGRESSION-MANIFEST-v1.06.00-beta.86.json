@@ -5,6 +5,7 @@
   "parentAuthoritativeSourceCommit": "1354a8061fbbc520ecd1ea09b93350e388428dfd",
   "sourceArchiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.86-AUTHORITATIVE-SOURCE.tar.gz",
   "sourceArchiveSha256": "d14e4a5450807be78eade6a29d271e186bf644a5f317bd2742ab8ab640ba61ea",
+  "authoritativeWindowsSourceCommit": "d224fc6e79d49e3c69b1f161fc2491ef2796854b",
   "fingerprintContentSchema": 7,
   "cloudApiChanged": false,
   "linux": {"status":"FROZEN","checkpoint":"v1.06.00-beta.81 parity","repositoryModified":false},
