@@ -1,0 +1,49 @@
+{
+  "version": "1.06.00-beta.95",
+  "date": "2026-09-10",
+  "status": "TEST CANDIDATE",
+  "sourcePointerCommit": "996bc7bc1d867eac89cbc9a6e4c41094171374fd",
+  "sourceArchiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.95-AUTHORITATIVE-SOURCE.tar.gz",
+  "sourceArchiveSha256": "38179aa91f5f696d92f97494e33767b4e23c40828369d821b9ca6f2d3d8f86ee",
+  "sourceManifestSha256": "ccc0b203d89fd347a4818edaef51a377ed93f2439a084f7cfd1704091bd9975f",
+  "driveFileId": "1YjCHTIYWx99yzLHyEHwkI9425hNZTMs9",
+  "portableFileId": "1KAzsgqbMdtomPqLy6KFe2O1MmaUfDqN1",
+  "portableSha256": "d9d4abe9ea97bbe53b102931d94104c6f88feb991fb2dc0b0593b594f3c7da80",
+  "targeted": {
+    "test": "TESTS/BETA95-CHECKER-PROVENANCE-TEC-PLAYER-LIFECYCLE-REGRESSION.js",
+    "pass": 29,
+    "fail": 0
+  },
+  "packagedGacruxRuntime": {
+    "pass": 31,
+    "fail": 0
+  },
+  "cumulative": {
+    "pass": 84,
+    "approved_historical_exceptions": 2,
+    "designated_skips": 1,
+    "unexpected_fail": 0,
+    "total": 87,
+    "historical_exceptions": [
+      "BETA30-ONLINE-HUB-RELIABILITY-REGRESSION.js",
+      "CLOUD-WORKSPACE-BETA4-REGRESSION.js"
+    ],
+    "designated_skips_list": [
+      "BETA29-TRF-EXPORT-BROWSER-RUNTIME-SCENARIOS.js"
+    ]
+  },
+  "static_audit": "PASS",
+  "protected_core": {
+    "compared_to": "1.06.00-beta.94",
+    "total": 70,
+    "identical": 70,
+    "changed": 0,
+    "missing": 0
+  },
+  "protected_core_changes": [],
+  "schema_changes": [],
+  "api_changes": [],
+  "fingerprintContentSchema": 7,
+  "linux_repo_modified": false,
+  "linux_baseline": "1.06.00-beta.81"
+}
