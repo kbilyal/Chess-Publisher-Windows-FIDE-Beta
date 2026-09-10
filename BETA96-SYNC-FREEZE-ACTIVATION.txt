@@ -1,0 +1,46 @@
+Chess-Publisher v1.06.00-beta.96 r4 — FULL SYNC FREEZE ACTIVATION
+Date: 2026-09-10
+Status: ACTIVE — USER RUNTIME CONFIRMED
+
+The user confirmed the exact beta.96 r4 FULL PORTABLE application works after the live Worker schema-7 parity fix. SYNC is therefore promoted from test candidate to protected core.
+
+TESTED RUNTIME
+- Chess-Publisher-v1.06.00-beta.96-r4-FULL-PORTABLE-FROZEN.zip
+- SHA256: 5e18d6f9e02dc68e7af0df25ed0a1da17a1f11692fafedbdf8120f1869f8c803
+- EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+- Drive ID: 1aPGEV2Wg7voKwLEAB5FW5TXAQovZBsEv
+
+FROZEN AUTHORITATIVE SOURCE
+- Chess-Publisher-Windows-v1.06.00-beta.96-r4-FROZEN-AUTHORITATIVE-SOURCE.tar.gz
+- SHA256: a3f2aa65bfac1f78dbb198c0c3bc4b50aba8a42ab93520c2fd1cf5c738da0fa5
+- Drive ID: 1nKCglJ8xN2crLK8eM-ndC_Q6xQ1vTCpT
+- Source manifest SHA256: cef9c43eeb9fd9a67dd553682beb36e87399bbc146d2db132ba38c2b73f4c8d5
+
+PERMANENT WINDOWS GUARD
+- SYNC-FREEZE-v1.06.00-beta.96.json status ACTIVE.
+- BASE-CUMULATIVE-REGRESSION-MANIFEST carries required sync_freeze_contract.
+- FULL-PROGRAM-STATIC-AUDIT enforces protected exact/normalized hashes, semantic hooks and mandatory SYNC regression files.
+- Active protected contract regression: 27 PASS / 0 FAIL.
+- Negative tamper test PASS: artificial CloudWorkspaceAdapter drift forced AUDIT_RESULT FAIL; restoring the exact file returned AUDIT_RESULT PASS.
+
+PERMANENT WEB GUARD
+- Web main freeze commit: 083781078bb628cc859d081a604d56e2b915f0a6
+- SYNC-FREEZE-v1.06.00-beta.96.json added to kbilyal/Chess-Publisher-Web.
+- tests/cloud/beta96-sync-freeze-protected-contract.test.mjs added.
+- .github/workflows/sync-freeze-guard.yml added.
+- Branch guard validation: SUCCESS.
+- Protected Git blob anchors cover core Web fingerprint/identity/API/provider/companion logic and Worker lineage/provenance deploy patches.
+- Live Worker SHA256: 13773e265867f802631d03bcecd8bd259a74f5fdff87fd3fa52a663a5264fa22.
+
+RELEASE POLICY
+SYNC now has the same stability class as the other protected core subsystems. Future beta/RC/TEC/UI work must not modify the frozen SYNC contract. Any SYNC change requires all of the following:
+1. concrete reproduced SYNC defect;
+2. explicit user approval for the concrete fix;
+3. point-fix scope only;
+4. mandatory Desktop↔Web/Cloud regression family PASS;
+5. protected hash/semantic audit PASS;
+6. zero unexpected failures;
+7. new real Windows Desktop↔Web/Cloud runtime confirmation;
+8. only then a replacement SYNC freeze baseline.
+
+Linux remains FROZEN at v1.06.00-beta.81 until the user explicitly requests alignment.
