@@ -1,44 +1,93 @@
 {
-  "freeze": "Chess-Publisher unified SYNC",
+  "freeze": "Chess-Publisher unified Desktop-Web/Cloud SYNC protected core",
   "version": "1.06.00-beta.96",
-  "status": "PREPARED CANDIDATE — NOT ACTIVE UNTIL USER RUNTIME CONFIRMATION",
-  "fingerprintContentSchema": 7,
-  "policy": "These hashes are the repaired beta.96 r4 Windows/Web identity-aligned SYNC candidate contract. The SYNC FREEZE becomes active only after explicit user confirmation that real Desktop-Web/Cloud SYNC works. After activation, TEC/UI/release work must not modify these files without an explicitly reproduced SYNC defect and approval.",
-  "files": {
-    "webview/CloudWorkspaceAdapter.js": {
-      "mode": "exact",
-      "sha256": "5879e24f75f0879e4bb81ed882d4258f27a5aae0d2746e7c4ee5d9f38bd45ae4"
-    },
-    "cloud/client/cloud-workspace-api.js": {
-      "mode": "exact",
-      "sha256": "e69c84af5b9148ac6287f5e1e959310a10f2fcb28541740dd9c8dd4510e1e51a"
-    },
-    "webview/CloudWorkspaceRedesign.js": {
-      "mode": "normalize-version",
-      "sha256": "b2b0243d5934d595607680824edb98de21f044432c51c4bbcaeb4aee387be8d7"
-    },
-    "ChessPublisher-LocalEngine.ps1": {
-      "mode": "exact",
-      "sha256": "71113c2763ebfd438eab3dd3d4c1d8f11f630c59d67224c2d97e4568c8db3550"
-    },
-    "ChessPublisher-WebView.ps1": {
-      "mode": "exact",
-      "sha256": "9e28e7f456fe12697714c3ca27ea91cd71dbf11b324b3fe13cd75559e95cb810"
-    }
+  "candidateRevision": "r4",
+  "status": "ACTIVE — USER RUNTIME CONFIRMED",
+  "activatedAt": "2026-09-10",
+  "activationReason": "User confirmed the exact beta.96 r4 FULL PORTABLE application works after the live Worker schema-7 parity fix.",
+  "testedRuntime": {
+    "archive": "Chess-Publisher-v1.06.00-beta.96-r4-FULL-PORTABLE-FROZEN.zip",
+    "sha256": "5e18d6f9e02dc68e7af0df25ed0a1da17a1f11692fafedbdf8120f1869f8c803",
+    "exeSha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+    "driveFileId": "1aPGEV2Wg7voKwLEAB5FW5TXAQovZBsEv"
   },
-  "semanticGuards": [
-    "checker provenance lastCheckerUiSource/lastCheckerUiBuildVersion/lastCheckerUiCheckedAt is runtime-only and excluded recursively from schema-7 fingerprints/private snapshots",
-    "Windows launcher ChessPublisher-WebView.ps1 and ChessPublisher-LocalEngine.ps1 remain matched at serviceVersion V140; r4 does not change the proven r3 startup transport",
-    "Windows Desktop Cloud transport uses the same-origin LocalEngine /cloud-proxy path and does not depend on Cloudflare browser CORS for 127.0.0.1/localhost",
-    "LocalEngine Cloud proxy forwards only allowlisted Cloud workspace/tournament endpoints to the fixed Hub Worker host, requires Organizer bearer authorization, and preserves X-Expected-Revision",
-    "Web production origin keeps the normal remote Cloud API path and WEB_ORIGIN policy",
-    "Desktop identity selection matches current Web durable identity candidates and never selects a Cloud tournament by name alone",
-    "an exact organizer-owned saved cloudTournamentId may repair only a generated/legacy Desktop internalId when no competing row owns that generated identity; meaningful conflicting identities remain fail-closed",
-    "Cloud CREATE first checks exact organizer-owned stable identity and Cloud PUT preflights the selected row identity before guarded write",
-    "every successful Desktop push is followed by an authoritative current-snapshot GET whose schema-7 fingerprint must equal the local content; pull is also verified after durable local apply",
-    "cpCloudSyncCurrent remains the single unified SYNC authority",
-    "no last-write-wins or silent stale overwrite",
-    "revision guard and stable internalId/cloudTournamentId identity remain required",
-    "results, next-round pairings, metadata/calendar, Trash restore, copied identity and common-base recovery regressions remain mandatory"
-  ]
+  "fingerprintContentSchema": 7,
+  "policy": "SYNC is now a protected core subsystem. Future beta/RC/TEC/UI releases must preserve this contract. Protected SYNC files may change only for a concrete reproduced SYNC defect, with explicit user approval, point-fix scope, mandatory Desktop-Web/Cloud regressions, protected-hash review and new real runtime confirmation before a replacement freeze baseline is accepted.",
+  "windowsProtectedFiles": {
+    "webview/CloudWorkspaceAdapter.js": {"mode":"exact","sha256":"5879e24f75f0879e4bb81ed882d4258f27a5aae0d2746e7c4ee5d9f38bd45ae4"},
+    "cloud/client/cloud-workspace-api.js": {"mode":"exact","sha256":"e69c84af5b9148ac6287f5e1e959310a10f2fcb28541740dd9c8dd4510e1e51a"},
+    "webview/CloudWorkspaceRedesign.js": {"mode":"normalize-version","sha256":"b2b0243d5934d595607680824edb98de21f044432c51c4bbcaeb4aee387be8d7"},
+    "ChessPublisher-LocalEngine.ps1": {"mode":"exact","sha256":"71113c2763ebfd438eab3dd3d4c1d8f11f630c59d67224c2d97e4568c8db3550"},
+    "ChessPublisher-WebView.ps1": {"mode":"exact","sha256":"9e28e7f456fe12697714c3ca27ea91cd71dbf11b324b3fe13cd75559e95cb810"}
+  },
+  "windowsSemanticGuards": {
+    "ChessPublisher.html": [
+      "onclick=\"downloadWebEnteredResults()\"",
+      "window.cpCloudDownloadWebResults",
+      "window.cpCloudSyncCurrent",
+      "const SESSION_PROVENANCE = window.__cpCheckerUiSessionProvenance"
+    ],
+    "webview/CloudWorkspaceRedesign.js": [
+      "window.cpCloudSyncCurrent=syncCurrent;",
+      "window.cpCloudSyncUnified=syncCurrent;",
+      "window.cpCloudDownloadWebResults=downloadWebResults;",
+      "/cloud-proxy",
+      "const expectedRevision=remoteRevision;",
+      "api.putSnapshot"
+    ],
+    "webview/HubAdapter.js": [
+      "const ORGANIZER_SECRET_BASE_KEY=\"organizer-primary\";",
+      "function organizerSecretKey()",
+      "window.cpNativeHubSecretGet=",
+      "window.cpNativeHubSecretSet=",
+      "window.cpNativeHubSecretRemove="
+    ]
+  },
+  "webProtectedGitBlobs": {
+    "src/cloud/onlineCloudSync.ts": "743ed57a9fd12bac1749ff7cfdb6fafae0d9ec4f",
+    "src/cloud/OnlineCloudProviderV2.tsx": "c1e2e4a4882fc4c5e48686fdaef0108ddf96d140",
+    "src/cloud/cloudWorkspaceApi.ts": "f6adbfb385a61d2daf5702935f912dc89d350975",
+    "src/cloud/browserSyncPolicy.ts": "c85ecaaf3467811e718e4122be6c782304a5bc0c",
+    "src/companion/companionCloudActions.ts": "8bdd1a6e9c47f2700eb6693368b7ac5f68ba4ef8",
+    "production-web/webview/CloudWorkspaceAdapter.js": "282a5bdbc0da3de0f232e44c77c2b9740b80e583",
+    "production-web/cloud/client/cloud-workspace-api.js": "314f7e350c7bf5a78ef96295a972d32c1dc323d7",
+    "scripts/patch-cloud-sync-lineage-worker.py": "8e9548253114688b8f74e5f1d22dbb3338210bd8",
+    "scripts/patch-cloud-sync-checker-provenance-worker.py": "dd9312605baeeac31d43c40552d3f580ea148091",
+    ".github/workflows/deploy-cloud-sync-lineage.yml": "ff6df2162fc0021dcbfd3a0d1cc6c32a44d445e6",
+    ".github/workflows/deploy-cloud-sync-checker-provenance.yml": "9e8a030dcc144fff562ec099baeda84cb2ad0fd2"
+  },
+  "webFreezeGuard": {
+    "mainCommit": "083781078bb628cc859d081a604d56e2b915f0a6",
+    "workflow": ".github/workflows/sync-freeze-guard.yml",
+    "test": "tests/cloud/beta96-sync-freeze-protected-contract.test.mjs",
+    "branchValidation": "SUCCESS"
+  },
+  "liveWorker": {
+    "name": "chess-publisher-hub-api-beta",
+    "sha256": "13773e265867f802631d03bcecd8bd259a74f5fdff87fd3fa52a663a5264fa22",
+    "deploymentCommit": "b2ad2cba2a3da06c51830a9a912a3efb5941cb86",
+    "deploymentRunId": "34516377753",
+    "deploymentJobId": "103002706618",
+    "productionGate": "PASS"
+  },
+  "mandatoryRegressionFamilies": [
+    "beta90 restore deleted Web tournament",
+    "beta91 Trash/pairing mismatch orchestration",
+    "beta92 structural preflight",
+    "beta93 single SYNC authority",
+    "beta94 common-base recovery",
+    "beta95 checker provenance + lifecycle",
+    "beta96 checker runtime metadata",
+    "beta96 r4 saved Cloud identity repair",
+    "beta96 r4 Desktop-Web-Desktop roundtrip",
+    "beta96 r4 Web/Desktop contract parity",
+    "beta96 Windows LocalEngine proxy",
+    "beta96 LocalEngine startup contract",
+    "beta96 active frozen contract"
+  ],
+  "releaseGate": {
+    "unexpectedFailuresRequired": 0,
+    "realRuntimeConfirmationRequiredAfterAnyApprovedSyncChange": true,
+    "linuxPolicy": "Linux remains frozen at v1.06.00-beta.81 until explicitly aligned by the user."
+  }
 }
