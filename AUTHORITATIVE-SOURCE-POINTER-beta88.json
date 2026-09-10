@@ -1,0 +1,23 @@
+{
+  "version": "1.06.00-beta.88",
+  "status": "TEST CANDIDATE",
+  "sourceStorage": "Google Drive",
+  "driveFileId": "16SKFMLh8_hC3uY4SvxyKOk74pOCsFNGJ",
+  "driveFolderId": "1s1NU611MkMZ6sziPl-qz04P0QppQ8vpm",
+  "drivePath": "/Google Drive/ChessPublisher Releases/beta88/Chess-Publisher-Windows-v1.06.00-beta.88-AUTHORITATIVE-SOURCE.tar.gz",
+  "driveWebView": "https://drive.google.com/file/d/16SKFMLh8_hC3uY4SvxyKOk74pOCsFNGJ/view?usp=drivesdk",
+  "archiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.88-AUTHORITATIVE-SOURCE.tar.gz",
+  "archiveSizeBytes": 27994674,
+  "archiveSha256": "d22a5697d7dbef2e6064bd85c88edbcca630e727bcb392934453b7da58771f5f",
+  "contentManifestFilename": "AUTHORITATIVE-SOURCE-MANIFEST-beta88.txt",
+  "contentManifestSha256": "fe538e046e257b45d566030c8e4ccab9ea5c9bf055eab11b79e5404ed5a9a81c",
+  "parentEvidenceCheckpoint": "de2d666fe3fee3ec85a7e7e03cbaf46b91b74d11",
+  "linuxParityCheckpoint": "v1.06.00-beta.81",
+  "linuxRepositoryModified": false,
+  "fingerprintContentSchema": 7,
+  "cloudApiChanged": false,
+  "protectedCoreChanged": false,
+  "targetedRegression": "24 PASS / 0 FAIL",
+  "cumulativeRegression": "PASS=76 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=80",
+  "note": "From beta.88 forward, this machine-readable pointer plus archive SHA256 identifies the authoritative complete application source. GitHub evidence commits are not described as containing the full application source unless the source files are actually present in that commit."
+}
