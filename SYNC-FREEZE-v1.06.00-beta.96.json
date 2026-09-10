@@ -1,9 +1,9 @@
 {
   "freeze": "Chess-Publisher unified SYNC",
   "version": "1.06.00-beta.96",
-  "status": "FROZEN AFTER USER RUNTIME CONFIRMATION",
+  "status": "PREPARED CANDIDATE — NOT ACTIVE UNTIL USER RUNTIME CONFIRMATION",
   "fingerprintContentSchema": 7,
-  "policy": "No TEC/UI/release work may modify these SYNC logic fingerprints or schema contract. A future change requires an explicitly reported SYNC defect and a new approved SYNC checkpoint.",
+  "policy": "These hashes are recorded as the beta.96 candidate contract for verification only. The SYNC FREEZE becomes active only after explicit user confirmation that real Desktop-Web/Cloud SYNC works. After activation, no TEC/UI/release work may modify these SYNC logic fingerprints or schema contract unless an explicitly reproduced SYNC defect is approved for repair.",
   "files": {
     "webview/CloudWorkspaceAdapter.js": {
       "mode": "exact",
