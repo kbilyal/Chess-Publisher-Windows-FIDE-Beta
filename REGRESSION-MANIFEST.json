@@ -1,23 +1,43 @@
 {
-  "version": "1.06.00-beta.85",
+  "version": "1.06.00-beta.95",
   "status": "TEST CANDIDATE",
-  "base_version": "1.06.00-beta.84",
+  "base_version": "1.06.00-beta.94",
   "linux_parity_checkpoint": "1.06.00-beta.81",
   "linux_repository_modified": false,
-  "authoritative_windows_commit": "1354a8061fbbc520ecd1ea09b93350e388428dfd",
-  "authoritative_source_archive": "Chess-Publisher-Windows-v1.06.00-beta.85-AUTHORITATIVE-SOURCE.tar.gz",
-  "authoritative_source_sha256": "2795a0612f56f381b65db0c30c3171ccc5f4e16e9bc0778fa5bc7e61fe430e69",
-  "patch": "PATCHES/beta85-next-round-sync-three-way-merge.patch",
-  "patch_sha256": "68e820fd92d6b71ad3b23b6469d4acc1d64d97adce5d6373bea735ae0c6faace",
-  "cumulative": {"pass":73,"approved_historical_exceptions":3,"designated_skips":1,"unexpected":0,"total":77},
-  "targeted": {"BETA85-NEXT-ROUND-SYNC-REGRESSION.js":{"pass":8,"fail":0},"BETA84-SCHEMA7-UNIFIED-SYNC-REGRESSION.js":{"pass":18,"fail":0}},
-  "protected_core": {"byte_identical":70,"changed":0,"unexpected":0,"result":"PASS"},
-  "cloud_sync": {"fingerprint_content_schema":7,"api_changed":false,"behavior":"BOTH_CHANGED attempts deterministic three-way merge; independent changes merge-push; true same-field conflicts remain fail-closed."},
-  "changed_shared_files": [
-    {"path":"ChessPublisher.html","previous_sha256":"9d3a057307f9465b7bd8576a330b7cc741d48ccaf67eaef56168edad6a3625c4","new_sha256":"2a0437da7d6ae20f04cf4499ba36b6c7c81698c1517b390b1fed6f3775f5a175","approved_scope_change":true},
-    {"path":"webview/CloudWorkspaceRedesign.js","previous_sha256":"7dbc031a333f1b25c687eb20fe78b2f57bec2642eb020cdced47cbbb81461426","new_sha256":"52f39e7c8ab992611f0f9b0eed02836cc19a002016d87b226b94da388f78177a","approved_scope_change":true},
-    {"path":"VERSION.txt","previous_sha256":"ca51b966691d08c18c10467df322d5e1210465caee5938eea05a785540888eb5","new_sha256":"b9c3202d834191d9b45d5a9a7ac7bcd93d78d2b059825452194efcc9e4acfd3f","approved_scope_change":true}
+  "source_pointer_commit": "996bc7bc1d867eac89cbc9a6e4c41094171374fd",
+  "authoritative_source_archive": "Chess-Publisher-Windows-v1.06.00-beta.95-AUTHORITATIVE-SOURCE.tar.gz",
+  "authoritative_source_sha256": "38179aa91f5f696d92f97494e33767b4e23c40828369d821b9ca6f2d3d8f86ee",
+  "portable_archive": "Chess-Publisher-v1.06.00-beta.95-Checker-Provenance-TEC-Player-Lifecycle-PORTABLE-TEST-CANDIDATE-2026-09-10.zip",
+  "portable_sha256": "d9d4abe9ea97bbe53b102931d94104c6f88feb991fb2dc0b0593b594f3c7da80",
+  "cumulative": {
+    "pass": 84,
+    "approved_historical_exceptions": 2,
+    "designated_skips": 1,
+    "unexpected": 0,
+    "total": 87
+  },
+  "targeted": {
+    "BETA95-CHECKER-PROVENANCE-TEC-PLAYER-LIFECYCLE-REGRESSION.js": {"pass":29,"fail":0},
+    "BETA68-GACRUX-RUNTIME-HARDENING-REGRESSION.js_packaged": {"pass":31,"fail":0}
+  },
+  "protected_core": {
+    "byte_identical": 70,
+    "changed": 0,
+    "missing": 0,
+    "result": "PASS"
+  },
+  "cloud_sync": {
+    "fingerprint_content_schema": 7,
+    "api_changed": false,
+    "sync_core_changed": false
+  },
+  "functional_scope": [
+    "checker provenance for stale cross-runtime/build state",
+    "pre-Round-1 Swiss Absent hard gate",
+    "physical Remove Absent before Round 1",
+    "Reset purge of historical registrationDeleted tombstones",
+    "active-only TRF Starting List",
+    "post-start Withdrawn/Absent/Late Entry history preserved"
   ],
-  "changed_windows_specific_files": [{"path":"ChessPublisher-WebView.ps1","previous_sha256":"b1b0a2714c8ad188c8fffe54e18c1e147950ca80e002ab4c8f8fb30376cb7801","new_sha256":"d9cbe36d0589e7bb61db16b766a0514ced2347658bfef4b0db8c25a306bc6b0e","approved_scope_change":true,"linux_adapter_change_required":false}],
   "changed_protected_files": []
 }
