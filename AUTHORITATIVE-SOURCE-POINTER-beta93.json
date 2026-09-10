@@ -1,0 +1,20 @@
+{
+  "version": "1.06.00-beta.93",
+  "status": "TEST CANDIDATE",
+  "sourceStorage": "Google Drive",
+  "driveFileId": "1xm6-p4-Z-9xgNd0YUrIGS4kb6WMXBRjG",
+  "driveFolderId": "1fQ_nRZ6JBjpuO0qv16L7hGIOpPejE-bX",
+  "drivePath": "/Google Drive/ChessPublisher Releases/beta93/Chess-Publisher-Windows-v1.06.00-beta.93-AUTHORITATIVE-SOURCE.tar.gz",
+  "archiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.93-AUTHORITATIVE-SOURCE.tar.gz",
+  "archiveSizeBytes": 28200167,
+  "archiveSha256": "4f7d4d59534ade1a11a6219828576a6027899736572c31841dae6c9b75557989",
+  "parentVersion": "1.06.00-beta.92",
+  "linuxParityCheckpoint": "v1.06.00-beta.81",
+  "linuxRepositoryModified": false,
+  "fingerprintContentSchema": 7,
+  "targetedDualLayerRegression": "11 PASS / 0 FAIL",
+  "cumulativeRegression": "PASS=81 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=85",
+  "staticAudit": "PASS",
+  "protectedComparison": "69/70 byte-identical; CloudWorkspaceAdapter.js approved orchestration change only",
+  "note": "Current-tournament Cloud synchronization has one authority: CloudWorkspaceRedesign unified schema-7 engine. Legacy CloudWorkspaceAdapter delegates current-tournament reconciliation to it."
+}
