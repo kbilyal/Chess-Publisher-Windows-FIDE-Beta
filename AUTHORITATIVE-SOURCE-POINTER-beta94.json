@@ -1,0 +1,30 @@
+{
+  "version": "1.06.00-beta.94",
+  "status": "TEST CANDIDATE",
+  "sourceStorage": "Google Drive",
+  "driveFileId": "1E19XGBbNjROJ4FZKtkHITACgjCuHd8TT",
+  "driveFolderId": "1VjXyc6_AkAyp3VN3OjJI6lofyWlCsijS",
+  "drivePath": "/Google Drive/ChessPublisher Releases/beta94/Chess-Publisher-Windows-v1.06.00-beta.94-AUTHORITATIVE-SOURCE.tar.gz",
+  "archiveFilename": "Chess-Publisher-Windows-v1.06.00-beta.94-AUTHORITATIVE-SOURCE.tar.gz",
+  "archiveSizeBytes": 28221226,
+  "archiveSha256": "00196eb1a7e4e74a8c203e3371b929ee2adbac8fd5b770531113761ce5142c1e",
+  "contentManifestFilename": "AUTHORITATIVE-SOURCE-MANIFEST-beta94.txt",
+  "contentManifestSha256": "60ce79a330e8977f3663cf2316ea1c0bd2c6dcd27e3e02d8c4efe4034f42e54e",
+  "parentVersion": "1.06.00-beta.93",
+  "parentEvidenceCheckpoint": "0107169722e83073ed41621109f10c13847e3822",
+  "linuxParityCheckpoint": "v1.06.00-beta.81",
+  "linuxRepositoryModified": false,
+  "fingerprintContentSchema": 7,
+  "cloudApiChanged": false,
+  "syncCoreChanged": true,
+  "protectedComparison": "69/70 byte-identical vs beta.93; one approved Cloud adapter change",
+  "approvedProtectedChangedFiles": [
+    "webview/CloudWorkspaceAdapter.js"
+  ],
+  "fideProtectedCoresChanged": false,
+  "targetedRegression": "28 PASS / 0 FAIL",
+  "cumulativeRegression": "PASS=82 KNOWN=3 SKIP=1 UNEXPECTED=0 TOTAL=86",
+  "staticAudit": "PASS",
+  "defect": "Recover missing common-base lineage safely; provide whole-tournament Desktop/Cloud recovery when field-level merge base cannot be proven.",
+  "note": "GitHub main is the evidence/checkpoint index. Reconstruct beta.94 only from the exact Google Drive archive after verifying archiveSha256."
+}
