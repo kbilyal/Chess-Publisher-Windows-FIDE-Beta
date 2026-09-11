@@ -1,0 +1,43 @@
+Chess-Publisher TEC Q117 — Custom Rating Lists — beta.98 STAGING EVIDENCE
+Date: 2026-09-11
+Status: STAGING ONLY — NOT A RELEASE / NOT MERGED TO MAIN
+
+BASE
+Windows v1.06.00-beta.97 evidence commit:
+fea4e27877bf9cc5d30db03a910b863c33a83be3
+
+Staging branch:
+tec-q117-custom-rating-lists-beta98-staging
+
+Q117 MODULE
+TEC-Q117/ChessPublisher-Beta98-CustomRatingLists.js
+SHA256: 6048392fba2fa3a945470ed171891df2503add9664dcee9d80261320ebfb4fc4
+Local verified size: 17812 bytes
+
+DEDICATED REGRESSION
+TEC-Q117/BETA98-TEC-Q117-CUSTOM-RATING-LISTS-REGRESSION.js
+SHA256: bf9dda96555a1583a6b3251a1ac6715f808e23d2df47e68335f58f6195bd9a17
+Result: BETA98 TEC Q117 CUSTOM RATING LISTS: 38 PASS / 0 FAIL
+
+TEC CONTRACT COVERED
+- Custom list role is explicit.
+- Categories: National / Regional / Club / Historical / Other.
+- Rating rows reuse existing beta.81 Type-B storage and FIDE-ID lookup.
+- Custom Type-B source remains unknown/user-supplied as required by TEC semantics.
+- Custom lists can be added, removed, reordered and selected as Main Rating List in tournament Rating List Sequence.
+- Main Custom-list hit can supply Tournament Rating.
+- Main Custom-list miss falls through to later official/effective lists.
+- Original Custom source/value provenance survives later manual override.
+- Duplicate Custom IDs fail closed.
+- Deleting a Custom list referenced by a tournament sequence fails closed.
+- Ordinary Type-B lists remain ordinary unless explicitly classified Custom.
+- Existing default FIDE Rating List Sequences remain unchanged.
+
+NOT YET CLAIMED
+This does not close VCL Q117 yet. Exact beta.97 runtime integration is still required. The authoritative beta.97 source archive is currently unavailable to the connected tooling because Drive blocks automated materialization/download of the executable-containing archive. No older HTML/source is being substituted and no reconstructed package will be labelled beta.98.
+
+PROTECTED BOUNDARIES
+No staging change to Gacrux 1.9.57, Swiss Dutch pairing, TRF pairing path, BBP checker, protected Tie-Break formulas, Chess-Results core/protocol, rating-calculation core, Cloud/SYNC schema 7, beta.96 r4 frozen SYNC core, or Linux beta.81.
+
+PROMOTION REQUIREMENT
+Apply the additive module to the exact beta.97 authoritative source, integrate it into the existing beta.62 sequence editor/player-add path/beta.52 provenance hooks, then run dedicated + cumulative + static + protected-core + Gacrux + TRF16/TRF26 + SYNC gates and a real Windows smoke test before any beta.98 release/freeze.
