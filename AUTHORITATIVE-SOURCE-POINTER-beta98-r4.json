@@ -1,0 +1,72 @@
+{
+  "project": "Chess-Publisher Windows FIDE Beta",
+  "version": "1.06.00-beta.98-r4",
+  "date": "2026-09-12",
+  "status": "TEST CANDIDATE - NOT FROZEN",
+  "parent": "1.06.00-beta.98-r3",
+  "scope": "Windows VCL runtime integration and Rating List native chooser",
+  "google_drive_folder": {
+    "path": "/Google Drive/ChessPublisher Releases/beta98-r4",
+    "id": "1om3LukYNLQFeuqJNSTERSuP6fCfwi4BC"
+  },
+  "artifacts": {
+    "portable_zip": {
+      "name": "Chess-Publisher-v1.06.00-beta.98-r4-FULL-PORTABLE-WINDOWS-VCL-RUNTIME-2026-09-12.zip",
+      "sha256": "61332326fd1359a3aa7a6482f2191a7e2ecf1a539f13058a980fc9626c3f142d",
+      "drive_id": "1Sy8iVlOTJov6bnl12XrGXdSI9iU1sMWB"
+    },
+    "authoritative_source": {
+      "name": "Chess-Publisher-Windows-v1.06.00-beta.98-r4-AUTHORITATIVE-SOURCE.tar.gz",
+      "sha256": "0982e436a633e9ce6a9f9abc858ce8bd3810f766ff45c2e9fe1e96db7498e7a3",
+      "drive_id": "1PkFldDSCzfXfWFR7rt4C3X6WVCxwiMNo"
+    },
+    "windows_exe": {
+      "name": "ChessPublisher-v1.06.00-beta.98-r4.exe",
+      "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+      "drive_id": "1LOdgzTP7fxqMwPzIOlt5dL6BJH8oNiGA",
+      "note": "Launcher intentionally byte-identical to protected baseline; runtime update is in packaged HTML."
+    },
+    "vcl_matrix": {
+      "name": "Chess-Publisher-FIDE-TEC-VCL-Compliance-Matrix-beta98-r4.xlsx",
+      "sha256": "b00f6babdbba98cdc04c4014ef8c446ee1333197e5b981a19af6bdd8405e734d",
+      "drive_id": "1fFmWtIc5lWfSE2PptrdPmE5MHhwHjZgz"
+    },
+    "source_manifest": {
+      "name": "AUTHORITATIVE-SOURCE-MANIFEST-beta98-r4.txt",
+      "sha256": "78a702762d1155593f547d40eafd3e4084fbcaf2d0897ec0af79a23d9e9ab235",
+      "drive_id": "15hNsGFPcnKbN6oxGVUn8w8HS2V6w8rMK",
+      "listed_files": 948
+    },
+    "source_delta": {
+      "name": "BETA98-R4-SOURCE-DELTA.patch",
+      "sha256": "f7c5e4d9a28064051c8b1fd0d9ee25db5da78941f9d1519bab6f50d69570d01a",
+      "drive_id": "1WKVTxU_5NbfpM7CieRN_fD8LjH59zYse"
+    },
+    "checksums": {
+      "name": "SHA256SUMS-beta98-r4.txt",
+      "drive_id": "1XuhZ4VwYClOHn5gCAnqvyzktqIaZXFfU"
+    }
+  },
+  "verification": {
+    "zip_manifest": "948/948 PASS",
+    "source_manifest": "948/948 PASS",
+    "package_cumulative": "103 total / 100 PASS / 2 approved historical exceptions / 1 designated browser-only skip / 0 unexpected",
+    "windows_vcl_runtime": "38/38 PASS",
+    "rating_list_native_chooser": "6/6 PASS",
+    "q117": "58/58 PASS",
+    "static_audit": "PASS",
+    "protected_core": "70/70 IDENTICAL",
+    "gacrux_sha256": "6955c4c1f16425fa662f70d08311cfddeeaf21cca1aee3d04a3a6b0f7bbb45fb",
+    "localengine_sha256": "71113c2763ebfd438eab3dd3d4c1d8f11f630c59d67224c2d97e4568c8db3550"
+  },
+  "vcl_status": {
+    "PASS": 164,
+    "PARTIAL": 9,
+    "FAIL": 0,
+    "CONDITIONAL": 21,
+    "NEEDS_TEC": 1,
+    "N_A": 30,
+    "open_partial_questions": [47, 50, 71, 114, 138, 184, 185, 207, 222]
+  },
+  "linux": "FROZEN at v1.06.00-beta.81"
+}
