@@ -1,0 +1,49 @@
+Chess-Publisher v1.06.00-beta.98-r4 — Windows VCL Runtime Integration Release Gate
+Date: 2026-09-12
+Status: TEST CANDIDATE — NOT FROZEN
+Parent evidence checkpoint: beta.98-r3 @ b0ed2ae344b885daee5192f03d3a303ec9ed994c
+
+ROOT CAUSE
+Real Windows smoke testing proved that the protected LocalEngine serves ChessPublisher.html for the UI but does not expose the beta continuation JavaScript files as general static routes. Already-implemented FIDE/TEC controls could therefore pass source regression while being absent from the live Desktop/WebView UI.
+
+R4 REPAIR
+- Bundle all 32 implemented FIDE/TEC continuation modules inline into ChessPublisher.html in original chronological order.
+- Keep ChessPublisher-LocalEngine.ps1 byte-identical.
+- Rating List Library remains permanently visible in Lists & Players.
+- Import Rating List opens native file chooser synchronously from the user action.
+- Embedded English manual opens from Manual/F1 while USER-MANUAL-EN.html remains separately packaged.
+- No Gacrux, Swiss Dutch, protected TRF, BBP, Tie-Break, Chess-Results or frozen beta.96-r4 SYNC core changes.
+
+FINAL PACKAGE VERIFICATION
+- ZIP manifest: 948/948 PASS
+- Authoritative source manifest: 948/948 PASS
+- Full package JS corpus: 103 total / 100 PASS / 2 approved historical exceptions / 1 designated browser-only skip / 0 unexpected
+- Windows VCL runtime integration: 38/38 PASS
+- Rating List native chooser: 6/6 PASS
+- Q117 operational: 58/58 PASS
+- 50K rating library: 7/7 PASS
+- Add Player search bridge: 10/10 PASS
+- Identity/source choice: 12/12 PASS
+- Rating Library visibility: 12/12 PASS
+- Static audit: PASS
+- Protected core: 70/70 IDENTICAL
+- Gacrux pairingchecker.exe SHA256: 6955c4c1f16425fa662f70d08311cfddeeaf21cca1aee3d04a3a6b0f7bbb45fb
+- ChessPublisher-LocalEngine.ps1 SHA256: 71113c2763ebfd438eab3dd3d4c1d8f11f630c59d67224c2d97e4568c8db3550
+
+VCL MATRIX
+164 PASS / 9 PARTIAL / 0 FAIL / 21 CONDITIONAL / 1 NEEDS TEC / 30 N/A.
+Genuine open PARTIAL scope: Q47, Q50, Q71, Q114, Q138, Q184, Q185, Q207, Q222. Q18 remains NEEDS TEC. These are not hidden-runtime defects and are not falsely upgraded in r4.
+
+GOOGLE DRIVE
+Folder ID: 1om3LukYNLQFeuqJNSTERSuP6fCfwi4BC
+Portable ZIP ID: 1Sy8iVlOTJov6bnl12XrGXdSI9iU1sMWB
+Authoritative source ID: 1PkFldDSCzfXfWFR7rt4C3X6WVCxwiMNo
+EXE ID: 1LOdgzTP7fxqMwPzIOlt5dL6BJH8oNiGA
+VCL matrix ID: 1fFmWtIc5lWfSE2PptrdPmE5MHhwHjZgz
+Checksums ID: 1XuhZ4VwYClOHn5gCAnqvyzktqIaZXFfU
+Pointer ID: 1ouRtbgV4pc9WzlBYa-7_intwLJRciVTA
+
+REAL WINDOWS GATE STILL REQUIRED BEFORE FREEZE
+Confirm file chooser, zero-participant rating-list import, imported-player search/source selection, representative VCL controls across tabs, and Manual/F1 in the actual Desktop runtime.
+
+Linux remains FROZEN at v1.06.00-beta.81.
