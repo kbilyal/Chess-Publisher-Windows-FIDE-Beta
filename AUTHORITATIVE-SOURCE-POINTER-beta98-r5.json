@@ -1,0 +1,44 @@
+{
+  "project": "Chess-Publisher Windows",
+  "version": "v1.06.00-beta.98-r5",
+  "status": "TEST CANDIDATE — NOT FROZEN",
+  "date": "2026-09-12",
+  "parent_evidence_commit": "d27b3eea909b891f5f5a05fd6bdb3572c165af29",
+  "portable": {
+    "filename": "Chess-Publisher-v1.06.00-beta.98-r5-FULL-PORTABLE-SETUP-IMPORT-SEARCH-2026-09-12.zip",
+    "sha256": "8b913ae970ca3b10a2fcb16f127f4fdc2642951fa1754e0c03adaccbaf1b98c1",
+    "google_drive_file_id": "1aKX1dbwACSl6bY81rGAT40Pq1siUT398"
+  },
+  "authoritative_source": {
+    "filename": "Chess-Publisher-Windows-v1.06.00-beta.98-r5-AUTHORITATIVE-SOURCE.tar.gz",
+    "sha256": "ba9430c6a4b9493169d6866f6c025d7e7961b404a8ca95457950d0d3d67cd1b8",
+    "google_drive_file_id": "1aV3bbZ8oLZgmd-SNyBi_m0X9YY4MfMcU",
+    "manifest_entries": 962,
+    "manifest_verification": "962/962 PASS"
+  },
+  "windows_launcher": {
+    "filename": "ChessPublisher-v1.06.00-beta.98-r5.exe",
+    "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+    "google_drive_file_id": "1bipvvhBpg254F5f8iZQbG4G0vvyLdyuY",
+    "note": "byte-identical protected launcher"
+  },
+  "vcl_matrix": {
+    "filename": "Chess-Publisher-FIDE-TEC-VCL-Compliance-Matrix-beta98-r5.xlsx",
+    "sha256": "c43e683f7dfaeea7dc52fd535f6640189dbbe26a13763d8e6865cab250273091",
+    "google_drive_file_id": "1uRpBwz7Q5Y4phOC6EewHGLdRtD02mJGW"
+  },
+  "evidence_drive_ids": {
+    "sha256sums": "1eYYRYQ5-_9t3gtXTVk0zaST-Jz_PH306",
+    "source_delta": "1oagyJ2Qk7DReYLbIsrHkEhDunAGtqVAq",
+    "regression_report": "1e2j3I92pQm1-v6HuNfhYycPtq-rK4Y7L",
+    "source_manifest": "1IkwpwCyDWLjYFHIKfgUetwtW1iFbLDWi",
+    "real_browser_smoke": "1B3gHtk42_-c-HAEghdnqdR0688Wv3aLu",
+    "critical_gates": "1TXK5eiz5py0OLo_iHZ_hvktkKovXn14a",
+    "cumulative_js": "1a_k-UXPnevpIAXv7SE5k-LNumtxtLpez",
+    "static_audit": "1HIX5m8J8Aq5an4SIg-NNJmJKBFeTGPCa",
+    "protected_core_hashes": "1n-IHVrmggr0CLUUTY4610Pz2tkGd_EwC"
+  },
+  "protected_core": "70/70 byte-identical",
+  "linux": "FROZEN at v1.06.00-beta.81",
+  "freeze_condition": "User Windows smoke confirmation required"
+}
