@@ -1,0 +1,68 @@
+{
+  "version": "1.06.00-beta.98",
+  "status": "WINDOWS TEST CANDIDATE",
+  "date": "2026-09-12",
+  "parent": "v1.06.00-beta.97 FULL PORTABLE UI CLEANUP",
+  "recoveryBaseline": {
+    "name": "Chess-Publisher-v1.06.00-beta.97-FULL-PORTABLE-UI-CLEANUP-2026-09-10.zip",
+    "sha256": "c8cde12bcd45706d0aee6375ecec4c72115637a1ecc55f44f36c560a108b7385",
+    "note": "User-supplied exact official beta.97 portable; hash matches beta.97 release evidence because the beta.97 source tar was blocked by Google Drive."
+  },
+  "portable": {
+    "name": "Chess-Publisher-v1.06.00-beta.98-FULL-PORTABLE-TEC-Q117-CUSTOM-RATING-LISTS-2026-09-12.zip",
+    "sha256": "be22670dc3617094ff4bbb6913b40672820e0fa97e00f2cc8a382c9c4fef9b10",
+    "sizeBytes": 29481324,
+    "driveFileId": "1d-3E03J6Ex83DippyQE--oWYaj1-loVo"
+  },
+  "source": {
+    "name": "Chess-Publisher-Windows-v1.06.00-beta.98-AUTHORITATIVE-SOURCE.tar.gz",
+    "sha256": "ff63252fd8e9bb74f04769df91dd330a6fdbd6819f5def6708d8a46f1e48ffc7",
+    "sizeBytes": 29111076,
+    "driveFileId": "1T6Py3C4te9KRK1zYSPj2zOw8HaSyOx3h",
+    "manifestSha256": "80566c59831c7b3b1a337ff019c6102498ab67922f8603ab40a8d07872a7e425",
+    "manifestFilesChecked": 890,
+    "manifestBad": 0
+  },
+  "exe": {
+    "name": "ChessPublisher-v1.06.00-beta.98.exe",
+    "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+    "sizeBytes": 1826816,
+    "driveFileId": "1iURkuWF8KhBE0u5TrqLY6sz0M_c3kuXU",
+    "note": "unchanged launcher"
+  },
+  "vcl": {
+    "name": "Chess-Publisher-FIDE-TEC-VCL-Compliance-Matrix-beta98.xlsx",
+    "sha256": "51279fed64de41849434edd2344990c219995c8e39037e3dd58028442a4d205a",
+    "driveFileId": "1o1GhCbt6bDbbxa87bO2KB4XZ6MxaVgMt",
+    "q117": "PASS",
+    "overall": "164 PASS / 9 PARTIAL / 0 FAIL / 21 CONDITIONAL / 1 NEEDS TEC / 30 N/A"
+  },
+  "evidence": {
+    "sha256SumsDriveFileId": "18g6PMNfVl5XWhKN54XEBhn57p7L3SSe2",
+    "regressionReportDriveFileId": "1sYT8t6aIHPz6eTAV_MpnPK_qzJ1mtRgP",
+    "changelogDriveFileId": "1b8NIG4v9LewQGg4NsRbNOdmOscEJoOQT",
+    "sourceDeltaDriveFileId": "1SRnWice7s34A3uPMwpX7O2FyJgEb-zaK",
+    "finalPointerDriveFileId": "1IWbDQLOerhfzxpizZcHcOZiRfnKO4sGf"
+  },
+  "gates": {
+    "q117": "42 PASS / 0 FAIL",
+    "ratingListStack": "18/18 test files PASS",
+    "cumulativeJs": "94 PASS / 2 approved historical exceptions / 1 designated browser skip / 0 unexpected",
+    "staticAudit": "PASS",
+    "protectedCore": "70/70 byte-identical to beta.96 r4",
+    "gacrux1957Sha256": "6955c4c1f16425fa662f70d08311cfddeeaf21cca1aee3d04a3a6b0f7bbb45fb",
+    "finalPortableManifest": "890/890 PASS",
+    "sourceArchiveManifest": "890/890 PASS"
+  },
+  "protectedCore": {
+    "syncFreeze": "unchanged",
+    "swissDutchPairing": "unchanged",
+    "trfPairingPath": "unchanged",
+    "bbpChecker": "unchanged",
+    "tieBreakCore": "unchanged",
+    "chessResultsCore": "unchanged",
+    "ratingCalculationCore": "unchanged",
+    "linux": "unchanged; frozen at v1.06.00-beta.81"
+  },
+  "runtimeConfirmation": "PENDING USER WINDOWS SMOKE TEST"
+}
