@@ -1,0 +1,41 @@
+Chess-Publisher v1.06.00-beta.98-r3
+Date: 2026-09-12
+Status: TEST CANDIDATE — NOT FROZEN
+Parent evidence checkpoint: beta.98-r2
+
+POINT FIX
+- Rating List Library is now a permanent static section in Lists & Players.
+- It no longer depends on beta.72 creating integratedRatingListsPanel.
+- Visible controls: Import Rating List…, Manage Rating Lists, library status badge.
+- Add Player search statically says: Search player (FIDE + imported rating lists)...
+- Import remains library-only and adds 0 tournament participants.
+
+GATES
+- Q117 operational: 58/58 PASS
+- Rating Library visible UI: 12/12 PASS
+- Add Player search bridge: 10/10 PASS
+- Identity/source selection: 12/12 PASS
+- 50K library: 7/7 PASS
+- Full JS corpus: 101 total / 98 PASS / 2 approved historical exceptions / 1 designated browser skip / 0 unexpected
+- Static audit: PASS
+- Protected core: 70/70 byte-identical
+- TRF16/TRF26: 3/3 PASS
+- BBP: 2/2 PASS
+- Tie-Break: 3/3 PASS
+- Chess-Results: 2/2 PASS
+- SYNC: 13/13 PASS
+- Gacrux runtime: 1/1 PASS
+
+GOOGLE DRIVE
+Folder ID: 1RHQOqILQOmWkiPPACi3SwFui-wpPCti4
+Portable ZIP ID: 1KMrhX954twSETb1IJ_kMYQ_I8GiFohct
+Authoritative source ID: 17HBeGvdfmoTQDToXHJyGsQldY-rEAd3o
+EXE ID: 1HfKu4Kd1GiT4J0XB8mo7TlRM9Z3H7kHA
+Pointer ID: 1Emd5XIRyGubMAC4JUTtuIUs_kZWcztF8
+
+SHA256
+Portable: 31397cd84627cb59b186e4b36b78a0f0efe539d4c08db392a2eeb732be179007
+Source: f29c50bf0d6798385abc9248e7d165c23eaab0a6cfd6f5aac0b24da2f7144083
+EXE: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+Linux remains frozen at beta.81 and is untouched.
