@@ -1,0 +1,35 @@
+{
+  "version": "1.06.00-beta.98-r3",
+  "status": "TEST CANDIDATE - NOT FROZEN",
+  "date": "2026-09-12",
+  "google_drive_folder_id": "1RHQOqILQOmWkiPPACi3SwFui-wpPCti4",
+  "artifacts": {
+    "portable": {
+      "name": "Chess-Publisher-v1.06.00-beta.98-r3-FULL-PORTABLE-RATING-LIBRARY-VISIBLE-2026-09-12.zip",
+      "sha256": "31397cd84627cb59b186e4b36b78a0f0efe539d4c08db392a2eeb732be179007",
+      "drive_id": "1KMrhX954twSETb1IJ_kMYQ_I8GiFohct"
+    },
+    "source": {
+      "name": "Chess-Publisher-Windows-v1.06.00-beta.98-r3-AUTHORITATIVE-SOURCE.tar.gz",
+      "sha256": "f29c50bf0d6798385abc9248e7d165c23eaab0a6cfd6f5aac0b24da2f7144083",
+      "drive_id": "17HBeGvdfmoTQDToXHJyGsQldY-rEAd3o"
+    },
+    "exe": {
+      "name": "ChessPublisher-v1.06.00-beta.98-r3.exe",
+      "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+      "drive_id": "1HfKu4Kd1GiT4J0XB8mo7TlRM9Z3H7kHA"
+    }
+  },
+  "gates": {
+    "visible_rating_library_ui": "12/12 PASS",
+    "q117": "58/58 PASS",
+    "cumulative": "98 PASS / 2 approved historical exceptions / 1 designated skip / 0 unexpected",
+    "static_audit": "PASS",
+    "protected_core": "70/70 IDENTICAL"
+  },
+  "notes": [
+    "Rating List Library is permanent static UI in Lists & Players",
+    "No dependency on integratedRatingListsPanel",
+    "Linux beta.81 remains frozen"
+  ]
+}
