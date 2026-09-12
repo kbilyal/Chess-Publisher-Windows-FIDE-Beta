@@ -1,0 +1,58 @@
+Chess-Publisher v1.06.00-beta.98 — Q117 Custom Rating Lists Release Gate
+Date: 2026-09-12
+Parent runtime: v1.06.00-beta.97 FULL PORTABLE UI CLEANUP
+Status: WINDOWS TEST CANDIDATE — NOT FROZEN
+
+RECOVERY PROVENANCE
+The original beta.97 authoritative source tar was unavailable because Google Drive blocked download. The user supplied the beta.97 portable directly. Its SHA256 is c8cde12bcd45706d0aee6375ecec4c72115637a1ecc55f44f36c560a108b7385, exactly matching beta.97 release evidence. beta.98 was built from that exact verified portable tree plus the documented additive Q117 delta.
+
+Q117
+- Draft VCL Q117 Custom Rating Lists: PASS on current deterministic evidence.
+- Dedicated regression: 42 PASS / 0 FAIL.
+- General Custom Rating List object/layer with stable ID, visible name, category, rating context, Type-B source-unknown provenance, lookup/value retrieval, catalogue integration, Rating List Sequence add/remove/reorder/Main/fallback, Tournament Rating source provenance, manual-override provenance retention, safe deletion, save/reload, and Cloud/Web snapshot preservation.
+- Custom automated consistency checking is intentionally not added because the current Q117/VCL scope does not require it.
+- Tournament-scoped deletion is isolated: another tournament using the same explicit stable ID is not mutated.
+
+REGRESSION GATES
+- Rating-List stack: 18/18 test files PASS.
+- Full JS corpus: 97 programs total; 94 PASS; 2 approved historical exceptions; 1 designated browser-runner skip; 0 unexpected failures.
+- FULL-PROGRAM-STATIC-AUDIT.py: PASS.
+- Protected core: 70/70 byte-identical to active beta.96 r4 baseline.
+- Gacrux 1.9.57 SHA256: 6955c4c1f16425fa662f70d08311cfddeeaf21cca1aee3d04a3a6b0f7bbb45fb.
+- TRF16/TRF26 critical group: PASS.
+- BBP/pairing checker critical group: PASS.
+- Tie-Break critical group: PASS.
+- Chess-Results critical group: PASS.
+- SYNC frozen stack: PASS.
+- Final portable manifest: 890/890 PASS.
+- Authoritative source archive manifest: 890/890 PASS.
+
+VCL DELTA
+- Overall: 164 PASS / 9 PARTIAL / 0 FAIL / 21 CONDITIONAL / 1 NEEDS TEC / 30 N/A.
+- Q117: PARTIAL -> PASS.
+- Rating Lists section: 28 PASS / 1 PARTIAL.
+- No other VCL status changed. Q18 remains NEEDS TEC.
+
+PROTECTED CORE
+No intentional change to Gacrux 1.9.57, Swiss Dutch pairing, TRF pairing path, BBP independent checker core, protected FIDE Tie-Break formulas/checker, Chess-Results XML/network/core, rating calculation core, or beta.96 r4 SYNC protected core. Linux remains frozen at v1.06.00-beta.81.
+
+ARTIFACTS
+Portable ZIP: Chess-Publisher-v1.06.00-beta.98-FULL-PORTABLE-TEC-Q117-CUSTOM-RATING-LISTS-2026-09-12.zip
+SHA256: be22670dc3617094ff4bbb6913b40672820e0fa97e00f2cc8a382c9c4fef9b10
+Drive ID: 1d-3E03J6Ex83DippyQE--oWYaj1-loVo
+
+Authoritative source: Chess-Publisher-Windows-v1.06.00-beta.98-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: ff63252fd8e9bb74f04769df91dd330a6fdbd6819f5def6708d8a46f1e48ffc7
+Drive ID: 1T6Py3C4te9KRK1zYSPj2zOw8HaSyOx3h
+Manifest SHA256: 80566c59831c7b3b1a337ff019c6102498ab67922f8603ab40a8d07872a7e425
+
+Windows EXE: ChessPublisher-v1.06.00-beta.98.exe
+SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+Drive ID: 1iURkuWF8KhBE0u5TrqLY6sz0M_c3kuXU
+
+VCL matrix: Chess-Publisher-FIDE-TEC-VCL-Compliance-Matrix-beta98.xlsx
+SHA256: 51279fed64de41849434edd2344990c219995c8e39037e3dd58028442a4d205a
+Drive ID: 1o1GhCbt6bDbbxa87bO2KB4XZ6MxaVgMt
+
+PROMOTION RESTRICTION
+beta.98 remains a Windows TEST CANDIDATE. Do not mark it frozen/stable until a real Windows UI smoke test confirms create/import/manage Custom Rating Lists, Rating List Sequence editing/Main list/fallback, player insertion via sequence, manual override provenance and safe deletion.
