@@ -1,0 +1,73 @@
+{
+  "product": "Chess-Publisher",
+  "version": "1.06.00-beta.98-r2",
+  "status": "WINDOWS TEST CANDIDATE — NOT FROZEN",
+  "date": "2026-09-12",
+  "parent": "1.06.00-beta.98-r1",
+  "parentEvidenceCommit": "a5f3e94a4f846a951927b20d83c940485f16e726",
+  "rootVerifiedPortable": {
+    "version": "1.06.00-beta.97",
+    "sha256": "c8cde12bcd45706d0aee6375ecec4c72115637a1ecc55f44f36c560a108b7385"
+  },
+  "driveFolderId": "1BuMSs05FjfsvwpX5tw2VAqgsICWAHZ15",
+  "artifacts": {
+    "portable": {
+      "name": "Chess-Publisher-v1.06.00-beta.98-r2-FULL-PORTABLE-ADD-PLAYER-IDENTITY-2026-09-12.zip",
+      "sha256": "99e5558ca4057ee40ac3d08ff00bb00381694e66fbe94f583b198fd322b45e46",
+      "driveFileId": "1vhqrqenZifyYBjfpLGtCZs2Es_XEGnaZ"
+    },
+    "source": {
+      "name": "Chess-Publisher-Windows-v1.06.00-beta.98-r2-AUTHORITATIVE-SOURCE.tar.gz",
+      "sha256": "ef7de9a591bdef2895e2645f8fcb47e2d426c68c1f2ae58c11daf9793014a132",
+      "driveFileId": "112k1z3csU-fgTZ8asANFhWh_eB5Rm0zy",
+      "manifest": "AUTHORITATIVE-SOURCE-MANIFEST-beta98-r2.txt",
+      "manifestSha256": "97b07684e4ad3480a555b630dcf126ed4a67e824067ac3e59e2c388a5af1a847",
+      "manifestListedFiles": 918
+    },
+    "exe": {
+      "name": "ChessPublisher-v1.06.00-beta.98-r2.exe",
+      "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+      "driveFileId": "1Skj7Bcu-EDg4ykWKifsCTJbynwyX8qKl"
+    },
+    "vcl": {
+      "name": "Chess-Publisher-FIDE-TEC-VCL-Compliance-Matrix-beta98-r2.xlsx",
+      "sha256": "e576b9eb89cb61837c658548f74bffcdab5221d26b6931c067062fe42084b4a4",
+      "driveFileId": "1aCvjud_0sPxseqKrhzYThI8TeK2rkkYB"
+    },
+    "sourceDelta": {
+      "name": "BETA98-R2-SOURCE-DELTA.patch",
+      "sha256": "826513622061d8b79e5bf4676024f76cc2d4f52a6b0e3ada57663e2d5b23b179",
+      "driveFileId": "1hVmbicyF11gC3UrEQqsnzD0q0E7wW9KA"
+    },
+    "regressionReport": {
+      "name": "Chess-Publisher-v1.06.00-beta.98-r2-REGRESSION-REPORT.txt",
+      "sha256": "96d55bed41cf466f28f921be61f78793f8e1f263f0addcebe290c371850d992e",
+      "driveFileId": "1LqWcN9nkj6yorw2tqS0ggVlBiG43Ccr3"
+    }
+  },
+  "gates": {
+    "q117": "58/58 PASS",
+    "large50000": "7/7 PASS",
+    "addPlayerSearchBridge": "10/10 PASS",
+    "identitySourceChoice": "12/12 PASS",
+    "cumulative": "97 PASS + 2 approved historical exceptions + 1 designated browser-only skip / 0 unexpected FAIL",
+    "staticAudit": "PASS",
+    "protectedCore": "70/70 byte-identical",
+    "trf16trf26": "3/3 PASS",
+    "bbp": "2/2 PASS",
+    "tieBreak": "3/3 PASS",
+    "chessResults": "2/2 PASS",
+    "sync": "13/13 PASS",
+    "gacrux": "1/1 PASS"
+  },
+  "identityPolicy": {
+    "sameFideId": "merge",
+    "noFideIdExactNameFederationFullDob": "merge",
+    "sameNameDifferentDob": "do-not-merge",
+    "conflictingValidFideIds": "do-not-merge"
+  },
+  "protected": {
+    "gacrux1957Sha256": "6955c4c1f16425fa662f70d08311cfddeeaf21cca1aee3d04a3a6b0f7bbb45fb",
+    "linux": "FROZEN v1.06.00-beta.81"
+  }
+}
