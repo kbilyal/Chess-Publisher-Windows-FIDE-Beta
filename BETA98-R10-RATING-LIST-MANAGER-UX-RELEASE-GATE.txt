@@ -1,0 +1,26 @@
+Chess-Publisher v1.06.00-beta.98-r10
+Status: WINDOWS TEST CANDIDATE
+Parent frozen: v1.06.00-beta.98-r9
+
+Scope:
+- simplify Rating List Manager
+- no Effective Rapid/Blitz rows in manager
+- no Set Main/Add to Sequence controls
+- main official source shown from Tournament Rating Type
+- simple Include in search controls
+- Add Player hides Rating List Sequence radio and identifies default official source
+- no protected core change
+
+Evidence:
+Dedicated r10: 21/21 PASS
+Chromium: PASS; focus_delta=0; onechar_delta=0; pageerrors=0
+Full JS: 106 PASS / 2 approved historical exceptions / 1 browser-only skip / 0 unexpected failures
+Static audit: PASS
+Protected core: 70/70 identical
+ZIP manifest: 1048/1048
+Source manifest: 1048/1048
+ZIP SHA256: 9887dd0da2b72ba20ced7e86f5cad81fc6d15e9c74739dc081ea77bdad604fb0
+Source SHA256: 40e2096de6c41e96a9165f760b2101c910d073716a3835eba4a732db8da8a3f5
+EXE SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+r9 remains the frozen Windows recovery checkpoint until Windows smoke confirms r10.
