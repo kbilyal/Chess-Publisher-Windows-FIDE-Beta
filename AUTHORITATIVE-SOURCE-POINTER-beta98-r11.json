@@ -1,0 +1,10 @@
+{
+  "version": "1.06.00-beta.98-r11",
+  "status": "WINDOWS TEST CANDIDATE",
+  "frozen_recovery": "1.06.00-beta.98-r9",
+  "parent_candidate": "1.06.00-beta.98-r10",
+  "portable_zip_sha256": "5599b58f9fd61bd859c3252ec2f0734d66855908c23f100d1528d379dd91cd17",
+  "source_sha256": "e2872580ba22f733ab2852badaefe6ffc6f5b6abe8578eaa95b3b24053b27aad",
+  "exe_sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+  "drive_folder": "/ChessPublisher Releases/beta98-r11"
+}
