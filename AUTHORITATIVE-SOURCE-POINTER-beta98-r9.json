@@ -1,0 +1,17 @@
+{
+  "version": "1.06.00-beta.98-r9",
+  "status": "WINDOWS FROZEN CHECKPOINT",
+  "portable": {
+    "file": "Chess-Publisher-v1.06.00-beta.98-r9-FULL-PORTABLE-FROZEN-PAIRING-UI-BAKU-2026-09-14.zip",
+    "sha256": "efa4ca41799db0bafa7432b49ca7c3e6d755c12cb5c1bad178411c0f5a1b851d"
+  },
+  "source": {
+    "file": "Chess-Publisher-Windows-v1.06.00-beta.98-r9-AUTHORITATIVE-SOURCE.tar.gz",
+    "sha256": "4d785c239c84f7446b71f16162b9cff84e02146bc97284785ebec156e3ce9d1c",
+    "manifest_entries": 1031
+  },
+  "launcher_sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+  "artifact_location": "Google Drive / ChessPublisher Releases / beta98-r9",
+  "linux": "FROZEN v1.06.00-beta.81",
+  "protected_sync_baseline": "v1.06.00-beta.96-r4"
+}
