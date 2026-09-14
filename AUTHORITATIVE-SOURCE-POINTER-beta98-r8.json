@@ -1,0 +1,19 @@
+{
+  "version": "1.06.00-beta.98-r8",
+  "parent": "1.06.00-beta.98-r7",
+  "status": "WINDOWS TEST CANDIDATE - NOT FROZEN",
+  "authoritative_manifest_entries": 1013,
+  "portable_zip": {
+    "name": "Chess-Publisher-v1.06.00-beta.98-r8-FULL-PORTABLE-NEW-TOURNAMENT-BAKU-2026-09-14.zip",
+    "sha256": "10cba45fed796d48deda1b9aaa9836d58e7fc9fb4068da9c89d0572844195299"
+  },
+  "authoritative_source": {
+    "name": "Chess-Publisher-Windows-v1.06.00-beta.98-r8-AUTHORITATIVE-SOURCE.tar.gz",
+    "sha256": "3eeea01eed83d245cd5c19f05e16fded9d76c0b537e80bf5c96a4fe80cd27911"
+  },
+  "exe": {
+    "name": "ChessPublisher-v1.06.00-beta.98-r8.exe",
+    "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3"
+  },
+  "release_location": "Google Drive / ChessPublisher Releases / beta98-r8"
+}
