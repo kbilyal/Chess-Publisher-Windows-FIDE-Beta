@@ -1,0 +1,32 @@
+Chess-Publisher v1.06.00-beta.98-r11 — Late Entry UX release gate
+Status: WINDOWS TEST CANDIDATE
+Frozen recovery: v1.06.00-beta.98-r9
+Parent candidate: v1.06.00-beta.98-r10
+
+Scope:
+- Add Player visibly becomes Add Late Entry after Swiss tournament start.
+- FIDE/custom modal and Rating List Manager use the same contextual label.
+- Existing never-paired registrations use a dedicated Late Entry action bar.
+- Lifecycle semantics unchanged.
+- Protected core unchanged.
+
+Gates:
+- dedicated 21/21 PASS
+- browser smoke PASS / 0 page errors
+- actual manual add after Round 1: joinedFromRound=2, Present, needsResort=true
+- full JS 107 PASS / 2 approved historical / 1 browser skip / 0 unexpected
+- static audit PASS
+- protected 70/70 identical
+- manifest 1063/1063 ZIP and source
+
+Portable ZIP SHA256:
+5599b58f9fd61bd859c3252ec2f0734d66855908c23f100d1528d379dd91cd17
+
+Authoritative source SHA256:
+e2872580ba22f733ab2852badaefe6ffc6f5b6abe8578eaa95b3b24053b27aad
+
+EXE SHA256:
+1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+Authoritative release location:
+Google Drive /ChessPublisher Releases/beta98-r11
