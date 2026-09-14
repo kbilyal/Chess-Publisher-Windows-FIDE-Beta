@@ -1,0 +1,19 @@
+Chess-Publisher v1.06.00-beta.98-r10 authoritative source pointer
+
+Status: WINDOWS TEST CANDIDATE
+Parent frozen checkpoint: v1.06.00-beta.98-r9
+
+Portable ZIP:
+Chess-Publisher-v1.06.00-beta.98-r10-FULL-PORTABLE-RATING-LIST-MANAGER-UX-2026-09-14.zip
+SHA256: 9887dd0da2b72ba20ced7e86f5cad81fc6d15e9c74739dc081ea77bdad604fb0
+
+Authoritative source archive:
+Chess-Publisher-Windows-v1.06.00-beta.98-r10-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: 40e2096de6c41e96a9165f760b2101c910d073716a3835eba4a732db8da8a3f5
+
+Windows launcher:
+ChessPublisher-v1.06.00-beta.98-r10.exe
+SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+Release artifacts are stored under Google Drive /ChessPublisher Releases/beta98-r10.
+Production source is not mirrored into GitHub; GitHub remains the evidence/checkpoint index.
