@@ -1,0 +1,30 @@
+Chess-Publisher v1.06.00-beta.98-r9 — WINDOWS FROZEN CHECKPOINT
+Date: 2026-09-14
+Parent: v1.06.00-beta.98-r8
+
+Freeze scope:
+- Tournament Setup visibly shows Baku acceleration beside FIDE Dutch System: Acceleration: Baku / BAKU ACTIVE.
+- Pairings result-entry side panel UI polish; Resort Starting List is a full-width action.
+- Generate Pairings uses a spinner + elapsed-time busy presentation and yields UI paint before invoking the unchanged protected pairing path.
+
+Release gate:
+- Dedicated r9: 20/20 PASS
+- Browser runtime: PASS / 0 page errors
+- Full JS corpus: 105 PASS + 2 approved historical exceptions + 1 designated browser-only skip / 0 unexpected failures
+- Static audit: PASS
+- Protected core: 70/70 byte-identical
+- TRF 3/3; BBP 2/2; Tie-Break 3/3; Chess-Results 2/2; SYNC 13/13; Gacrux 1/1; Rating/VCL 12/12
+- Final ZIP/source manifest: 1031/1031 PASS
+
+Portable ZIP SHA256:
+efa4ca41799db0bafa7432b49ca7c3e6d755c12cb5c1bad178411c0f5a1b851d
+
+Authoritative source SHA256:
+4d785c239c84f7446b71f16162b9cff84e02146bc97284785ebec156e3ce9d1c
+
+Launcher EXE SHA256:
+1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+Authoritative release artifacts are stored in Google Drive under ChessPublisher Releases/beta98-r9.
+Linux remains frozen at v1.06.00-beta.81.
+Protected SYNC baseline remains v1.06.00-beta.96-r4.
