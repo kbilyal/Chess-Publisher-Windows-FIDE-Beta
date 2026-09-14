@@ -1,0 +1,39 @@
+Chess-Publisher v1.06.00-beta.98-r8
+Status: WINDOWS TEST CANDIDATE - NOT FROZEN
+Parent: v1.06.00-beta.98-r7
+Date: 2026-09-14
+
+Scope:
+- redesigned New Tournament dialog
+- first-class Accelerated Baku tournament creation
+- Swiss Dutch remains default
+- Round Robin remains Berger Tables
+- Open Local and Open My Online Tournaments remain separate actions
+- final product-version guard keeps runtime display on beta.98-r8
+
+Protected core:
+- 70/70 byte-identical
+- Gacrux 1.9.57 unchanged
+- Swiss Dutch pairing core unchanged
+- TRF core unchanged
+- BBP checker unchanged
+- Tie-Break core unchanged
+- Chess-Results core unchanged
+- frozen SYNC protected core unchanged
+
+Post-package verification:
+- ZIP authoritative manifest: 1013/1013 PASS
+- source authoritative manifest: 1013/1013 PASS
+- New Tournament regression: 20/20 PASS
+- Chromium runtime smoke: PASS, 0 page errors
+- full JS corpus: 104 PASS / 2 approved historical exceptions / 1 designated browser-only skip / 0 unexpected failures
+- static audit: PASS
+
+Portable ZIP SHA256:
+10cba45fed796d48deda1b9aaa9836d58e7fc9fb4068da9c89d0572844195299
+
+Authoritative source SHA256:
+3eeea01eed83d245cd5c19f05e16fded9d76c0b537e80bf5c96a4fe80cd27911
+
+Launcher EXE SHA256:
+1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
