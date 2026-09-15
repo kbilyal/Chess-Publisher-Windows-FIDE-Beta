@@ -1,0 +1,55 @@
+name: Publish Pre-FIDE r12 candidate
+
+on:
+  push:
+    branches:
+      - fide-pre-release-v1.06.00-beta.98-r12-tec-review
+    paths:
+      - 'release-assets/v1.06.00-beta.98-r12/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pre-fide-v1.06.00-beta.98-r12
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Verify release payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd release-assets/v1.06.00-beta.98-r12
+          sha256sum -c SHA256SUMS.txt
+          test -s ChessPublisher-v1.06.00-beta.98-r12.exe
+          test -s RELEASE-NOTES.md
+
+      - name: Publish GitHub pre-release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          tag='v1.06.00-beta.98-r12-pre-fide'
+          dir='release-assets/v1.06.00-beta.98-r12'
+          exe="$dir/ChessPublisher-v1.06.00-beta.98-r12.exe"
+          sums="$dir/SHA256SUMS.txt"
+          notes="$dir/RELEASE-NOTES.md"
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$tag" "$exe" "$sums" --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$tag" "$exe" "$sums" \
+              --title 'Chess-Publisher v1.06.00-beta.98-r12 — Pre-FIDE / TEC Review Candidate' \
+              --notes-file "$notes" \
+              --prerelease \
+              --target "$GITHUB_SHA" \
+              --repo "$GITHUB_REPOSITORY"
+          fi
