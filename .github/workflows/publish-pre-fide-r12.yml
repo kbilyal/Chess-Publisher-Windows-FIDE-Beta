@@ -5,7 +5,7 @@ on:
     branches:
       - fide-pre-release-v1.06.00-beta.98-r12-tec-review
     paths:
-      - 'release-assets/v1.06.00-beta.98-r12/**'
+      - 'release-assets/v1.06.00-beta.98-r12/READY'
 
 permissions:
   contents: write
@@ -23,10 +23,25 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Verify release payload
+      - name: Reconstruct and verify exact Windows executable
         shell: bash
         run: |
           set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import base64, lzma
+
+          root = Path('release-assets/v1.06.00-beta.98-r12')
+          parts = sorted((root / 'chunks').glob('part-*.b64'))
+          if not parts:
+              raise SystemExit('Missing encoded EXE chunks')
+          encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
+          compressed = base64.b64decode(encoded, validate=True)
+          payload = lzma.decompress(compressed)
+          output = root / 'ChessPublisher-v1.06.00-beta.98-r12.exe'
+          output.write_bytes(payload)
+          print(f'Reconstructed {output} ({len(payload)} bytes) from {len(parts)} chunks')
+          PY
           cd release-assets/v1.06.00-beta.98-r12
           sha256sum -c SHA256SUMS.txt
           test -s ChessPublisher-v1.06.00-beta.98-r12.exe
