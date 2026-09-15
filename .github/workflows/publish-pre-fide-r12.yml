@@ -17,37 +17,34 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      EXE_SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+      STABLE_ZIP_SHA256: 34d89888d52eca1e4dc3b114701ce5ca4a417f84f186dff66467f875605ea44e
+      STABLE_ZIP_URL: https://github.com/kbilyal/ChessPublisher/releases/download/v1.05.01/chess-publisher-v1.05.01-2026-09-03.zip
+
     steps:
       - name: Checkout exact candidate
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
-      - name: Reconstruct and verify exact Windows executable
+      - name: Materialize and verify exact protected Windows launcher
         shell: bash
         run: |
           set -euo pipefail
-          python - <<'PY'
-          from pathlib import Path
-          import base64, lzma
-
-          root = Path('release-assets/v1.06.00-beta.98-r12')
-          parts = sorted((root / 'chunks').glob('part-*.b64'))
-          if not parts:
-              raise SystemExit('Missing encoded EXE chunks')
-          encoded = ''.join(p.read_text(encoding='ascii').strip() for p in parts)
-          compressed = base64.b64decode(encoded, validate=True)
-          payload = lzma.decompress(compressed)
-          output = root / 'ChessPublisher-v1.06.00-beta.98-r12.exe'
-          output.write_bytes(payload)
-          print(f'Reconstructed {output} ({len(payload)} bytes) from {len(parts)} chunks')
-          PY
-          cd release-assets/v1.06.00-beta.98-r12
+          dir='release-assets/v1.06.00-beta.98-r12'
+          mkdir -p transport
+          curl --fail --location --retry 4 --retry-all-errors "$STABLE_ZIP_URL" -o transport/stable-v1.05.01.zip
+          printf '%s  %s\n' "$STABLE_ZIP_SHA256" transport/stable-v1.05.01.zip | sha256sum -c -
+          unzip -p transport/stable-v1.05.01.zip ChessPublisher.exe > "$dir/ChessPublisher-v1.06.00-beta.98-r12.exe"
+          test "$(stat -c%s "$dir/ChessPublisher-v1.06.00-beta.98-r12.exe")" -eq 1826816
+          printf '%s  %s\n' "$EXE_SHA256" "$dir/ChessPublisher-v1.06.00-beta.98-r12.exe" | sha256sum -c -
+          cd "$dir"
           sha256sum -c SHA256SUMS.txt
-          test -s ChessPublisher-v1.06.00-beta.98-r12.exe
           test -s RELEASE-NOTES.md
+          echo 'FIDE-BETA PRE-FIDE r12 ASSET GATE: PASS'
 
-      - name: Publish GitHub pre-release
+      - name: Publish GitHub pre-release evidence mirror
         shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
@@ -58,13 +55,35 @@ jobs:
           exe="$dir/ChessPublisher-v1.06.00-beta.98-r12.exe"
           sums="$dir/SHA256SUMS.txt"
           notes="$dir/RELEASE-NOTES.md"
+          title='Chess-Publisher v1.06.00-beta.98-r12 — Pre-FIDE / TEC Evidence Mirror'
           if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh release upload "$tag" "$exe" "$sums" --clobber --repo "$GITHUB_REPOSITORY"
+            gh release edit "$tag" --title "$title" --notes-file "$notes" --prerelease --repo "$GITHUB_REPOSITORY"
           else
             gh release create "$tag" "$exe" "$sums" \
-              --title 'Chess-Publisher v1.06.00-beta.98-r12 — Pre-FIDE / TEC Review Candidate' \
+              --title "$title" \
               --notes-file "$notes" \
               --prerelease \
               --target "$GITHUB_SHA" \
               --repo "$GITHUB_REPOSITORY"
           fi
+
+      - name: Verify evidence mirror
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release view 'v1.06.00-beta.98-r12-pre-fide' --repo "$GITHUB_REPOSITORY" --json isPrerelease,assets,url > release.json
+          python - <<'PY'
+          import json
+          d=json.load(open('release.json', encoding='utf-8'))
+          if not d.get('isPrerelease'):
+              raise SystemExit('Evidence mirror is not prerelease')
+          names={a['name'] for a in d.get('assets',[])}
+          required={'ChessPublisher-v1.06.00-beta.98-r12.exe','SHA256SUMS.txt'}
+          if required-names:
+              raise SystemExit('Missing evidence assets: '+', '.join(sorted(required-names)))
+          print('FIDE-BETA PUBLIC EVIDENCE MIRROR: PASS')
+          print(d['url'])
+          PY
