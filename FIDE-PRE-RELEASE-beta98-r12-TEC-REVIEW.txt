@@ -1,0 +1,34 @@
+Chess-Publisher v1.06.00-beta.98-r12 — FIDE TEC REVIEW PRE-RELEASE RECORD
+Recorded: 2026-09-15
+
+STATUS:
+PRE-RELEASE / TEC REVIEW CANDIDATE
+NOT A CLAIM OF FIDE APPROVAL OR CERTIFICATION
+
+Git branch:
+fide-pre-release-v1.06.00-beta.98-r12-tec-review
+
+Full portable ZIP:
+Chess-Publisher-v1.06.00-beta.98-r12-FULL-PORTABLE-LATE-ENTRY-DOUBLECLICK-2026-09-14.zip
+SHA256: e33ed93e1b81af83fa1d1b17fcc4dfaeec2daec73b89aa9d5ba6ebee3310ce5b
+
+Windows EXE:
+ChessPublisher-v1.06.00-beta.98-r12.exe
+SHA256: 1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
+
+Authoritative source:
+Chess-Publisher-Windows-v1.06.00-beta.98-r12-AUTHORITATIVE-SOURCE.tar.gz
+SHA256: 0bf3306edc386efa39fd9e1a89ce9a1739d3d1408960372b428b1770f4a2fd55
+
+Exact binary archive:
+Google Drive / ChessPublisher Releases / beta98-r12
+
+Verification snapshot:
+- manifest 1079/1079 PASS
+- dedicated r12 regression 23/23 PASS
+- full JS corpus 108 PASS / 2 approved historical exceptions / 1 browser-only skip / 0 unexpected
+- static audit PASS
+- protected core 70/70 byte-identical
+
+Frozen recovery remains v1.06.00-beta.98-r9.
+The pre-release branch must not be rewritten; later fixes receive a new candidate/checkpoint.
