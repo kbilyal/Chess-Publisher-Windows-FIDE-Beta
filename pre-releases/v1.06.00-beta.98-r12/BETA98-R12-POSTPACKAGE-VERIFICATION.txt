@@ -1,0 +1,17 @@
+Chess-Publisher v1.06.00-beta.98-r12 — POST-PACKAGE VERIFICATION
+Date: 2026-09-14
+Status: WINDOWS TEST CANDIDATE / FIDE TEC REVIEW PRE-RELEASE
+Frozen recovery: v1.06.00-beta.98-r9
+
+PASS — Portable ZIP authoritative manifest: 1079/1079
+PASS — Authoritative source manifest: 1079/1079
+PASS — Dedicated r12 Late Entry double-click regression: 23/23
+PASS — Chromium runtime smoke: 0 page errors
+PASS — double-click after Round 1 adds one player, Rapid rating 1910, joinedFromRound=2, Present, needsResort=true
+PASS — Cancel leaves player count unchanged
+PASS — Full JS corpus on extracted ZIP: 108 PASS / 2 approved historical exceptions / 1 browser-only skip / 0 unexpected
+PASS — Static audit on extracted ZIP
+PASS — Protected core on extracted ZIP: 70/70 identical
+PASS — Frozen r9 remains unchanged as recovery checkpoint
+
+NOTICE — This evidence is a pre-release trace only. It does not claim FIDE approval/certification.
