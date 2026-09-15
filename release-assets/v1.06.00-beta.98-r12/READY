@@ -1,0 +1,6 @@
+READY
+release=v1.06.00-beta.98-r12
+activated=2026-09-15
+bug_hunt=PASS
+protected_core=70/70 byte-identical
+exe_sha256=1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3
