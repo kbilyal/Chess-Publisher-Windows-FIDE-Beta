@@ -1,0 +1,29 @@
+{
+  "project": "Chess-Publisher",
+  "version": "v1.06.00-beta.98-r12",
+  "status": "FIDE TEC REVIEW PRE-RELEASE",
+  "fide_approved": false,
+  "recorded_on": "2026-09-15",
+  "frozen_recovery": "v1.06.00-beta.98-r9",
+  "google_drive_folder": {
+    "path": "/Google Drive/ChessPublisher Releases/beta98-r12",
+    "id": "external-gdrive:folder:1gnVU-pkG3bsWAXgQKDBgA5dvmTFfJZhw"
+  },
+  "portable_zip": {
+    "name": "Chess-Publisher-v1.06.00-beta.98-r12-FULL-PORTABLE-LATE-ENTRY-DOUBLECLICK-2026-09-14.zip",
+    "sha256": "e33ed93e1b81af83fa1d1b17fcc4dfaeec2daec73b89aa9d5ba6ebee3310ce5b",
+    "drive_file_id": "external-gdrive:file:1r4RZwFYrrNiBsjOAvUt40DIyo3JanWr3"
+  },
+  "windows_exe": {
+    "name": "ChessPublisher-v1.06.00-beta.98-r12.exe",
+    "sha256": "1e5c93b987e156a81a3b1ca0bb6dc6fe84f97f38477c161b355a75b2c86458c3",
+    "drive_file_id": "external-gdrive:file:1dtcHt8DPuVSkbAZjNqxfSwM45XnMOE5S"
+  },
+  "authoritative_source": {
+    "name": "Chess-Publisher-Windows-v1.06.00-beta.98-r12-AUTHORITATIVE-SOURCE.tar.gz",
+    "sha256": "0bf3306edc386efa39fd9e1a89ce9a1739d3d1408960372b428b1770f4a2fd55",
+    "drive_file_id": "external-gdrive:file:1IEWAYum0HUw3-VgPoUM3f-ERCELOkKXx"
+  },
+  "postpackage_verification_drive_file_id": "external-gdrive:file:15bIAV3Y1A4T8FriIYz2meFXX6kKwFu_z",
+  "binary_asset_note": "Exact binaries are archived in the referenced Google Drive release folder. The connected GitHub write interface used for this record does not expose GitHub Release binary-asset upload."
+}
